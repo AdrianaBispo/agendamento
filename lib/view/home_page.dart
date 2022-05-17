@@ -32,10 +32,10 @@ class _HomePageState extends State<HomePage> {
                 color: AppColor.white,
                 child: Column(
                   children: <Widget>[
-                    DrawerListTile(pagina: HomePage(), texto: 'Home'),
-                    DrawerListTile(pagina: {}, texto: 'Agenda'),
-                    DrawerListTile(pagina:  {}, texto: 'Clientes'),
-                    DrawerListTile(pagina: {}, texto: 'Profissionais'),
+                    DrawerListTile(pagina: HomePage(), texto: 'Home', icon:  'element',),
+                    DrawerListTile(pagina: {}, texto: 'Agenda', icon: 'calendar'),
+                    DrawerListTile(pagina:  {}, texto: 'Clientes', icon: 'profile-2user',),
+                    //DrawerListTile(pagina: {}, texto: 'Profissionais'),
                   ],
                 ),
               ),
