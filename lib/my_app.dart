@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primaryColor: AppColor.blue,//para os botoes
       ),
       routes: {
