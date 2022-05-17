@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: <Widget>[
                     DrawerListTile(pagina: HomePage(), texto: 'Home'),
-                    DrawerListTile(pagina: {}, texto: 'Agendamento'),
+                    DrawerListTile(pagina: {}, texto: 'Agenda'),
                     DrawerListTile(pagina:  {}, texto: 'Clientes'),
                     DrawerListTile(pagina: {}, texto: 'Profissionais'),
                   ],
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               flex: 5,
               child: Container(
-                color: AppColor.blueSecondary,
+                color: AppColor.natural_7,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
