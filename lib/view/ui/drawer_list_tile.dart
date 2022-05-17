@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-
+//ui
 import '../../const/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DrawerListTile extends StatelessWidget {
   late String texto;
   late dynamic pagina;
+  late String icon;
 
   DrawerListTile({
     required this.pagina,
     required this.texto,
+    required this.icon,
   });
 
   @override
@@ -19,6 +22,7 @@ class DrawerListTile extends StatelessWidget {
         MaterialPageRoute(builder: ((context) => pagina)));
       },
       horizontalTitleGap: 0.0,
+      leading: SvgPicture.asset('asset/icones/$icon.png'),
       title: Text(
         texto,
         style: const TextStyle(
