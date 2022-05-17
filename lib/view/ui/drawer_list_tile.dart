@@ -22,7 +22,7 @@ class DrawerListTile extends StatelessWidget {
         MaterialPageRoute(builder: ((context) => pagina)));
       },
       horizontalTitleGap: 0.0,
-      leading: SvgPicture.asset('asset/icones/$icon.png'),
+      leading: SvgPicture.asset('asset/icones/Icon/$icon.png'),
       title: Text(
         texto,
         style: const TextStyle(
