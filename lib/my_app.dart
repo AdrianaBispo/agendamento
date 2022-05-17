@@ -1,6 +1,7 @@
+import 'package:agenda/const/colors.dart';
 import 'package:flutter/material.dart';
 //view
-import 'view/home_page.dart'; 
+import 'view/home_page.dart';
 //routes
 import 'utils/routes.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: AppColor.blue,//para os botoes
       ),
       routes: {
         AppRoutes.HOME: (context) => HomePage(),
