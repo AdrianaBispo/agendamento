@@ -37,13 +37,16 @@ class _HomePageState extends State<HomePage> {
                       pagina: HomePage(),
                       texto: 'Home',
                       icon: 'element',
+                      selected: true,
                     ),
                     DrawerListTile(
-                        pagina: {}, texto: 'Agenda', icon: 'calendar'),
+                        pagina: {}, texto: 'Agenda', icon: 'calendar',
+                      selected: false,),
                     DrawerListTile(
                       pagina: {},
                       texto: 'Clientes',
                       icon: 'profile-2user',
+                      selected: false,
                     ),
                     //DrawerListTile(pagina: {}, texto: 'Profissionais'),
                   ],
