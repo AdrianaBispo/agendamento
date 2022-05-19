@@ -40,8 +40,11 @@ class _HomePageState extends State<HomePage> {
                       selected: true,
                     ),
                     DrawerListTile(
-                        pagina: {}, texto: 'Agenda', icon: 'calendar',
-                      selected: false,),
+                      pagina: {},
+                      texto: 'Agenda',
+                      icon: 'calendar',
+                      selected: false,
+                    ),
                     DrawerListTile(
                       pagina: {},
                       texto: 'Clientes',
@@ -60,61 +63,17 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      _quadrados(quantidade: 20.toString(), total: 'Total de vendas'),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 136,
-                            alignment: Alignment.center,
-                            decoration: const BoxDecoration(
-                              color: AppColor.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Text(
-                                    '20',
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'Total de produtos',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 136,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 136,
-                          ),
-                        ),
-                      ),
-                    ]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        _quadrados(
+                            quantidade: 20.toString(),
+                            total: 'Total de vendas'),
+                        _quadrados(
+                            quantidade: 20.toString(),
+                            total: 'Total de produtos'),
+                      ],
+                    ),
                   ],
                 ),
               ),
