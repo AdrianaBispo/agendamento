@@ -2,8 +2,9 @@ import 'package:agenda/view/ui/drawer_list_tile.dart';
 import 'package:flutter/material.dart';
 //color
 import '../const/colors.dart';
+
 class HomePage extends StatefulWidget {
-  const HomePage({ Key? key }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -32,9 +33,18 @@ class _HomePageState extends State<HomePage> {
                 color: AppColor.white,
                 child: Column(
                   children: <Widget>[
-                    DrawerListTile(pagina: HomePage(), texto: 'Home', icon:  'element',),
-                    DrawerListTile(pagina: {}, texto: 'Agenda', icon: 'calendar'),
-                    DrawerListTile(pagina:  {}, texto: 'Clientes', icon: 'profile-2user',),
+                    DrawerListTile(
+                      pagina: HomePage(),
+                      texto: 'Home',
+                      icon: 'element',
+                    ),
+                    DrawerListTile(
+                        pagina: {}, texto: 'Agenda', icon: 'calendar'),
+                    DrawerListTile(
+                      pagina: {},
+                      texto: 'Clientes',
+                      icon: 'profile-2user',
+                    ),
                     //DrawerListTile(pagina: {}, texto: 'Profissionais'),
                   ],
                 ),
@@ -48,43 +58,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 136,
-                            alignment: Alignment.center,
-                            decoration: const BoxDecoration(
-                              color: AppColor.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Text(
-                                    '20',
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'Total de vendas',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      _quadrados(quantidade: 20.toString(), total: 'Total de vendas'),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -148,4 +122,44 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget _quadrados({required String quantidade, required String total}) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 136,
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+            color: AppColor.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  quantidade,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                total,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  } //_quadrados
 }
