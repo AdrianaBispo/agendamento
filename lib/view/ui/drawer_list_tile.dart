@@ -19,7 +19,7 @@ class DrawerListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: selected ? AppColor.blue : AppColor.white,
         border: Border.all(
@@ -39,14 +39,14 @@ class DrawerListTile extends StatelessWidget {
         horizontalTitleGap: 0.0,
         leading: SvgPicture.asset(
           'asset/icones/Icon/$icon.svg',
-          color: selected ? AppColor.white : AppColor.natural_5,
+          color: selected ? AppColor.white : AppColor.natural,
           width: 20,
           height: 20,
         ),
         title: Text(
           texto,
           style: TextStyle(
-            color: selected ? AppColor.white : AppColor.natural_5,
+            color: selected ? AppColor.white : AppColor.natural,
             fontSize: 14,
             fontWeight: FontWeight.normal,
           ),
