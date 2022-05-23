@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../const/colors.dart';
 //ui
 import 'ui/side_menu.dart';
+import 'ui/custom_appBar.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
@@ -22,6 +23,16 @@ class _ClientesPageState extends State<ClientesPage> {
               Expanded(
                 flex: 1, //takes 1/6 of the screen
                 child: SideMenu(selected: [false, false, true, false]),
+              ),
+              Expanded(
+                flex: 5,
+                child: Container(
+                  child: Column(
+                    children: [
+                      CustoAppBar(texto: 'Clientes'),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
