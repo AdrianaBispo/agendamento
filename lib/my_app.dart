@@ -1,4 +1,5 @@
 import 'package:agenda/const/colors.dart';
+import 'package:agenda/view/clientes.dart';
 import 'package:flutter/material.dart';
 //view
 import 'view/home_page.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         AppRoutes.HOME: (context) => HomePage(),
+        AppRoutes.CLIENTES: (context) => ClientesPage(),
       },
     );
   }
