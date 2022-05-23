@@ -39,7 +39,7 @@ class DrawerListTile extends StatelessWidget {
         horizontalTitleGap: 0.0,
         leading: SvgPicture.asset(
           'asset/icones/Icon/$icon.svg',
-          color: selected ? AppColor.white : AppColor.natural,
+          color: selected ? AppColor.white : AppColor.natural_2,
           width: 20,
           height: 20,
         ),
