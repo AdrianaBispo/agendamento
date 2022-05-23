@@ -1,7 +1,8 @@
-import 'package:agenda/view/ui/drawer_list_tile.dart';
 import 'package:flutter/material.dart';
 //color
 import '../const/colors.dart';
+//ui
+import 'ui/side_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,31 +30,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(
               flex: 1, //takes 1/6 of the screen
-              child: Container(
-                color: AppColor.white,
-                child: Column(
-                  children: <Widget>[
-                    DrawerListTile(
-                      pagina: HomePage(),
-                      texto: 'Home',
-                      icon: 'element',
-                      selected: true,
-                    ),
-                    DrawerListTile(
-                      pagina: {},
-                      texto: 'Agenda',
-                      icon: 'calendar',
-                      selected: false,
-                    ),
-                    DrawerListTile(
-                      pagina: {},
-                      texto: 'Clientes',
-                      icon: 'profile-2user',
-                      selected: false,
-                    ),
-                    //DrawerListTile(pagina: {}, texto: 'Profissionais'),
-                  ],
-                ),
+              child: SideMenu(selected: [false, false, true, false],
               ),
             ),
             Expanded(
