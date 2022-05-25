@@ -11,13 +11,13 @@ class CustoAppBar extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: EdgeInsets.only(left: 20.0, top: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, top: 30.0), //aumentar o padding
         child: Text(
           texto,
           textAlign: TextAlign.left,
           style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 20, //talvez diminuir um pouco a font
               color: AppColor.natural),
         ),
       ),
