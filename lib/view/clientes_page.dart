@@ -26,76 +26,102 @@ class _ClientesPageState extends State<ClientesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Expanded(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 1, //takes 1/6 of the screen
-                child: Container(
-                  color: AppColor.white,
-                  child: SideMenu(selected: [false, false, true, false]),
-                ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1, //takes 1/6 of the screen
+              child: Container(
+                color: AppColor.white,
+                child: SideMenu(selected: [false, false, true, false]),
               ),
-              Expanded(
-                flex: 5,
-                child: SizedBox(
-                  child: Column(
-                    children: [
-                      CustoAppBar(texto: 'Clientes'),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                        padding: const EdgeInsets.all(20),
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
+            ),
+            Expanded(
+              flex: 5,
+              child: SizedBox(
+                child: Column(
+                  children: [
+                    CustoAppBar(texto: 'Clientes'),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0 ),
+                        child: TextButton.icon(
+                          icon: SvgPicture.asset(
+                            'asset/icones/Icon/add.svg',
+                            color: AppColor.white,
+                            width: 20,
+                            height: 20,
                           ),
-                        ),
-                        child: DataTable(
-                          columns: const [
-                            DataColumn(
-                              label: Text(
-                                'Nome',
-                                style: TextStyle(
-                                  color: AppColor.natural,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
+                          label: const Text(
+                            'Novo Cliente',
+                            style: TextStyle(
+                              color: AppColor.white,
                             ),
-                            DataColumn(
-                              label: Text(
-                                'Telefone',
-                                style: TextStyle(
-                                  color: AppColor.natural,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            DataColumn(
-                              label: Text(''),
-                            ), //editar
-                            DataColumn(
-                              label: Text(''),
-                            ), //deletar
-                            DataColumn(
-                              label: Text(''),
-                            ) // historico //criar uma pagina
-                          ],
-                          rows: List.generate(
-                            5, //clienteLista.length
-                            (index) => listaClientes(clienteLista[0]),
                           ),
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+                            backgroundColor: AppColor.blue,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                            ),
+                          ),
+                          onPressed: () {},
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                      padding: const EdgeInsets.all(20),
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: AppColor.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      child: DataTable(
+                        columns: const [
+                          DataColumn(
+                            label: Text(
+                              'Nome',
+                              style: TextStyle(
+                                color: AppColor.natural,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(
+                              'Telefone',
+                              style: TextStyle(
+                                color: AppColor.natural,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(''),
+                          ), //editar
+                          DataColumn(
+                            label: Text(''),
+                          ), //deletar
+                          DataColumn(
+                            label: Text(''),
+                          ) // historico //criar uma pagina
+                        ],
+                        rows: List.generate(
+                          5, //clienteLista.length
+                          (index) => listaClientes(clienteLista[0]),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
