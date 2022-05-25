@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Montserrat',
         primaryColor: AppColor.blue,//para os botoes
+        dividerColor: AppColor.natural_7,
       ),
       routes: {
         AppRoutes.HOME: (context) => HomePage(),
