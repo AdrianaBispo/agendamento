@@ -38,7 +38,7 @@ class _ClientesPageState extends State<ClientesPage> {
               ),
               Expanded(
                 flex: 5,
-                child: Container(
+                child: SizedBox(
                   child: Column(
                     children: [
                       CustoAppBar(texto: 'Clientes'),
@@ -65,7 +65,14 @@ class _ClientesPageState extends State<ClientesPage> {
                               ),
                             ),
                             DataColumn(
-                              label: Text('Telefone'),
+                              label: Text(
+                                'Telefone',
+                                style: TextStyle(
+                                  color: AppColor.natural,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
                             ),
                             DataColumn(
                               label: Text(''),
@@ -106,7 +113,16 @@ class _ClientesPageState extends State<ClientesPage> {
           ),
         ),
       ),
-      DataCell(Text(cliente.telefone)),
+      DataCell(
+        Text(
+          cliente.telefone,
+          style: const TextStyle(
+            color: AppColor.natural,
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+      ),
       DataCell(
         IconButton(
           onPressed: () => {},
