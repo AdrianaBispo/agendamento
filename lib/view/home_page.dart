@@ -30,7 +30,9 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(
               flex: 1, //takes 1/6 of the screen
-              child: SideMenu(selected: [false, false, true, false],
+              child: Container(
+                color: AppColor.white,
+                child: SideMenu(selected: [true, false, false, false]),
               ),
             ),
             Expanded(
