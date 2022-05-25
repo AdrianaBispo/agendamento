@@ -18,7 +18,9 @@ class ClientesPage extends StatefulWidget {
 The ParentDataWidget Expanded(flex: 1) wants to apply ParentData of type FlexParentData to a RenderObject, which has been set up to accept ParentData of incompatible type BoxParentData.
  */
 class _ClientesPageState extends State<ClientesPage> {
-  final List<Cliente> clienteLista = [Cliente(nome: 'Cliente nome', telefone: '71 98874-0739', historico: []),];
+  final List<Cliente> clienteLista = [
+    Cliente(nome: 'Cliente nome', telefone: '71 98874-0739', historico: []),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,10 @@ class _ClientesPageState extends State<ClientesPage> {
             children: [
               Expanded(
                 flex: 1, //takes 1/6 of the screen
-                child: SideMenu(selected: [false, false, true, false]),
+                child: Container(
+                  color: AppColor.white,
+                  child: SideMenu(selected: [true, false, false, false]),
+                ),
               ),
               Expanded(
                 flex: 5,
