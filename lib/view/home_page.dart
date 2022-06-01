@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 //color
-import '../const/colors.dart';
+import '../components/colors.dart';
 //ui
-import 'ui/side_menu.dart';
+import '../components/side_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //color
-import '../../const/colors.dart';
+import 'colors.dart';
 
 class CustoAppBar extends StatelessWidget {
   String texto;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //ui
-import '../../const/colors.dart';
+import 'colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DrawerListTile extends StatelessWidget {

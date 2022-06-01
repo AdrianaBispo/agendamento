@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 //color
-import '../../const/colors.dart';
+import 'colors.dart';
 //ui
-import 'package:agenda/view/ui/drawer_list_tile.dart';
+import '../components/drawer_list_tile.dart';
 //view
-import '../home_page.dart';
-import '../clientes_page.dart';
+import '../view/home_page.dart';
+import '../view/clientes_page.dart';
 
 class SideMenu extends StatelessWidget {
   List<bool> selected;

@@ -1,10 +1,10 @@
 import 'package:agenda/models/cliente.dart';
 import 'package:flutter/material.dart';
 //color
-import '../const/colors.dart';
+import '../components/colors.dart';
 //ui
-import 'ui/side_menu.dart';
-import 'ui/custom_appBar.dart';
+import '../components/side_menu.dart';
+import '../components/custom_appBar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ClientesPage extends StatefulWidget {

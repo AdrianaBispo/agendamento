@@ -1,5 +1,5 @@
-import 'package:agenda/const/colors.dart';
-import 'package:agenda/view/clientes_page.dart';
+import 'components/colors.dart';
+import 'view/clientes_page.dart';
 import 'package:flutter/material.dart';
 //view
 import 'view/home_page.dart';
