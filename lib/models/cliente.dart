@@ -2,9 +2,9 @@ import 'historico.dart';
 
 class Cliente{
   int? id;
-  final String nome;
-  final String telefone;
-  final List<Historico> historico;
+  String nome;
+  String telefone;
+  List<Historico> historico;
   Cliente({
     required this.nome,
     required this.telefone,
