@@ -1,6 +1,6 @@
 class Servicos{
-  late String nome;
-  late String duracao;
+  String nome;
+  String duracao;
 
   Servicos({
     required this.nome,
