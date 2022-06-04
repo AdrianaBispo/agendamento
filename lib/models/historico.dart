@@ -1,6 +1,6 @@
 class Historico{
-  final String profissionalNome;
-  final String servico;
+  String profissionalNome;
+  String servico;
   Historico({
     required this.profissionalNome,
     required this.servico,
