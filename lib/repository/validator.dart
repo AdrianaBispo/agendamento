@@ -1,9 +1,11 @@
 class Validator {
-  static isTextValid({required String text}) {
-    if (text.isEmpty) {
+  static isTextValid(String? text) {
+    if (text == null) {
       return 'Campo obrigatório';
     } else if (text.length < 5) {
       return 'Texto curto demais';
+    } else if (text.isEmpty) {
+      return 'Campo obrigatório';
     }
     return null;
   }
@@ -21,8 +23,8 @@ class Validator {
     DateTime dataHoje = DateTime.now().toLocal();
     if (data.toString().isEmpty) {
       return 'Campo obrigatório';
-    }
-    else if (data.isBefore(dataHoje)){// data for é antes da data de hoje
+    } else if (data.isBefore(dataHoje)) {
+      // data for é antes da data de hoje
       return 'Data invalida';
     }
     return null;
