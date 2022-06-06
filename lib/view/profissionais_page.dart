@@ -5,6 +5,8 @@ import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+//repository
+import '../repository/validator.dart';
 
 class ProfissionaisPage extends StatefulWidget {
   const ProfissionaisPage({Key? key}) : super(key: key);
@@ -13,12 +15,14 @@ class ProfissionaisPage extends StatefulWidget {
   State<ProfissionaisPage> createState() => _ProfissionaisPageState();
 }
 
-/*
-The ParentDataWidget Expanded(flex: 1) wants to apply ParentData of type FlexParentData to a RenderObject, which has been set up to accept ParentData of incompatible type BoxParentData.
- */
 class _ProfissionaisPageState extends State<ProfissionaisPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _profissaoController = TextEditingController();
+  final _formProfissional = Profissional(nome: '', profissao: '', servicos: []);
   final List<Profissional> profissionalLista = [
-    Profissional(nome: 'Cliente nome', profissao: '71 98874-0739', servicos: []),
+    Profissional(
+        nome: 'Profissional nome', profissao: 'Profissão', servicos: []),
   ];
 
   @override
@@ -43,7 +47,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0 ),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                         child: TextButton.icon(
                           icon: SvgPicture.asset(
                             'asset/icones/Icon/add.svg',
@@ -61,10 +65,28 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                             padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
                             backgroundColor: AppColor.blue,
                             shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.0)),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              scrollable: true,
+                              content: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Form(
+                                  key: _formKey,
+                                  child: Column(
+                                    children: <Widget>[
+                                      _buildNameInput(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              //actions
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -92,7 +114,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                           ),
                           DataColumn(
                             label: Text(
-                              'Telefone',
+                              'Profissão',
                               style: TextStyle(
                                 color: AppColor.natural,
                                 fontWeight: FontWeight.bold,
@@ -111,7 +133,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                           ) // historico //criar uma pagina
                         ],
                         rows: List.generate(
-                        profissionalLista.length,
+                          profissionalLista.length,
                           (index) => listaProfissionais(profissionalLista[0]),
                         ),
                       ),
@@ -150,7 +172,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
       ),
       DataCell(
         IconButton(
-          onPressed: () => {},
+          onPressed: () => {}, //editar o nome e a profissão
           icon: SvgPicture.asset(
             'asset/icones/Icon/profile-2user.svg',
             color: AppColor.natural_2,
@@ -161,7 +183,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
       ), //user edital
       DataCell(
         IconButton(
-          onPressed: () => {},
+          onPressed: () => {}, // adcionar serviços
           icon: SvgPicture.asset(
             'asset/icones/Icon/profile-2user.svg',
             color: AppColor.natural_2,
@@ -183,4 +205,18 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
       ),
     ]);
   }
+
+  _buildNameInput() {
+    return TextFormField(
+      controller: _nameController,
+      validator: (value) {
+        return Validator.isTextValid(value);
+      },
+      onSaved: (value) {
+        setState(() {
+          _formProfissional.nome = value!;
+        });
+      },
+    );
+  } //buildNameInpurt
 }
