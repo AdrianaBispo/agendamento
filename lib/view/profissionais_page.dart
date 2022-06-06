@@ -80,6 +80,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                                   child: Column(
                                     children: <Widget>[
                                       _buildNameInput(),
+                                      _buildProfissaoInput(),
                                     ],
                                   ),
                                 ),
@@ -218,5 +219,18 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
         });
       },
     );
-  } //buildNameInpurt
+  } //buildNameInput
+   _buildProfissaoInput() {
+    return TextFormField(
+      controller: _profissaoController,
+      validator: (value) {
+        return Validator.isTextValid(value);
+      },
+      onSaved: (value) {
+        setState(() {
+          _formProfissional.profissao = value!;
+        });
+      },
+    );
+  } //buildProfissaoInput
 }
