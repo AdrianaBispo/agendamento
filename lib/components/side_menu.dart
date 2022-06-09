@@ -6,7 +6,7 @@ import '../components/drawer_list_tile.dart';
 //view
 import '../view/home_page.dart';
 import '../view/clientes_page.dart';
-
+import '../view/profissionais_page.dart';
 class SideMenu extends StatelessWidget {
   List<bool> selected;
   SideMenu({required this.selected});
@@ -34,7 +34,7 @@ class SideMenu extends StatelessWidget {
           selected: selected[2],
         ),
         DrawerListTile(
-          pagina: {},
+          pagina: ProfissionaisPage(),
           texto: 'Profissionais',
           icon: 'job',
           selected: selected[3],
