@@ -7,6 +7,8 @@ import '../components/custom_appBar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //repository
 import '../repository/validator.dart';
+//database
+import '../repository/profissional_controller.dart';
 
 class ProfissionaisPage extends StatefulWidget {
   const ProfissionaisPage({Key? key}) : super(key: key);
@@ -19,12 +21,18 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _profissaoController = TextEditingController();
-  final _formProfissional = Profissional(nome: '', profissao: '', servicos: []);
+  Profissional _formProfissional = Profissional(nome: '', profissao: '', servicos: []);
   final List<Profissional> profissionalLista = [
     Profissional(
         nome: 'Profissional nome', profissao: 'Profissão', servicos: []),
   ];
-
+  var profissionalController = ProfissionalController();
+  @override
+  void initState() {
+    super.initState();
+    _nameController.text = '';
+    _profissaoController.text = '';
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,13 +82,15 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                             builder: (BuildContext context) => AlertDialog(
                               scrollable: true,
                               content: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 10, 10, 20),
                                 child: Form(
                                   key: _formKey,
                                   child: Column(
                                     children: <Widget>[
                                       _buildNameInput(),
                                       _buildProfissaoInput(),
+                                      _buildConfirmButton(),
                                     ],
                                   ),
                                 ),
@@ -208,20 +218,26 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
   }
 
   _buildNameInput() {
-    return TextFormField(
-      controller: _nameController,
-      validator: (value) {
-        return Validator.isTextValid(value);
-      },
-      onSaved: (value) {
-        setState(() {
-          _formProfissional.nome = value!;
-        });
-      },
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20,),
+      child: TextFormField(
+        decoration: _inputdecoration('Nome'),
+        controller: _nameController,
+        validator: (value) {
+          return Validator.isTextValid(value);
+        },
+        onSaved: (value) {
+          setState(() {
+            _formProfissional.nome = value!;
+          });
+        },
+      ),
     );
   } //buildNameInput
-   _buildProfissaoInput() {
+
+  _buildProfissaoInput() {
     return TextFormField(
+      decoration: _inputdecoration('Profissão'),
       controller: _profissaoController,
       validator: (value) {
         return Validator.isTextValid(value);
@@ -233,4 +249,57 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
       },
     );
   } //buildProfissaoInput
+
+  _buildConfirmButton() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
+      child: TextButton.icon(
+        icon: SvgPicture.asset(
+          'asset/icones/Icon/add.svg',
+          color: AppColor.white,
+          width: 20,
+          height: 20,
+        ),
+        label: const Text(
+          'Novo Profissional',
+          style: TextStyle(
+            color: AppColor.white,
+          ),
+        ),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+          backgroundColor: AppColor.grenn,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+        ),
+        onPressed: () {
+          final form = _formKey.currentState;
+          if (form!.validate()) {
+            profissionalController.creat(profissional: _formProfissional);
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Salvo com sucesso ')),
+            );
+          }
+        }, //onPressed
+      ),
+    );
+  }
+  InputDecoration _inputdecoration(String labelText) => InputDecoration(
+        labelText: labelText,
+        labelStyle: const TextStyle(color: AppColor.black, letterSpacing: 1.3),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+        isDense: true,
+        fillColor: AppColor.white,
+        focusColor: AppColor.white,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: AppColor.blueTerciary),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1.5, color: AppColor.blueTerciary),
+        ),
+      );
+
 }
