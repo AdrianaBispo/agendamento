@@ -3,7 +3,7 @@ import '../database/profissionais_dao.dart';
 
 class ProfissionalController {
   final _profissionalDAO = ProfissionalDAO();
-  var profissionalList = [];
+  List<Profissional> profissionalList = [];
 
   void creat({required Profissional profissional}){
     _profissionalDAO.insert(profissional);
