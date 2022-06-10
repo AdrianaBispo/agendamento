@@ -20,8 +20,8 @@ class ProfissionaisPage extends StatefulWidget {
 
 class _ProfissionaisPageState extends State<ProfissionaisPage> {
   final _formKey = GlobalKey<FormState>();
-  var _nameController = TextEditingController();
-  var _profissaoController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _profissaoController = TextEditingController();
   bool _loading = true;
   Profissional _formProfissional =
       Profissional(nome: '', profissao: '', servicos: []);
@@ -30,9 +30,9 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = '';
-    _profissaoController.text = '';
-    profissionalController.readAll().then((value) => setState(() {_loading = false;}));
+    profissionalController.readAll().then((value) => setState(() {
+          _loading = false;
+        }));
     profissionalLista = profissionalController.profissionalList;
   }
 
@@ -117,12 +117,12 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
 
   Widget _containerDados() {
     if (_loading) return CenteredCircularProgress();
-    if (profissionalController.profissionalList.isEmpty)
+    if (profissionalController.profissionalList.isEmpty) {
       return const Text(
         'Adcione os seus primeiros profissionais',
         style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
       );
-
+    }
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
       padding: const EdgeInsets.all(20),
@@ -270,6 +270,9 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Salvo com sucesso ')),
             );
+
+            _nameController.clear();
+            _profissaoController.clear();
           }
         }, //onPressed
       ),
