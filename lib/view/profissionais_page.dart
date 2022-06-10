@@ -20,8 +20,8 @@ class ProfissionaisPage extends StatefulWidget {
 
 class _ProfissionaisPageState extends State<ProfissionaisPage> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  final _profissaoController = TextEditingController();
+  var _nameController = TextEditingController();
+  var _profissaoController = TextEditingController();
   bool _loading = true;
   Profissional _formProfissional =
       Profissional(nome: '', profissao: '', servicos: []);
@@ -39,7 +39,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Row(
           children: [
             Expanded(
@@ -104,56 +104,64 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                         ),
                       ),
                     ),
-                    if (_loading) CenteredCircularProgress(),
-                    if (profissionalController.profissionalList.isEmpty) const Text('Adcione os seus primeiros profissionais', style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w300),),
-                  
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                      padding: const EdgeInsets.all(20),
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: AppColor.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5),
-                        ),
-                      ),
-                      child: DataTable(
-                        columns: const [
-                          DataColumn(
-                            label: Text(
-                              'Nome',
-                              style: TextStyle(
-                                color: AppColor.natural,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                          DataColumn(
-                            label: Text(
-                              'Profissão',
-                              style: TextStyle(
-                                color: AppColor.natural,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                          DataColumn(
-                            label: Text(''),
-                          ), //editar
-                        ],
-                        rows: List.generate(
-                          profissionalLista.length,
-                          (index) => listaProfissionais(profissionalLista[index]),
-                        ),
-                      ),
-                    ),
+                    _containerDados(),
                   ],
                 ),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _containerDados() {
+    if (_loading) return CenteredCircularProgress();
+    if (profissionalController.profissionalList.isEmpty)
+      return const Text(
+        'Adcione os seus primeiros profissionais',
+        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+      );
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+      padding: const EdgeInsets.all(20),
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: AppColor.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
+        ),
+      ),
+      child: DataTable(
+        columns: const [
+          DataColumn(
+            label: Text(
+              'Nome',
+              style: TextStyle(
+                color: AppColor.natural,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              'Profissão',
+              style: TextStyle(
+                color: AppColor.natural,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          DataColumn(
+            label: Text(''),
+          ), //editar
+        ],
+        rows: List.generate(
+          profissionalLista.length,
+          (index) => listaProfissionais(profissionalLista[index]),
         ),
       ),
     );
