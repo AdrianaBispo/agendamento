@@ -35,7 +35,7 @@ class ProfissionalDAO {
     ]);
 
     final recordSnapshots = await _profissionalStore.find(
-      _db as Database,
+      await _db as Database,
       finder: finder,
     );
     // Making a List<Profissional> out of List<RecordSnapshot>
