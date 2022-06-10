@@ -256,6 +256,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
         onPressed: () {
           final form = _formKey.currentState;
           if (form!.validate()) {
+            form.save();
             profissionalController.creat(profissional: _formProfissional);
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
