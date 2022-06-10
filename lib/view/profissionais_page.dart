@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
+import '../components/circular_progress_custo.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //repository
 import '../repository/validator.dart';
@@ -21,18 +22,20 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _profissaoController = TextEditingController();
-  Profissional _formProfissional = Profissional(nome: '', profissao: '', servicos: []);
-  final List<Profissional> profissionalLista = [
-    Profissional(
-        nome: 'Profissional nome', profissao: 'Profissão', servicos: []),
-  ];
+  bool _loading = true;
+  Profissional _formProfissional =
+      Profissional(nome: '', profissao: '', servicos: []);
+  List<Profissional> profissionalLista = [];
   var profissionalController = ProfissionalController();
   @override
   void initState() {
     super.initState();
     _nameController.text = '';
     _profissaoController.text = '';
+    profissionalController.readAll().then((value) => setState(() {_loading = false;}));
+    profissionalLista = profissionalController.profissionalList;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +104,9 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                         ),
                       ),
                     ),
+                    if (_loading) CenteredCircularProgress(),
+                    if (profissionalController.profissionalList.isEmpty) const Text('Adcione os seus primeiros profissionais', style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w300),),
+                  
                     Container(
                       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                       padding: const EdgeInsets.all(20),
@@ -136,16 +142,10 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                           DataColumn(
                             label: Text(''),
                           ), //editar
-                          DataColumn(
-                            label: Text(''),
-                          ), //deletar
-                          DataColumn(
-                            label: Text(''),
-                          ) // historico //criar uma pagina
                         ],
                         rows: List.generate(
                           profissionalLista.length,
-                          (index) => listaProfissionais(profissionalLista[0]),
+                          (index) => listaProfissionais(profissionalLista[index]),
                         ),
                       ),
                     ),
@@ -191,35 +191,15 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
             height: 20,
           ),
         ),
-      ), //user edital
-      DataCell(
-        IconButton(
-          onPressed: () => {}, // adcionar serviços
-          icon: SvgPicture.asset(
-            'asset/icones/Icon/profile-2user.svg',
-            color: AppColor.natural_2,
-            width: 20,
-            height: 20,
-          ),
-        ),
-      ), //deletar
-      DataCell(
-        IconButton(
-          onPressed: () => {},
-          icon: SvgPicture.asset(
-            'asset/icones/Icon/calendar.svg',
-            color: AppColor.natural_2,
-            width: 20,
-            height: 20,
-          ),
-        ), //agendar e historico
-      ),
+      ), //user edite
     ]);
   }
 
   _buildNameInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20,),
+      padding: const EdgeInsets.only(
+        bottom: 20,
+      ),
       child: TextFormField(
         decoration: _inputdecoration('Nome'),
         controller: _nameController,
@@ -286,6 +266,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
       ),
     );
   }
+
   InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: AppColor.black, letterSpacing: 1.3),
@@ -301,5 +282,4 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
           borderSide: BorderSide(width: 1.5, color: AppColor.blueTerciary),
         ),
       );
-
 }
