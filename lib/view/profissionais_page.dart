@@ -191,7 +191,15 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
       ),
       DataCell(
         IconButton(
-          onPressed: () => {}, //editar o nome e a profissão
+          onPressed: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) =>
+                    ProfissionalEdit(profissional: profissional)),
+              ),
+            )
+          }, //editar o nome e a profissão
           icon: SvgPicture.asset(
             'asset/icones/Icon/profile-2user.svg',
             color: AppColor.natural_2,
