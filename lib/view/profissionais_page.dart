@@ -10,6 +10,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../repository/validator.dart';
 //database
 import '../repository/profissional_controller.dart';
+//view
+import 'profissional_edit.dart';
 
 class ProfissionaisPage extends StatefulWidget {
   const ProfissionaisPage({Key? key}) : super(key: key);
@@ -39,7 +41,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Row(
           children: [
             Expanded(
@@ -52,60 +54,63 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
             Expanded(
               flex: 5,
               child: SizedBox(
-                child: Column(
-                  children: [
-                    CustoAppBar(texto: 'Profissionais'),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                        child: TextButton.icon(
-                          icon: SvgPicture.asset(
-                            'asset/icones/Icon/add.svg',
-                            color: AppColor.white,
-                            width: 20,
-                            height: 20,
-                          ),
-                          label: const Text(
-                            'Novo Profissional',
-                            style: TextStyle(
+                child: SingleChildScrollView(
+          primary: false,
+                  child: Column(
+                    children: [
+                      CustoAppBar(texto: 'Profissionais'),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                          child: TextButton.icon(
+                            icon: SvgPicture.asset(
+                              'asset/icones/Icon/add.svg',
                               color: AppColor.white,
+                              width: 20,
+                              height: 20,
                             ),
-                          ),
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
-                            backgroundColor: AppColor.blue,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0)),
+                            label: const Text(
+                              'Novo Profissional',
+                              style: TextStyle(
+                                color: AppColor.white,
+                              ),
                             ),
-                          ),
-                          onPressed: () => showDialog(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              scrollable: true,
-                              content: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 10, 10, 20),
-                                child: Form(
-                                  key: _formKey,
-                                  child: Column(
-                                    children: <Widget>[
-                                      _buildNameInput(),
-                                      _buildProfissaoInput(),
-                                      _buildConfirmButton(),
-                                    ],
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+                              backgroundColor: AppColor.blue,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                              ),
+                            ),
+                            onPressed: () => showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                scrollable: true,
+                                content: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 10, 10, 20),
+                                  child: Form(
+                                    key: _formKey,
+                                    child: Column(
+                                      children: <Widget>[
+                                        _buildNameInput(),
+                                        _buildProfissaoInput(),
+                                        _buildConfirmButton(),
+                                      ],
+                                    ),
                                   ),
                                 ),
+                                //actions
                               ),
-                              //actions
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    _containerDados(),
-                  ],
+                      _containerDados(),
+                    ],
+                  ),
                 ),
               ),
             ),
