@@ -36,12 +36,15 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
               child: SizedBox(
                 child: SingleChildScrollView(
                   primary: false,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _custoAppBar(),
-                      _formContainer(),
-                    ],
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Column(
+                      //alinhar verticalmento no top e horizontalmente no centro
+                      children: [
+                        _custoAppBar(),
+                        _formContainer(context),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -52,11 +55,11 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     );
   }
 
-  Widget _formContainer() {
+  Widget _formContainer(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
       padding: const EdgeInsets.all(20),
-      width: double.infinity / 2,
+      width: MediaQuery.of(context).size.width / 2,
       height: 70,
       decoration: const BoxDecoration(
         color: AppColor.white,
@@ -68,7 +71,9 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   } //form Container
 
   Widget _custoAppBar() {
-    return Row(
+    return Align (
+      alignment: Alignment.topLeft,
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
@@ -94,7 +99,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             texto: 'Editar',
           ),
         ],
-      
+      ),
     ); //Custo AppBar
   }
 }
