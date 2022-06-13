@@ -64,7 +64,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
       padding: const EdgeInsets.all(20),
       width: MediaQuery.of(context).size.width / 2,
-      height: 70,
       decoration: const BoxDecoration(
         color: AppColor.white,
         borderRadius: BorderRadius.all(
@@ -79,28 +78,31 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
               key: _formKeyProfissional,
               child: Column(
                 children: [
-                  _editNome(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                    child: _editNome(),
+                  ),
                 ],
               )),
         ],
       ),
     );
   } //form Container
-  
-TextFormField _editNome(){
-  return TextFormField(
-        decoration: _inputdecoration('Nome'),
-        controller: _nameEditController,
-        validator: (value) {
-          return Validator.isTextValid(value);
-        },
-        onSaved: (value) {
-          setState(() {
-            widget.profissional.nome = value!;
-          });
-        },
+
+  TextFormField _editNome() {
+    return TextFormField(
+      decoration: _inputdecoration('Nome'),
+      controller: _nameEditController,
+      validator: (value) {
+        return Validator.isTextValid(value);
+      },
+      onSaved: (value) {
+        setState(() {
+          widget.profissional.nome = value!;
+        });
+      },
     );
-}
+  }
 
   Widget _custoAppBar() {
     return Align(
@@ -135,7 +137,8 @@ TextFormField _editNome(){
       ),
     ); //Custo AppBar
   }
-   InputDecoration _inputdecoration(String labelText) => InputDecoration(
+
+  InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: AppColor.black, letterSpacing: 1.3),
         contentPadding:
