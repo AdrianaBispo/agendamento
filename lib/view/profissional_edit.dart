@@ -99,7 +99,22 @@ TextFormField _editNome(){
       ),
     );
 }
-
+ InputDecoration _inputdecoration(String labelText) => InputDecoration(
+        labelText: labelText,
+        labelStyle: const TextStyle(color: AppColor.black, letterSpacing: 1.3),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+        isDense: true,
+        fillColor: AppColor.white,
+        focusColor: AppColor.white,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: AppColor.blueTerciary),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1.5, color: AppColor.blueTerciary),
+        ),
+      );
+}
   Widget _custoAppBar() {
     return Align(
       alignment: Alignment.topLeft,
