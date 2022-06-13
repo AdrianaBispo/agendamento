@@ -2,6 +2,8 @@ import 'package:agenda/components/side_menu.dart';
 import 'package:flutter/material.dart';
 //model
 import '../models/profissional.dart';
+//repository
+import '../repository/validator.dart';
 //components
 import '../components/colors.dart';
 import '../components/side_menu.dart';
@@ -84,6 +86,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       ),
     );
   } //form Container
+  
 TextFormField _editNome(){
   return TextFormField(
         decoration: _inputdecoration('Nome'),
@@ -93,10 +96,9 @@ TextFormField _editNome(){
         },
         onSaved: (value) {
           setState(() {
-            _formProfissional.nome = value!;
+            widget.profissional.nome = value!;
           });
         },
-      ),
     );
 }
 
