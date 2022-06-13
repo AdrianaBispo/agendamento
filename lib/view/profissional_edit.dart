@@ -16,6 +16,8 @@ class ProfissionalEdit extends StatefulWidget {
 }
 
 class _ProfissionalEditState extends State<ProfissionalEdit> {
+  final _formKeyProfissional = GlobalKey<FormState>();
+  final _nameEditController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,11 +69,39 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           Radius.circular(5),
         ),
       ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('Dados do Profissional'),
+          Form(
+              key: _formKeyProfissional,
+              child: Column(
+                children: [
+                  _editNome(),
+                ],
+              )),
+        ],
+      ),
     );
   } //form Container
+TextFormField _editNome(){
+  return TextFormField(
+        decoration: _inputdecoration('Nome'),
+        controller: _nameEditController,
+        validator: (value) {
+          return Validator.isTextValid(value);
+        },
+        onSaved: (value) {
+          setState(() {
+            _formProfissional.nome = value!;
+          });
+        },
+      ),
+    );
+}
 
   Widget _custoAppBar() {
-    return Align (
+    return Align(
       alignment: Alignment.topLeft,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -91,7 +121,8 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 Icons.arrow_back_ios_new_rounded,
                 color: AppColor.white,
               ),
-              onPressed: () => {Navigator.pop(context),
+              onPressed: () => {
+                Navigator.pop(context),
               },
             ),
           ),
