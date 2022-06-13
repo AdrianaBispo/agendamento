@@ -39,24 +39,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                              color: AppColor.blue,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(30),
-                              ),
-                            ),
-                          ),
-                          CustoAppBar(
-                            texto: 'Editar',
-                          ),
-                        ],
-                      ), //Custo AppBar
+                      _custoAppBar(),
                       _formContainer(),
                     ],
                   ),
@@ -82,5 +65,36 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         ),
       ),
     );
+  } //form Container
+
+  Widget _custoAppBar() {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 20),
+            width: 50,
+            height: 50,
+            decoration: const BoxDecoration(
+              color: AppColor.blue,
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
+              ),
+            ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: AppColor.white,
+              ),
+              onPressed: () => {Navigator.pop(context),
+              },
+            ),
+          ),
+          CustoAppBar(
+            texto: 'Editar',
+          ),
+        ],
+      
+    ); //Custo AppBar
   }
 }
