@@ -10,6 +10,7 @@ import '../repository/profissional_controller.dart';
 import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfissionalEdit extends StatefulWidget {
   Profissional profissional;
