@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../models/profissional.dart';
 //repository
 import '../repository/validator.dart';
+//database
+import '../repository/profissional_controller.dart';
 //components
 import '../components/colors.dart';
 import '../components/side_menu.dart';
@@ -21,6 +23,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   final _formKeyProfissional = GlobalKey<FormState>();
   final _nameEditController = TextEditingController();
   final _profissaoEditController = TextEditingController();
+  var profissionalController = ProfissionalController();
   @override
   void initState() {
     super.initState();
@@ -93,12 +96,44 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                     padding: const EdgeInsets.only(top: 8, bottom: 8),
                     child: _editProfissao(),
                   ),
+                  _confirmButtonEdit(),
                 ],
               ),),
         ],
       ),
     );
   } //form Container
+    _confirmButtonEdit() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
+      child: TextButton(
+        child: const Text(
+          'Novo Profissional',
+          style: TextStyle(
+            color: AppColor.white,
+          ),
+        ),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+          backgroundColor: AppColor.grenn,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+        ),
+        onPressed: () {
+          final form = _formKeyProfissional.currentState;
+          if (form!.validate()) {
+            form.save();
+            profissionalController.update(profissional: widget.profissional);
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Profissional editado com sucesso ')),
+            );
+          }
+        }, //onPressed
+      ),
+    );
+  }
   TextFormField _editProfissao() {
     return TextFormField(
       decoration: _inputdecoration('Profissao'),
