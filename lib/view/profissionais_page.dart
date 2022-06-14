@@ -301,10 +301,10 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
         fillColor: AppColor.white,
         focusColor: AppColor.white,
         focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: AppColor.blueTerciary),
+          borderSide: BorderSide(width: 1, color: AppColor.natural_5),
         ),
         enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(width: 1.5, color: AppColor.blueTerciary),
+          borderSide: BorderSide(width: 1.5, color: AppColor.natural_5),
         ),
       );
 }
