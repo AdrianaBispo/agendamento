@@ -20,6 +20,13 @@ class ProfissionalEdit extends StatefulWidget {
 class _ProfissionalEditState extends State<ProfissionalEdit> {
   final _formKeyProfissional = GlobalKey<FormState>();
   final _nameEditController = TextEditingController();
+  final _profissaoEditController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _nameEditController.text = widget.profissional.nome;
+    _profissaoEditController.text = widget.profissional.profissao;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,12 +89,30 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                     padding: const EdgeInsets.only(top: 8.0, bottom: 8),
                     child: _editNome(),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 8),
+                    child: _editProfissao(),
+                  ),
                 ],
-              )),
+              ),),
         ],
       ),
     );
   } //form Container
+  TextFormField _editProfissao() {
+    return TextFormField(
+      decoration: _inputdecoration('Profissao'),
+      controller: _profissaoEditController,
+      validator: (value) {
+        return Validator.isTextValid(value);
+      },
+      onSaved: (value) {
+        setState(() {
+          widget.profissional.profissao = value!;
+        });
+      },
+    );
+  }
 
   TextFormField _editNome() {
     return TextFormField(
