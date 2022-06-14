@@ -25,12 +25,16 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   final _nameEditController = TextEditingController();
   final _profissaoEditController = TextEditingController();
   var profissionalController = ProfissionalController();
+  final _formKeyAddServico = GlobalKey<FormState>();
+  final _nameServicoController = TextEditingController();
+  final _duracaoServicoController = TextEditingController();
   @override
   void initState() {
     super.initState();
     _nameEditController.text = widget.profissional.nome;
     _profissaoEditController.text = widget.profissional.profissao;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +62,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                       children: [
                         _custoAppBar(),
                         _formContainer(context),
+                        _formAddProfissao(),
                       ],
                     ),
                   ),
@@ -65,6 +70,74 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _formAddProfissao() {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+      padding: const EdgeInsets.all(20),
+      width: MediaQuery.of(context).size.width / 2,
+      decoration: const BoxDecoration(
+        color: AppColor.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: <Widget>[
+              Text('Serviços'),
+              _buttonAddServico(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextButton _buttonAddServico() {
+    return TextButton.icon(
+      icon: SvgPicture.asset(
+        'asset/icones/Icon/add.svg',
+        color: AppColor.white,
+        width: 20,
+        height: 20,
+      ),
+      label: const Text(
+        'Novo Profissional',
+        style: TextStyle(
+          color: AppColor.white,
+        ),
+      ),
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+        backgroundColor: AppColor.blue,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
+      ),
+      onPressed: () => showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          scrollable: true,
+          content: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
+            child: Form(
+              key: _formKeyAddServico,
+              child: Column(
+                children: <Widget>[
+                  _buildNameInput(),
+                  _buildDuracaoInput(),
+                ],
+              ),
+            ),
+          ),
+          //actions
         ),
       ),
     );
@@ -86,30 +159,32 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         children: <Widget>[
           Text('Dados do Profissional'),
           Form(
-              key: _formKeyProfissional,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                    child: _editNome(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 8),
-                    child: _editProfissao(),
-                  ),
-                  _confirmButtonEdit(),
-                ],
-              ),),
+            key: _formKeyProfissional,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                  child: _editNome(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: _editProfissao(),
+                ),
+                _confirmButtonEdit(),
+              ],
+            ),
+          ),
         ],
       ),
     );
   } //form Container
-    _confirmButtonEdit() {
+
+  _confirmButtonEdit() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
       child: TextButton(
         child: const Text(
-          'Novo Profissional',
+          'Editar Profissional',
           style: TextStyle(
             color: AppColor.white,
           ),
@@ -128,13 +203,15 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             profissionalController.update(profissional: widget.profissional);
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Profissional editado com sucesso ')),
+              const SnackBar(
+                  content: Text('Profissional editado com sucesso ')),
             );
           }
         }, //onPressed
       ),
     );
   }
+
   TextFormField _editProfissao() {
     return TextFormField(
       decoration: _inputdecoration('Profissao'),
@@ -208,10 +285,10 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         fillColor: AppColor.white,
         focusColor: AppColor.white,
         focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: AppColor.blueTerciary),
+          borderSide: BorderSide(width: 1, color: AppColor.natural_5),
         ),
         enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(width: 1.5, color: AppColor.blueTerciary),
+          borderSide: BorderSide(width: 1.5, color: AppColor.natural_5),
         ),
       );
 }
