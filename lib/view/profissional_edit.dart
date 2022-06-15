@@ -2,6 +2,7 @@ import 'package:agenda/components/side_menu.dart';
 import 'package:flutter/material.dart';
 //model
 import '../models/profissional.dart';
+import '../models/servicos.dart';
 //repository
 import '../repository/validator.dart';
 //database
@@ -28,6 +29,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   final _formKeyAddServico = GlobalKey<FormState>();
   final _nameServicoController = TextEditingController();
   final _duracaoServicoController = TextEditingController();
+  final _servico = Servicos(nome: '', duracao: '');
   @override
   void initState() {
     super.initState();
@@ -109,7 +111,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         height: 20,
       ),
       label: const Text(
-        'Novo Profissional',
+        'Adcionar Servico',
         style: TextStyle(
           color: AppColor.white,
         ),
@@ -142,6 +144,21 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       ),
     );
   }
+  TextFormField _buildNameInput(){
+    return  TextFormField(
+      decoration: _inputdecoration('Name'),
+      controller: _profissaoEditController,
+      validator: (value) {
+        return Validator.isTextValid(value);
+      },
+      onSaved: (value) {
+        setState(() {
+          _servico.nome = value!;
+        });
+      },
+    );
+  }
+  
 
   Widget _formContainer(BuildContext context) {
     return Container(
