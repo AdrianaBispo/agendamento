@@ -368,7 +368,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
 
   InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
-        labelStyle: const TextStyle(color: AppColor.black, letterSpacing: 1.3),
+        labelStyle: const TextStyle(color: AppColor.black, fontSize: 14),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
         isDense: true,
