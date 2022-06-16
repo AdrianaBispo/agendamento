@@ -94,7 +94,15 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('Serviços'),
+              const Text(
+                'Serviços',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: AppColor.natural,
+                ),
+              ),
               _buttonAddServico(),
             ],
           ),
@@ -168,7 +176,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       decoration: _inputdecoration('Duração'),
       controller: _duracaoServicoController,
       validator: (value) {
-        
         return Validator.isTextValid(value);
       },
       onSaved: (value) {
@@ -179,7 +186,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     );
   }
 
-    _confirmButtonServico() {
+  _confirmButtonServico() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
       child: TextButton.icon(
@@ -210,8 +217,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             profissionalController.update(profissional: widget.profissional);
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Serviço salvo com sucesso ')),
+              const SnackBar(content: Text('Serviço salvo com sucesso ')),
             );
           }
         }, //onPressed
