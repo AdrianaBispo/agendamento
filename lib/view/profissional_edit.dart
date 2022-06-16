@@ -134,6 +134,37 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
               _buttonAddServico(),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: DataTable(
+              columns: const [
+                DataColumn(
+                  label: Text(
+                    'Serviço',
+                    style: TextStyle(
+                      color: AppColor.natural,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Duração',
+                    style: TextStyle(
+                      color: AppColor.natural,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ],
+              rows: List.generate(
+                widget.profissional.servicos.length,
+                (index) => _listaServicos(widget.profissional.servicos[index]),
+              ),
+            ),
+          ),
         ],
       ),
     );
