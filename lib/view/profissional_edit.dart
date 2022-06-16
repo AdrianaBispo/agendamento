@@ -151,7 +151,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   TextFormField _buildNameInput() {
     return TextFormField(
       decoration: _inputdecoration('Name'),
-      controller: _profissaoEditController,
+      controller: _nameServicoController,
       validator: (value) {
         return Validator.isTextValid(value);
       },
@@ -166,7 +166,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   TextFormField _buildDuracaoInput() {
     return TextFormField(
       decoration: _inputdecoration('Duração'),
-      controller: _profissaoEditController,
+      controller: _duracaoServicoController,
       validator: (value) {
         
         return Validator.isTextValid(value);
