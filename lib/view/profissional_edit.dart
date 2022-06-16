@@ -127,7 +127,8 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           scrollable: true,
-          content: Padding(
+          content: Container(
+            width: MediaQuery.of(context).size.width / 2,
             padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
             child: Form(
               key: _formKeyAddServico,
@@ -144,8 +145,9 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       ),
     );
   }
-  TextFormField _buildNameInput(){
-    return  TextFormField(
+
+  TextFormField _buildNameInput() {
+    return TextFormField(
       decoration: _inputdecoration('Name'),
       controller: _profissaoEditController,
       validator: (value) {
@@ -158,7 +160,22 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       },
     );
   }
-  
+
+  TextFormField _buildDuracaoInput() {
+    return TextFormField(
+      decoration: _inputdecoration('Duração'),
+      controller: _profissaoEditController,
+      validator: (value) {
+        
+        return Validator.isTextValid(value);
+      },
+      onSaved: (value) {
+        setState(() {
+          _servico.duracao = value!;
+        });
+      },
+    );
+  }
 
   Widget _formContainer(BuildContext context) {
     return Container(
