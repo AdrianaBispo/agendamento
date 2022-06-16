@@ -55,7 +55,7 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
               flex: 5,
               child: SizedBox(
                 child: SingleChildScrollView(
-          primary: false,
+                  primary: false,
                   child: Column(
                     children: [
                       CustoAppBar(texto: 'Profissionais'),
@@ -77,7 +77,8 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                               ),
                             ),
                             style: TextButton.styleFrom(
-                              padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+                              padding:
+                                  const EdgeInsets.fromLTRB(15, 20, 20, 20),
                               backgroundColor: AppColor.blue,
                               shape: const RoundedRectangleBorder(
                                 borderRadius:
@@ -88,7 +89,8 @@ class _ProfissionaisPageState extends State<ProfissionaisPage> {
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
                                 scrollable: true,
-                                content: Padding(
+                                content: Container(
+                                  width: MediaQuery.of(context).size.width / 2,
                                   padding:
                                       const EdgeInsets.fromLTRB(20, 10, 10, 20),
                                   child: Form(
