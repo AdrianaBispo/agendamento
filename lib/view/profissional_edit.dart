@@ -60,7 +60,8 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Column(
-                      //alinhar verticalmento no top e horizontalmente no centro
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         _custoAppBar(),
                         _formContainer(context),
@@ -74,6 +75,33 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           ],
         ),
       ),
+    );
+  }
+
+  DataRow _listaServicos(Servicos servico) {
+    return DataRow(
+      cells: [
+        DataCell(
+          Text(
+            servico.nome,
+            style: const TextStyle(
+              color: AppColor.natural,
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+        DataCell(
+          Text(
+            servico.duracao,
+            style: const TextStyle(
+              color: AppColor.natural,
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
