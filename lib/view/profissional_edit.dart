@@ -92,6 +92,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text('Serviços'),
               _buttonAddServico(),
@@ -111,7 +112,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         height: 20,
       ),
       label: const Text(
-        'Adcionar Servico',
+        'Adcionar Serviço',
         style: TextStyle(
           color: AppColor.white,
         ),
@@ -136,6 +137,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 children: <Widget>[
                   _buildNameInput(),
                   _buildDuracaoInput(),
+                  _confirmButtonServico(),
                 ],
               ),
             ),
@@ -174,6 +176,46 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           _servico.duracao = value!;
         });
       },
+    );
+  }
+
+    _confirmButtonServico() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
+      child: TextButton.icon(
+        icon: SvgPicture.asset(
+          'asset/icones/Icon/add.svg',
+          color: AppColor.white,
+          width: 20,
+          height: 20,
+        ),
+        label: const Text(
+          'Adcionar Serviço',
+          style: TextStyle(
+            color: AppColor.white,
+          ),
+        ),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+          backgroundColor: AppColor.grenn,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+        ),
+        onPressed: () {
+          final form = _formKeyAddServico.currentState;
+          if (form!.validate()) {
+            form.save();
+            widget.profissional.servicos.add(_servico);
+            profissionalController.update(profissional: widget.profissional);
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Serviço salvo com sucesso ')),
+            );
+          }
+        }, //onPressed
+      ),
     );
   }
 
