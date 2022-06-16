@@ -239,7 +239,15 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Dados do Profissional'),
+          const Text(
+            'Dados do Profissional',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: AppColor.natural,
+            ),
+          ),
           Form(
             key: _formKeyProfissional,
             child: Column(
