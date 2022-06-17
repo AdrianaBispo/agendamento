@@ -7,6 +7,7 @@ class Profissional {
   List<Servicos> servicos;
 
   Profissional({
+    this.id,
     required this.nome,
     required this.profissao,
     required this.servicos,
@@ -22,6 +23,7 @@ class Profissional {
 
   factory Profissional.fromJson(Map<String, dynamic> map) {
     return Profissional(
+      id: map['id'],
       nome: map['nome'],
       profissao: map['profissao'],
       servicos: map['servicos'] != null
