@@ -117,7 +117,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,38 +134,56 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
               _buttonAddServico(),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: DataTable(
-              columns: const [
-                DataColumn(
-                  label: Text(
-                    'Serviço',
-                    style: TextStyle(
-                      color: AppColor.natural,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
+          _dataListaServicos(),
+        ],
+      ),
+    );
+  }
+
+  _dataListaServicos() {
+    if (profissionalController.profissionalList.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.only(top: 20.0),
+        child: Text(
+          'Adcione os serviços deste profissional',
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+        ),
+      );
+    }
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: DataTable(
+          columns: const [
+            DataColumn(
+              label: Text(
+                'Serviço',
+                style: TextStyle(
+                  color: AppColor.natural,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
-                DataColumn(
-                  label: Text(
-                    'Duração',
-                    style: TextStyle(
-                      color: AppColor.natural,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ],
-              rows: List.generate(
-                widget.profissional.servicos.length,
-                (index) => _listaServicos(widget.profissional.servicos[index]),
               ),
             ),
+            DataColumn(
+              label: Text(
+                'Duração',
+                style: TextStyle(
+                  color: AppColor.natural,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            DataColumn(
+              label: Text(''),
+            ), //editar
+          ],
+          rows: List.generate(
+            widget.profissional.servicos.length,
+            (index) => _listaServicos(widget.profissional.servicos[index]),
           ),
-        ],
+        ),
       ),
     );
   }
