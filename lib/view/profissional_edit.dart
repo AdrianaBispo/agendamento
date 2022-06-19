@@ -35,6 +35,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     super.initState();
     _nameEditController.text = widget.profissional.nome;
     _profissaoEditController.text = widget.profissional.profissao;
+    print(widget.profissional.id);
   }
 
   @override
@@ -55,11 +56,9 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             Expanded(
               flex: 5,
               child: SizedBox(
-                child: SingleChildScrollView(
-                  primary: false,
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Column(
+                child: ListView(
+                  children: [
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -68,7 +67,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                         _formAddProfissao(),
                       ],
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -410,10 +409,9 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   }
 
   Widget _custoAppBar() {
-    return Align(
-      alignment: Alignment.topLeft,
+    return SafeArea(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(left: 20),
