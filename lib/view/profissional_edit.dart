@@ -412,9 +412,10 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     return SafeArea(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.only(left: 20),
+            margin: const EdgeInsets.only(left: 20, top: 20),
             width: 50,
             height: 50,
             decoration: const BoxDecoration(
