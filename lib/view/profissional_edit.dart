@@ -368,7 +368,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           if (form!.validate()) {
             form.save();
             profissionalController.update(profissional: widget.profissional);
-            Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                   content: Text('Profissional editado com sucesso ')),
