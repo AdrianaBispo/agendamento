@@ -149,39 +149,40 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         ),
       );
     }
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
-        child: DataTable(
-          columns: const [
-            DataColumn(
-              label: Text(
-                'Serviço',
-                style: TextStyle(
-                  color: AppColor.natural,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 10.0),
+      child: DataTable(
+        columns: const [
+          DataColumn(
+            label: Text(
+              'Serviço',
+              style: TextStyle(
+                color: AppColor.natural,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                fontStyle: FontStyle.italic,
               ),
             ),
-            DataColumn(
-              label: Text(
-                'Duração',
-                style: TextStyle(
-                  color: AppColor.natural,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            ),
-            DataColumn(
-              label: Text(''),
-            ), //editar
-          ],
-          rows: List.generate(
-            widget.profissional.servicos.length,
-            (index) => _listaServicos(widget.profissional.servicos[index]),
           ),
+          DataColumn(
+            label: Text(
+              'Duração',
+              style: TextStyle(
+                color: AppColor.natural,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+          DataColumn(
+            label: Text(''),
+          ), //editar
+        ],
+        rows: List.generate(
+          widget.profissional.servicos.length,
+          (index) => _listaServicos(widget.profissional.servicos[index]),
         ),
       ),
     );
