@@ -12,6 +12,7 @@ import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 
 class ProfissionalEdit extends StatefulWidget {
   Profissional profissional;
@@ -30,6 +31,8 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   final _nameServicoController = TextEditingController();
   final _duracaoServicoController = TextEditingController();
   final _servico = Servicos(nome: '', duracao: '');
+
+  /// salvar a duração
   @override
   void initState() {
     super.initState();
@@ -65,6 +68,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                         _custoAppBar(),
                         _formContainer(context),
                         _formAddProfissao(),
+                        _deletarProfissional(),
                       ],
                     ),
                   ],
@@ -74,6 +78,25 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           ],
         ),
       ),
+    );
+  }
+
+  _deletarProfissional() {
+    return TextButton(
+      child: const Text(
+        'Deletar Profissional',
+        style: TextStyle(
+          color: AppColor.white,
+        ),
+      ),
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+        backgroundColor: AppColor.red,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
+      ),
+      onPressed: () => {}, //onPressed
     );
   }
 
