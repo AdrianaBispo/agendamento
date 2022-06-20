@@ -35,6 +35,7 @@ dependencies:
   
   sembast: ^3.2.0
   path_provider: ^2.0.10
+  flutter_picker: ^2.0.3 #picker para add timer
 
 dev_dependencies:
   flutter_test:
