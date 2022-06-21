@@ -10,8 +10,8 @@ class Validator {
     return null;
   }
 
-  static isTelefoneValid(String telefone) {
-    if (telefone.isEmpty) {
+  static isTelefoneValid(String? telefone) {
+    if (telefone == null) {
       return 'Campo obrigatório';
     } else if (telefone.length < 11) {
       return 'Telefone muito pequeno';
