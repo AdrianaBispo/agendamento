@@ -229,7 +229,7 @@ _buildTelefoneInput() {
         decoration: _inputdecoration('Nome'),
         controller: _nameController,
         validator: (value) {
-          return Validator.isTextValid(value);
+          return Validator.isTelefoneValid(value);
         },
         onSaved: (value) {
           setState(() {
