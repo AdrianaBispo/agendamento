@@ -1,5 +1,7 @@
 import 'package:agenda/models/cliente.dart';
 import 'package:flutter/material.dart';
+//repository
+import '../repository/validator.dart';
 //color
 import '../components/colors.dart';
 //ui
@@ -18,6 +20,7 @@ class _ClientesPageState extends State<ClientesPage> {
   final List<Cliente> clienteLista = [
     Cliente(nome: 'Cliente nome', telefone: '71 98874-0739', historico: []),
   ];
+  final Cliente _clienteForm = Cliente(nome: '', telefone: '', historico: []);
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _telefoneController = TextEditingController();
@@ -192,6 +195,26 @@ class _ClientesPageState extends State<ClientesPage> {
       ),
     ]);
   }
+    _buildNameInput() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 20,
+      ),
+      child: TextFormField(
+        decoration: _inputdecoration('Nome'),
+        controller: _nameController,
+        validator: (value) {
+          return Validator.isTextValid(value);
+        },
+        onSaved: (value) {
+          setState(() {
+            _clienteForm.nome = value!;
+          });
+        },
+      ),
+    );
+  } //buildNameInput
+
     InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: AppColor.black, fontSize: 14),
