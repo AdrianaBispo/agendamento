@@ -90,7 +90,12 @@ class _ClientesPageState extends State<ClientesPage> {
                 padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
                 child: Form(
                   key: _formKey,
-                  child: Column(children: <Widget>[]),
+                  child: Column(
+                    children: <Widget>[
+                      _buildNameInput(),
+                      _buildTelefoneInput(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -195,7 +200,7 @@ class _ClientesPageState extends State<ClientesPage> {
       ),
     ]);
   }
-    _buildNameInput() {
+  _buildNameInput() {
     return Padding(
       padding: const EdgeInsets.only(
         bottom: 20,
@@ -215,7 +220,26 @@ class _ClientesPageState extends State<ClientesPage> {
     );
   } //buildNameInput
 
-    InputDecoration _inputdecoration(String labelText) => InputDecoration(
+_buildTelefoneInput() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 20,
+      ),
+      child: TextFormField(
+        decoration: _inputdecoration('Nome'),
+        controller: _nameController,
+        validator: (value) {
+          return Validator.isTextValid(value);
+        },
+        onSaved: (value) {
+          setState(() {
+            _clienteForm.telefone = value!;
+          });
+        },
+      ),
+    );
+  }
+  InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: AppColor.black, fontSize: 14),
         contentPadding:
@@ -230,5 +254,4 @@ class _ClientesPageState extends State<ClientesPage> {
           borderSide: BorderSide(width: 1.5, color: AppColor.natural_5),
         ),
       );
-
 }
