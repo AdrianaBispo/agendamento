@@ -41,7 +41,7 @@ class _ClientesPageState extends State<ClientesPage> {
                 child: Column(
                   children: [
                     CustoAppBar(texto: 'Clientes'),
-                    _buttonNovoCliente(),
+                    _buttonNovoCliente(context),
                     _dataTableList(),
                   ],
                 ),
@@ -53,7 +53,7 @@ class _ClientesPageState extends State<ClientesPage> {
     );
   }
 
-  _buttonNovoCliente() {
+  _buttonNovoCliente(BuildContext context) {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
@@ -78,7 +78,20 @@ class _ClientesPageState extends State<ClientesPage> {
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
             ),
           ),
-          onPressed: () {},
+          onPressed: () => showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              scrollable: true,
+              content: Container(
+                width: MediaQuery.of(ctx).size.width / 2,
+                padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(children: <Widget>[]),
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -179,4 +192,20 @@ class _ClientesPageState extends State<ClientesPage> {
       ),
     ]);
   }
+    InputDecoration _inputdecoration(String labelText) => InputDecoration(
+        labelText: labelText,
+        labelStyle: const TextStyle(color: AppColor.black, fontSize: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+        isDense: true,
+        fillColor: AppColor.white,
+        focusColor: AppColor.white,
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: AppColor.natural_5),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(width: 1.5, color: AppColor.natural_5),
+        ),
+      );
+
 }
