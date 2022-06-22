@@ -318,6 +318,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 String horas = value[0].toString();
                 String min = value[1].toString();
                 _servico.duracao = horas + ':' + min;
+                _duracaoServicoController.text = horas + ':' + min;
               });
             }).showDialog(context);
       },
