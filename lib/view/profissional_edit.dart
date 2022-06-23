@@ -428,6 +428,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             profissionalController.update(profissional: Profissional(id: widget.profissional.id, nome: widget.profissional.nome, profissao: widget.profissional.profissao, servicos: _listServico));
             Navigator.of(context).pop();
             _servico.duracao = '0:0';
+            _nameServicoController.text = '';
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Serviço salvo com sucesso ')),
             );
