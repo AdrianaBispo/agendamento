@@ -30,7 +30,8 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   final _formKeyAddServico = GlobalKey<FormState>();
   final _nameServicoController = TextEditingController();
   final _duracaoServicoController = TextEditingController(text: '0:0');
-  final _servico = Servicos(nome: '', duracao: '');
+  final _servico = Servicos(nome: '', duracao: '0:0');
+  List<Servicos> _listServico = [];
 
   /// salvar a duração
   @override
@@ -38,6 +39,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     super.initState();
     _nameEditController.text = widget.profissional.nome;
     _profissaoEditController.text = widget.profissional.profissao;
+    _listServico = widget.profissional.servicos;
     //_duracaoServicoController.text = '00:00';
   }
 
@@ -123,6 +125,25 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             ),
           ),
         ),
+        DataCell(
+          IconButton(
+            onPressed: () => {
+              /*Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) =>
+                    ProfissionalEdit(profissional: profissional)),
+              ),
+            )*/
+            }, //editar o nome e a profissão
+            icon: SvgPicture.asset(
+              'asset/icones/Icon/profile-2user.svg',
+              color: AppColor.natural_2,
+              width: 20,
+              height: 20,
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -163,7 +184,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   }
 
   _dataListaServicos() {
-    if (profissionalController.profissionalList.isEmpty) {
+    if (widget.profissional.servicos.isEmpty) {
       return const Padding(
         padding: EdgeInsets.only(top: 20.0),
         child: Text(
@@ -204,8 +225,8 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           ), //editar
         ],
         rows: List.generate(
-          widget.profissional.servicos.length,
-          (index) => _listaServicos(widget.profissional.servicos[index]),
+          _listServico.length,
+          (index) => _listaServicos(_listServico[index]),
         ),
       ),
     );
@@ -246,7 +267,59 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 child: Column(
                   children: <Widget>[
                     _buildNameInput(),
-                    _buildDuracaoInput(),
+                    //_buildDuracaoInput(),
+                    InkWell(
+                      child: InputDecorator(
+                        decoration: _inputdecoration('Duração'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              _servico.duracao,
+                            ),
+                            Icon(Icons.arrow_drop_down,
+                                color: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.grey.shade700
+                                    : Colors.white70),
+                          ],
+                        ),
+                      ),
+                      onTap: () {
+                        Picker(
+                            adapter: NumberPickerAdapter(data: [
+                              const NumberPickerColumn(
+                                  begin: 0, end: 999, suffix: Text(" h")),
+                              const NumberPickerColumn(
+                                  begin: 0, end: 60, suffix: Text(" min")),
+                            ]),
+                            delimiter: [
+                              PickerDelimiter(
+                                child: Container(
+                                  width: 30.0,
+                                  alignment: Alignment.center,
+                                  child: const Icon(Icons.more_vert),
+                                ),
+                              ),
+                            ],
+                            hideHeader: true,
+                            title: const Text("Selecione a duração"),
+                            selectedTextStyle:
+                                const TextStyle(color: AppColor.blue),
+                            cancelTextStyle: const TextStyle(
+                                color: AppColor.red, fontSize: 14),
+                            confirmTextStyle: const TextStyle(
+                                color: AppColor.grenn, fontSize: 14),
+                            onConfirm: (Picker picker, List value) {
+                              setState(() {
+                                String horas = value[0].toString();
+                                String min = value[1].toString();
+                                _servico.duracao = horas + ':' + min;
+                              });
+                            }).showDialog(context);
+                      },
+                    ),
                     _confirmButtonServico(),
                   ],
                 ),
@@ -283,7 +356,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              _duracaoServicoController.text,
+              _servico.duracao,
             ),
             Icon(Icons.arrow_drop_down,
                 color: Theme.of(context).brightness == Brightness.light
@@ -318,7 +391,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 String horas = value[0].toString();
                 String min = value[1].toString();
                 _servico.duracao = horas + ':' + min;
-                _duracaoServicoController.text = horas + ':' + min;
               });
             }).showDialog(context);
       },
@@ -352,9 +424,10 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           final form = _formKeyAddServico.currentState;
           if (form!.validate()) {
             form.save();
-            widget.profissional.servicos.add(_servico);
-            profissionalController.update(profissional: widget.profissional);
-            //Navigator.of(context).pop();
+              _listServico.add(Servicos(nome: _servico.nome, duracao: _servico.duracao),);
+            profissionalController.update(profissional: Profissional(id: widget.profissional.id, nome: widget.profissional.nome, profissao: widget.profissional.profissao, servicos: _listServico));
+            Navigator.of(context).pop();
+            _servico.duracao = '0:0';
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Serviço salvo com sucesso ')),
             );
