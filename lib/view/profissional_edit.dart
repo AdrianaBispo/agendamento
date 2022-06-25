@@ -5,6 +5,8 @@ import '../models/profissional.dart';
 import '../models/servicos.dart';
 //repository
 import '../repository/validator.dart';
+//routes
+import '../utils/routes.dart';
 //database
 import '../repository/profissional_controller.dart';
 //components
@@ -84,21 +86,54 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   }
 
   _deletarProfissional() {
-    return TextButton(
-      child: const Text(
-        'Deletar Profissional',
-        style: TextStyle(
-          color: AppColor.white,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: TextButton(
+        child: const Text(
+          'Deletar Profissional',
+          style: TextStyle(
+            color: AppColor.white,
+          ),
         ),
-      ),
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
-        backgroundColor: AppColor.red,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+          backgroundColor: AppColor.red,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
         ),
+        onPressed: () => showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Sair do empréstimo?'),
+                content: const Text(
+                    'Você tem certeza que deseja deletar o profissional?'),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('Não'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                  TextButton(
+                    child: const Text('Sim'),
+                    onPressed: () => {
+                      profissionalController.delete(
+                        profissional: Profissional(
+                            id: widget.profissional.id,
+                            nome: widget.profissional.nome,
+                            profissao: widget.profissional.profissao,
+                            servicos: _listServico),
+                      ),
+                      Navigator.of(context).pop(),
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.PROFSSIONAIS),
+                    },
+                  ),
+                ],
+              );
+            }),
+        //onPressed
       ),
-      onPressed: () => {}, //onPressed
     );
   }
 
