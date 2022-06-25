@@ -127,23 +127,30 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         ),
         DataCell(
           IconButton(
-            onPressed: () => {
-              AlertDialog(
-                title: const Text('Deletar serviço'),
-                content: const Text(
-                    'Você tem certeza que deseja deletar esse serviço?'),
-                actions: <Widget>[
-                  TextButton(
-                    child: const Text('Não'),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                  TextButton(
-                    child: const Text('Sim'),
-                    onPressed: () => _listServico.removeAt(index),
-                  ),
-                ],
-              ),
-            }, //editar o nome e a profissão
+            onPressed: () => showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    //colocar em um showdialog
+                    title: const Text('Deletar serviço'),
+                    content: const Text(
+                        'Você tem certeza que deseja deletar esse serviço?'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Não'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                      TextButton(
+                        child: const Text('Sim'),
+                        onPressed: () {
+                          setState(() => _listServico.removeAt(index));
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                }),
+            //editar o nome e a profissão
             icon: const Icon(
               Icons.delete_sharp,
               color: AppColor.natural_2,
