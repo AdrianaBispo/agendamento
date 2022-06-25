@@ -70,7 +70,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                         _custoAppBar(),
                         _formContainer(context),
                         _formAddProfissao(),
-                        _deletarProfissional(),
+                        _deletarProfissional(), //colocar padding bottomx
                       ],
                     ),
                   ],
@@ -102,7 +102,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     );
   }
 
-  DataRow _listaServicos(Servicos servico) {
+  DataRow _listaServicos(int index, Servicos servico) {
     return DataRow(
       cells: [
         DataCell(
@@ -128,19 +128,26 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         DataCell(
           IconButton(
             onPressed: () => {
-              /*Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) =>
-                    ProfissionalEdit(profissional: profissional)),
+              AlertDialog(
+                title: const Text('Deletar serviço'),
+                content: const Text(
+                    'Você tem certeza que deseja deletar esse serviço?'),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('Não'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                  TextButton(
+                    child: const Text('Sim'),
+                    onPressed: () => _listServico.removeAt(index),
+                  ),
+                ],
               ),
-            )*/
             }, //editar o nome e a profissão
-            icon: SvgPicture.asset(
-              'asset/icones/Icon/profile-2user.svg',
+            icon: const Icon(
+              Icons.delete_sharp,
               color: AppColor.natural_2,
-              width: 20,
-              height: 20,
+              size: 20.0,
             ),
           ),
         ),
@@ -226,7 +233,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         ],
         rows: List.generate(
           _listServico.length,
-          (index) => _listaServicos(_listServico[index]),
+          (index) => _listaServicos(index, _listServico[index]),
         ),
       ),
     );
@@ -424,8 +431,15 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           final form = _formKeyAddServico.currentState;
           if (form!.validate()) {
             form.save();
-              _listServico.add(Servicos(nome: _servico.nome, duracao: _servico.duracao),);
-            profissionalController.update(profissional: Profissional(id: widget.profissional.id, nome: widget.profissional.nome, profissao: widget.profissional.profissao, servicos: _listServico));
+            _listServico.add(
+              Servicos(nome: _servico.nome, duracao: _servico.duracao),
+            );
+            profissionalController.update(
+                profissional: Profissional(
+                    id: widget.profissional.id,
+                    nome: widget.profissional.nome,
+                    profissao: widget.profissional.profissao,
+                    servicos: _listServico));
             Navigator.of(context).pop();
             _servico.duracao = '0:0';
             _nameServicoController.text = '';
