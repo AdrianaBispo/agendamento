@@ -622,7 +622,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 color: AppColor.white,
               ),
               onPressed: () => {
-                Navigator.pop(context),
+                Navigator.pushReplacementNamed(context, AppRoutes.PROFSSIONAIS),
               },
             ),
           ),
