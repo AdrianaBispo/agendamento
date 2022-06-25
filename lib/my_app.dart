@@ -1,8 +1,9 @@
 import 'components/colors.dart';
-import 'view/clientes_page.dart';
 import 'package:flutter/material.dart';
 //view
 import 'view/home_page.dart';
+import 'view/clientes_page.dart';
+import 'view/profissionais_page.dart';
 //routes
 import 'utils/routes.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.HOME: (context) => HomePage(),
         AppRoutes.CLIENTES: (context) => ClientesPage(),
+        AppRoutes.PROFSSIONAIS: (context) => ProfissionaisPage(),
       },
     );
   }
