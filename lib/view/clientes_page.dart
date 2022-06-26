@@ -24,11 +24,13 @@ class _ClientesPageState extends State<ClientesPage> {
   final _nameController = TextEditingController();
   final _telefoneController = TextEditingController();
   var _clienteController = ClienteController();
-
+  bool _loading = true;
   @override
   void initState() {
     super.initState();
-    _clienteController.readAll();
+    _clienteController.readAll().then((value) => setState(() {
+      _loading = false;
+    }));
     clienteLista = _clienteController.clienteList;
   }
 
