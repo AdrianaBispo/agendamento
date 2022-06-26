@@ -20,7 +20,7 @@ class Cliente{
   }
   factory Cliente.fromJson(Map<String, dynamic> map) {
     return Cliente(
-      nome: map['name'],
+      nome: map['nome'],
       telefone: map['telefone'],
       historico: map['historico'] != null ? List.from(map['historico']).map((e) => Historico.fromJson(e)).toList()
       : <Historico>[],
