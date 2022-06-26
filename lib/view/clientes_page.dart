@@ -35,7 +35,7 @@ class _ClientesPageState extends State<ClientesPage> {
               flex: 1, //takes 1/6 of the screen
               child: Container(
                 color: AppColor.white,
-                child: SideMenu(selected: [false, false, true, false]),
+                child: SideMenu(selected: const [false, false, true, false]),
               ),
             ),
             Expanded(
