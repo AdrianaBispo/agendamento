@@ -231,7 +231,7 @@ _buildTelefoneInput() {
       ),
       child: TextFormField(
         decoration: _inputdecoration('Nome'),
-        controller: _nameController,
+        controller: _telefoneController,
         validator: (value) {
           return Validator.isTelefoneValid(value);
         },
@@ -271,14 +271,14 @@ _buildConfirmButton() {
           final form = _formKey.currentState;
           if (form!.validate()) {
             form.save();
-            profissionalController.creat(profissional: _formProfissional);
+            profissionalController.creat(profissional: _clienteForm);
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Salvo com sucesso ')),
             );
 
             _nameController.clear();
-            _profissaoController.clear();
+            _telefoneController.clear();
           }
         }, //onPressed
       ),
