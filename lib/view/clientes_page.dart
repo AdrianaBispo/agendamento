@@ -25,7 +25,7 @@ class _ClientesPageState extends State<ClientesPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _telefoneController = TextEditingController();
-
+  var _clienteController = ClienteController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -272,7 +272,7 @@ _buildConfirmButton() {
           final form = _formKey.currentState;
           if (form!.validate()) {
             form.save();
-            profissionalController.creat(profissional: _clienteForm);
+            _clienteController.creat(cliente: _clienteForm);
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Salvo com sucesso ')),
