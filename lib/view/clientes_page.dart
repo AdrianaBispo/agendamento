@@ -18,9 +18,7 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
-  final List<Cliente> clienteLista = [
-    Cliente(nome: 'Cliente nome', telefone: '71 98874-0739', historico: []),
-  ];
+  List<Cliente> clienteLista = [];
   final Cliente _clienteForm = Cliente(nome: '', telefone: '', historico: []);
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -31,6 +29,7 @@ class _ClientesPageState extends State<ClientesPage> {
   void initState() {
     super.initState();
     _clienteController.readAll();
+    clienteLista = _clienteController.clienteList;
   }
 
   @override
