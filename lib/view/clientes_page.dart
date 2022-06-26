@@ -243,6 +243,49 @@ _buildTelefoneInput() {
       ),
     );
   }
+
+_buildConfirmButton() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
+      child: TextButton.icon(
+        icon: SvgPicture.asset(
+          'asset/icones/Icon/add.svg',
+          color: AppColor.white,
+          width: 20,
+          height: 20,
+        ),
+        label: const Text(
+          'Novo Profissional',
+          style: TextStyle(
+            color: AppColor.white,
+          ),
+        ),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+          backgroundColor: AppColor.grenn,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+        ),
+        onPressed: () {
+          final form = _formKey.currentState;
+          if (form!.validate()) {
+            form.save();
+            profissionalController.creat(profissional: _formProfissional);
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Salvo com sucesso ')),
+            );
+
+            _nameController.clear();
+            _profissaoController.clear();
+          }
+        }, //onPressed
+      ),
+    );
+  }
+
+
   InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: AppColor.black, fontSize: 14),
