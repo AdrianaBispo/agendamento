@@ -41,11 +41,15 @@ class _ClientesPageState extends State<ClientesPage> {
             Expanded(
               flex: 5,
               child: SizedBox(
-                child: Column(
+                child: ListView(
                   children: [
-                    CustoAppBar(texto: 'Clientes'),
-                    _buttonNovoCliente(context),
-                    _dataTableList(),
+                    Column(
+                      children: [
+                        CustoAppBar(texto: 'Clientes'),
+                        _buttonNovoCliente(context),
+                        _dataTableList(),
+                      ],
+                    ),
                   ],
                 ),
               ),
