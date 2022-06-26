@@ -2,6 +2,7 @@ import 'package:agenda/models/cliente.dart';
 import 'package:flutter/material.dart';
 //repository
 import '../repository/validator.dart';
+import '../repository/cliente_controller.dart';
 //color
 import '../components/colors.dart';
 //ui
