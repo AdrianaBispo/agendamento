@@ -26,6 +26,13 @@ class _ClientesPageState extends State<ClientesPage> {
   final _nameController = TextEditingController();
   final _telefoneController = TextEditingController();
   var _clienteController = ClienteController();
+
+  @override
+  void initState() {
+    super.initState();
+    _clienteController.readAll();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
