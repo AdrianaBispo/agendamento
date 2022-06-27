@@ -24,6 +24,10 @@ class ClienteEdit extends StatefulWidget {
 }
 
 class _ClienteEditState extends State<ClienteEdit> {
+  final _formKeyCliente = GlobalKey<FormState>();
+  final _nameEditController = TextEditingController();
+  final _clienteEditController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +81,7 @@ class _ClienteEditState extends State<ClienteEdit> {
             ),
           ),
           Form(
-            key: _formKeyProfissional,
+            key: _formKeyCliente,
             child: Column(
               children: [
                 Padding(
