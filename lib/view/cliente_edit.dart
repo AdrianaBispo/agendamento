@@ -4,7 +4,7 @@ import '../models/cliente.dart';
 import '../models/historico.dart';
 //repository
 import '../repository/validator.dart';
-import '../repository/cliente_controller.dart';//database
+import '../repository/cliente_controller.dart'; //database
 //components
 import '../components/colors.dart';
 import '../components/side_menu.dart';
@@ -23,6 +23,22 @@ class ClienteEdit extends StatefulWidget {
 class _ClienteEditState extends State<ClienteEdit> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: AppColor.white,
+                child: SideMenu(
+                  selected: const [false, false, false, false],
+                ), //sideMenu
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
