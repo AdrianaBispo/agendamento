@@ -5,6 +5,8 @@ import '../models/historico.dart';
 //repository
 import '../repository/validator.dart';
 import '../repository/cliente_controller.dart'; //database
+//routes
+import '../utils/routes.dart';
 //components
 import '../components/colors.dart';
 import '../components/side_menu.dart';
