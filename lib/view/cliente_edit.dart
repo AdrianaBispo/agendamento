@@ -11,6 +11,7 @@ import '../utils/routes.dart';
 import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
+import '../components/input_decoration.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import '../components/conteiner_arredondado.dart';
@@ -103,7 +104,7 @@ class _ClienteEditState extends State<ClienteEdit> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        decoration: _inputdecoration('Nome'),
+        decoration: inputdecoration('Nome'),
         controller: _nameEditController,
         validator: (value) {
           return Validator.isTextValid(value);
