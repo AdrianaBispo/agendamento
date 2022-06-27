@@ -1,6 +1,8 @@
 import 'package:agenda/components/circular_progress_custo.dart';
 import 'package:agenda/models/cliente.dart';
 import 'package:flutter/material.dart';
+//view
+import 'cliente_edit.dart';
 //repository
 import '../repository/validator.dart';
 import '../repository/cliente_controller.dart';
@@ -30,8 +32,8 @@ class _ClientesPageState extends State<ClientesPage> {
   void initState() {
     super.initState();
     _clienteController.readAll().then((value) => setState(() {
-      _loading = false;
-    }));
+          _loading = false;
+        }));
     clienteLista = _clienteController.clienteList;
   }
 
@@ -200,14 +202,22 @@ class _ClientesPageState extends State<ClientesPage> {
       DataCell(
         //user edite
         IconButton(
-          onPressed: () => {},
+          onPressed: () => {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: ((context) =>
+                    ´ClienteEdit(cliente: cliente)),
+              ),
+            )
+          },
           icon: SvgPicture.asset(
             'asset/icones/Icon/profile-2user.svg',
             color: AppColor.natural_2,
             width: 20,
             height: 20,
           ),
-        ),
+        ), //editar cliente
       ),
       DataCell(
         IconButton(
@@ -222,6 +232,7 @@ class _ClientesPageState extends State<ClientesPage> {
       ),
     ]);
   }
+
   _buildNameInput() {
     return Padding(
       padding: const EdgeInsets.only(
@@ -242,7 +253,7 @@ class _ClientesPageState extends State<ClientesPage> {
     );
   } //buildNameInput
 
-_buildTelefoneInput() {
+  _buildTelefoneInput() {
     return Padding(
       padding: const EdgeInsets.only(
         bottom: 20,
@@ -262,7 +273,7 @@ _buildTelefoneInput() {
     );
   }
 
-_buildConfirmButton() {
+  _buildConfirmButton() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
       child: TextButton.icon(
@@ -302,7 +313,6 @@ _buildConfirmButton() {
       ),
     );
   }
-
 
   InputDecoration _inputdecoration(String labelText) => InputDecoration(
         labelText: labelText,
