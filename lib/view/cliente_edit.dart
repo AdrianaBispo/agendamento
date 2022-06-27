@@ -12,6 +12,7 @@ import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
 import '../components/input_decoration.dart';
+import '../components/button_padrao.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import '../components/conteiner_arredondado.dart';
@@ -28,7 +29,7 @@ class _ClienteEditState extends State<ClienteEdit> {
   final _formKeyCliente = GlobalKey<FormState>();
   final _nameEditController = TextEditingController();
   final _telefoneEditController = TextEditingController();
-  
+  var clienteController = ClienteController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +56,7 @@ class _ClienteEditState extends State<ClienteEdit> {
                       children: <Widget>[
                         _custoAppBar(),
                         _conteinerEditCliente(),
+                        _confirmButtonEdit(),
                       ],
                     ),
                   ],
@@ -88,7 +90,7 @@ class _ClienteEditState extends State<ClienteEdit> {
               children: [
                 _editNome(),
                 _editTelefone(),
-                
+
                 //_confirmButtonEdit(),
               ],
             ),
@@ -98,7 +100,7 @@ class _ClienteEditState extends State<ClienteEdit> {
     );
   }
 
-    Widget _editNome() {
+  Widget _editNome() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
@@ -117,7 +119,7 @@ class _ClienteEditState extends State<ClienteEdit> {
   }
 
   Widget _editTelefone() {
-   return Padding(
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         decoration: inputdecoration('Telefone'),
@@ -131,6 +133,23 @@ class _ClienteEditState extends State<ClienteEdit> {
           });
         },
       ),
+    );
+  }
+
+  _confirmButtonEdit() {
+    return ButtonPadrao(
+      texto: 'Editar Cliente',
+      color: AppColor.grenn,
+      onPressed: () {
+        final form = _formKeyCliente.currentState;
+        if (form!.validate()) {
+          form.save();
+          clienteController.update(cliente: widget.cliente);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Cliente editado com sucesso ')),
+          );
+        }
+      }, //onPressed
     );
   }
 
