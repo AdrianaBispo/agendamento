@@ -13,6 +13,7 @@ import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+import '../components/conteiner_arredondado.dart';
 
 class ClienteEdit extends StatefulWidget {
   Cliente cliente;
@@ -48,6 +49,7 @@ class _ClienteEditState extends State<ClienteEdit> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         _custoAppBar(),
+                        _conteinerEditCliente(),
                       ],
                     ),
                   ],
@@ -59,7 +61,43 @@ class _ClienteEditState extends State<ClienteEdit> {
       ),
     );
   }
-    Widget _custoAppBar() {
+
+  Widget _conteinerEditCliente() {
+    return ContainerArredondado(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text(
+            'Dados do Profissional',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: AppColor.natural,
+            ),
+          ),
+          Form(
+            key: _formKeyProfissional,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                  child: _editNome(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: _editProfissao(),
+                ),
+                _confirmButtonEdit(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _custoAppBar() {
     return SafeArea(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,5 +130,4 @@ class _ClienteEditState extends State<ClienteEdit> {
       ),
     ); //Custo AppBar
   }
-
 }
