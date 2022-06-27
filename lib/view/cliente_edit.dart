@@ -35,7 +35,21 @@ class _ClienteEditState extends State<ClienteEdit> {
                   selected: const [false, false, false, false],
                 ), //sideMenu
               ),
-            )
+            ),
+            Expanded(
+              flex: 5,
+              child: SizedBox(
+                child: ListView(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
