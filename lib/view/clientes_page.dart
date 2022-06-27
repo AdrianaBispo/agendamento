@@ -207,7 +207,7 @@ class _ClientesPageState extends State<ClientesPage> {
               context,
               MaterialPageRoute(
                 builder: ((context) =>
-                    ´ClienteEdit(cliente: cliente)),
+                    ClienteEdit(cliente: cliente)),
               ),
             )
           },
