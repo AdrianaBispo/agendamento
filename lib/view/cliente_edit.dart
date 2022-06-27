@@ -87,11 +87,9 @@ class _ClienteEditState extends State<ClienteEdit> {
             child: Column(
               children: [
                 _editNome(),
-                /*Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: _editProfissao(),
-                ),
-                _confirmButtonEdit(),*/
+                _editTelefone(),
+                
+                //_confirmButtonEdit(),
               ],
             ),
           ),
@@ -118,7 +116,7 @@ class _ClienteEditState extends State<ClienteEdit> {
     );
   }
 
-  Widget _editProfissao() {
+  Widget _editTelefone() {
    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
