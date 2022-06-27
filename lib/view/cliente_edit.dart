@@ -27,7 +27,7 @@ class ClienteEdit extends StatefulWidget {
 class _ClienteEditState extends State<ClienteEdit> {
   final _formKeyCliente = GlobalKey<FormState>();
   final _nameEditController = TextEditingController();
-  final _clienteEditController = TextEditingController();
+  final _telefoneEditController = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
