@@ -170,7 +170,7 @@ class _ClientesPageState extends State<ClientesPage> {
           ) // historico //criar uma pagina
         ],
         rows: List.generate(
-          5, //clienteLista.length
+          clienteLista.length,
           (index) => listaClientes(clienteLista[0]),
         ),
       ),
