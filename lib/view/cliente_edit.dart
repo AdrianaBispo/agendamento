@@ -68,6 +68,7 @@ class _ClienteEditState extends State<ClienteEdit> {
 
   Widget _conteinerEditCliente() {
     return ContainerArredondado(
+      widthDivider: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -84,19 +85,34 @@ class _ClienteEditState extends State<ClienteEdit> {
             key: _formKeyCliente,
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-                  child: _editNome(),
-                ),
-                Padding(
+                _editNome(),
+                /*Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 8),
                   child: _editProfissao(),
                 ),
-                _confirmButtonEdit(),
+                _confirmButtonEdit(),*/
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+    Widget _editNome() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        decoration: _inputdecoration('Nome'),
+        controller: _nameEditController,
+        validator: (value) {
+          return Validator.isTextValid(value);
+        },
+        onSaved: (value) {
+          setState(() {
+            widget.cliente.nome = value!;
+          });
+        },
       ),
     );
   }
