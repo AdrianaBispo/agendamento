@@ -167,7 +167,7 @@ class _ClientesPageState extends State<ClientesPage> {
           ), //editar
           DataColumn(
             label: Text(''),
-          ) // historico //criar uma pagina
+          ) // historico
         ],
         rows: List.generate(
           clienteLista.length,
@@ -259,7 +259,7 @@ class _ClientesPageState extends State<ClientesPage> {
         bottom: 20,
       ),
       child: TextFormField(
-        decoration: _inputdecoration('Nome'),
+        decoration: _inputdecoration('Telefone'),
         controller: _telefoneController,
         validator: (value) {
           return Validator.isTelefoneValid(value);
