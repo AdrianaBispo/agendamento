@@ -118,6 +118,24 @@ class _ClienteEditState extends State<ClienteEdit> {
     );
   }
 
+  Widget _editProfissao() {
+   return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        decoration: inputdecoration('Telefone'),
+        controller: _telefoneEditController,
+        validator: (value) {
+          return Validator.isTelefoneValid(value);
+        },
+        onSaved: (value) {
+          setState(() {
+            widget.cliente.telefone = value!;
+          });
+        },
+      ),
+    );
+  }
+
   Widget _custoAppBar() {
     return SafeArea(
       child: Row(
