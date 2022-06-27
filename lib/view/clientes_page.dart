@@ -171,7 +171,7 @@ class _ClientesPageState extends State<ClientesPage> {
         ],
         rows: List.generate(
           clienteLista.length,
-          (index) => listaClientes(clienteLista[0]),
+          (index) => listaClientes(clienteLista[index]),
         ),
       ),
     );
