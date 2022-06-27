@@ -1,3 +1,4 @@
+import 'package:agenda/components/circular_progress_custo.dart';
 import 'package:agenda/models/cliente.dart';
 import 'package:flutter/material.dart';
 //repository
@@ -120,6 +121,13 @@ class _ClientesPageState extends State<ClientesPage> {
   }
 
   _dataTableList() {
+    if (_loading) return CenteredCircularProgress();
+    if (_clienteController.clienteList.isEmpty) {
+      return const Text(
+        'Adcione os seus primeiros clientes',
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+      );
+    }
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
       padding: const EdgeInsets.all(20),
