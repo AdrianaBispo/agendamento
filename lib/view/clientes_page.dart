@@ -107,6 +107,7 @@ class _ClientesPageState extends State<ClientesPage> {
                     children: <Widget>[
                       _buildNameInput(),
                       _buildTelefoneInput(),
+                      _buildConfirmButton(),
                     ],
                   ),
                 ),
