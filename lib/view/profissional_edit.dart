@@ -106,12 +106,15 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text(
-                  'Deletar profissional',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                      color: AppColor.natural),
+                title: const Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    'Deletar profissional',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                        color: AppColor.natural),
+                  ),
                 ),
                 content: Container(
                   width: MediaQuery.of(context).size.width / 2,
