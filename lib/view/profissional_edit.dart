@@ -215,7 +215,18 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                         'Você tem certeza que deseja deletar esse serviço?'),
                     actions: <Widget>[
                       TextButton(
-                        child: const Text('Não'),
+                        child: const Text('Não',
+                    style: TextStyle(
+                      color: AppColor.white,
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                    backgroundColor: AppColor.red,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    ),
+                  ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       TextButton(
