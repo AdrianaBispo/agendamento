@@ -57,6 +57,7 @@ class _ClienteEditState extends State<ClienteEdit> {
                       children: <Widget>[
                         _custoAppBar(),
                         _conteinerEditCliente(),
+                        _dataListaHistorico(),
                         _deletarCliente(),
                       ],
                     ),
@@ -150,6 +151,13 @@ class _ClienteEditState extends State<ClienteEdit> {
           );
         }
       }, //onPressed
+    );
+  }
+
+  Widget _dataListaHistorico() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 10.0),
     );
   }
 
