@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 //model
@@ -65,7 +64,18 @@ class _ClienteEditState extends State<ClienteEdit> {
                       children: <Widget>[
                         _custoAppBar(),
                         _conteinerEditCliente(),
-                        _dataListaHistorico(),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                          padding: const EdgeInsets.all(20),
+                          width: MediaQuery.of(context).size.width / 2,
+                          decoration: const BoxDecoration(
+                            color: AppColor.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                          ),
+                          child: _dataListaHistorico(),
+                        ),
                         _deletarCliente(),
                       ],
                     ),
@@ -166,54 +176,45 @@ class _ClienteEditState extends State<ClienteEdit> {
     if (widget.cliente.historico.isEmpty) {
       return const Padding(
         padding: EdgeInsets.only(top: 20.0),
-        child: Text(
-          'Esse cliente pediu não fez nenhum serviço',
-          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+        child: Center(
+          child: Text(
+            'Esse cliente ainda não pediu nenhum serviço',
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+          ),
         ),
       );
     }
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-      padding: const EdgeInsets.all(20),
-      width: MediaQuery.of(context).size.width / 2,
-      decoration: const BoxDecoration(
-        color: AppColor.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
-      ),
-      child: DataTable(
-        columns: const [
-          DataColumn(
-            label: Text(
-              'Profissional',
-              style: TextStyle(
-                color: AppColor.natural,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                fontStyle: FontStyle.italic,
-              ),
+    return DataTable(
+      columns: const [
+        DataColumn(
+          label: Text(
+            'Profissional',
+            style: TextStyle(
+              color: AppColor.natural,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              fontStyle: FontStyle.italic,
             ),
           ),
-          DataColumn(
-            label: Text(
-              'Serviço',
-              style: TextStyle(
-                color: AppColor.natural,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                fontStyle: FontStyle.italic,
-              ),
+        ),
+        DataColumn(
+          label: Text(
+            'Serviço',
+            style: TextStyle(
+              color: AppColor.natural,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              fontStyle: FontStyle.italic,
             ),
           ),
-          DataColumn(
-            label: Text(''),
-          ), //editar
-        ],
-        rows: List.generate(
-          _listaHistorico.length,
-          (index) => _dataListaServicos(index, _listaHistorico[index]),
         ),
+        DataColumn(
+          label: Text(''),
+        ), //editar
+      ],
+      rows: List.generate(
+        _listaHistorico.length,
+        (index) => _dataListaServicos(index, _listaHistorico[index]),
       ),
     );
   }
