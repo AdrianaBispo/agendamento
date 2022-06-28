@@ -38,6 +38,7 @@ class _ClienteEditState extends State<ClienteEdit> {
     super.initState();
     _listaHistorico = widget.cliente.historico;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,10 +205,11 @@ class _ClienteEditState extends State<ClienteEdit> {
           _listaHistorico.length,
           (index) => _dataListaServicos(index, _listaHistorico[index]),
         ),
-    ),
+      ),
     );
   }
-  DataRow _dataListaServicos(int index, Historico historico){
+
+  DataRow _dataListaServicos(int index, Historico historico) {
     return DataRow(
       cells: [
         DataCell(
@@ -237,37 +239,60 @@ class _ClienteEditState extends State<ClienteEdit> {
                 builder: (context) {
                   return AlertDialog(
                     //colocar em um showdialog
-                    title: const Text('Deletar historico'),
-                    content: const Text(
-                        'Você tem certeza que deseja deletar esse historico'),
+                    title: const Padding(
+                      padding: EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        'Deletar historico',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                            color: AppColor.natural),
+                      ),
+                    ),
+                    content: Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      padding: const EdgeInsets.fromLTRB(20, 0, 10, 20),
+                      child: const Text(
+                        'Você tem certeza que deseja deletar o historico desse serviço? ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                            color: AppColor.natural),
+                      ),
+                    ),
                     actions: <Widget>[
                       TextButton(
-                        child: const Text('Não',
-                    style: TextStyle(
-                      color: AppColor.white,
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    backgroundColor: AppColor.red,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),
-                  ),
+                        child: const Text(
+                          'Não',
+                          style: TextStyle(
+                            color: AppColor.white,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                          backgroundColor: AppColor.red,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
+                        ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       TextButton(
-                        child: const Text('Sim',
-                    style: TextStyle(
-                      color: AppColor.white,
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    backgroundColor: AppColor.grenn,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),),
+                        child: const Text(
+                          'Sim',
+                          style: TextStyle(
+                            color: AppColor.white,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                          backgroundColor: AppColor.grenn,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
+                        ),
                         onPressed: () {
                           setState(() => _listaHistorico.removeAt(index));
                           Navigator.of(context).pop();
