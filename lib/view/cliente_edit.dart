@@ -57,7 +57,7 @@ class _ClienteEditState extends State<ClienteEdit> {
                       children: <Widget>[
                         _custoAppBar(),
                         _conteinerEditCliente(),
-                        _deletarProfissional(),
+                        _deletarCliente(),
                       ],
                     ),
                   ],
@@ -153,7 +153,7 @@ class _ClienteEditState extends State<ClienteEdit> {
     );
   }
 
-  _deletarProfissional() {
+  _deletarCliente() {
     return ButtonPadrao(
       texto: 'Deletar Cliente',
       color: AppColor.red,
