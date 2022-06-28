@@ -219,7 +219,17 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       TextButton(
-                        child: const Text('Sim'),
+                        child: const Text('Sim',
+                    style: TextStyle(
+                      color: AppColor.white,
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                    backgroundColor: AppColor.grenn,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    ),),
                         onPressed: () {
                           setState(() => _listServico.removeAt(index));
                           Navigator.of(context).pop();
