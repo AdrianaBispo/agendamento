@@ -56,7 +56,6 @@ class _ClienteEditState extends State<ClienteEdit> {
                       children: <Widget>[
                         _custoAppBar(),
                         _conteinerEditCliente(),
-                        _confirmButtonEdit(),
                       ],
                     ),
                   ],
@@ -90,8 +89,7 @@ class _ClienteEditState extends State<ClienteEdit> {
               children: [
                 _editNome(),
                 _editTelefone(),
-
-                //_confirmButtonEdit(),
+                _confirmButtonEdit(),
               ],
             ),
           ),
