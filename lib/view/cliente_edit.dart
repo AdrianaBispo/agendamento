@@ -237,16 +237,26 @@ class _ClienteEditState extends State<ClienteEdit> {
                 builder: (context) {
                   return AlertDialog(
                     //colocar em um showdialog
-                    title: const Text('Deletar serviço'),
+                    title: const Text('Deletar historico'),
                     content: const Text(
-                        'Você tem certeza que deseja deletar esse serviço?'),
+                        'Você tem certeza que deseja deletar esse historico'),
                     actions: <Widget>[
                       TextButton(
                         child: const Text('Não'),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       TextButton(
-                        child: const Text('Sim'),
+                        child: const Text('Sim',
+                    style: TextStyle(
+                      color: AppColor.white,
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                    backgroundColor: AppColor.grenn,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    ),),
                         onPressed: () {
                           setState(() => _listaHistorico.removeAt(index));
                           Navigator.of(context).pop();
