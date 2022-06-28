@@ -210,37 +210,59 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 builder: (context) {
                   return AlertDialog(
                     //colocar em um showdialog
-                    title: const Text('Deletar serviço'),
-                    content: const Text(
-                        'Você tem certeza que deseja deletar esse serviço?'),
+                    title: const Padding(
+                        padding: EdgeInsets.only(left: 20.0),
+                        child: Text(
+                          'Deletar serviço',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                              color: AppColor.natural),
+                        )),
+                    content: Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      padding: const EdgeInsets.fromLTRB(20, 0, 10, 20),
+                      child: const Text(
+                        'Você tem certeza que deseja deletar esse serviço?',
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                            color: AppColor.natural),
+                      ),
+                    ),
                     actions: <Widget>[
                       TextButton(
-                        child: const Text('Não',
-                    style: TextStyle(
-                      color: AppColor.white,
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    backgroundColor: AppColor.red,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),
-                  ),
+                        child: const Text(
+                          'Não',
+                          style: TextStyle(
+                            color: AppColor.white,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                          backgroundColor: AppColor.red,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
+                        ),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                       TextButton(
-                        child: const Text('Sim',
-                    style: TextStyle(
-                      color: AppColor.white,
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    backgroundColor: AppColor.grenn,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),),
+                        child: const Text(
+                          'Sim',
+                          style: TextStyle(
+                            color: AppColor.white,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                          backgroundColor: AppColor.grenn,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                          ),
+                        ),
                         onPressed: () {
                           setState(() => _listServico.removeAt(index));
                           Navigator.of(context).pop();
