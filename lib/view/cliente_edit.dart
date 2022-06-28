@@ -34,6 +34,11 @@ class _ClienteEditState extends State<ClienteEdit> {
   var clienteController = ClienteController();
   List<Historico> _listaHistorico = [];
   @override
+  void initState() {
+    super.initState();
+    _listaHistorico = widget.cliente.historico;
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
