@@ -57,6 +57,7 @@ class _ClienteEditState extends State<ClienteEdit> {
                       children: <Widget>[
                         _custoAppBar(),
                         _conteinerEditCliente(),
+                        _deletarProfissional(),
                       ],
                     ),
                   ],
@@ -149,6 +150,41 @@ class _ClienteEditState extends State<ClienteEdit> {
           );
         }
       }, //onPressed
+    );
+  }
+
+  _deletarProfissional() {
+    return ButtonPadrao(
+      texto: 'Deletar Cliente',
+      color: AppColor.red,
+      onPressed: () => showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Deletar cliente'),
+              content: const Text(
+                  'Você tem certeza que deseja deletar o cliente?'),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('Não'),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                TextButton(
+                  child: const Text('Sim'),
+                  onPressed: () => {
+                    clienteController.delete(
+                        cliente: Cliente(
+                            nome: widget.cliente.nome,
+                            telefone: widget.cliente.telefone,
+                            historico: _listaHistorico)),
+                    Navigator.of(context).pop(),
+                    Navigator.pushReplacementNamed(
+                        context, AppRoutes.PROFSSIONAIS),
+                  },
+                ),
+              ],
+            );
+          }),
     );
   }
 
