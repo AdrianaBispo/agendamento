@@ -77,7 +77,7 @@ class _ClienteEditState extends State<ClienteEdit> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text(
-            'Dados do Profissional',
+            'Dados do Cliente',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.bold,
