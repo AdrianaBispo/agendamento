@@ -163,6 +163,15 @@ class _ClienteEditState extends State<ClienteEdit> {
   }
 
   Widget _dataListaHistorico() {
+    if (widget.cliente.historico.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.only(top: 20.0),
+        child: Text(
+          'Esse cliente pediu não fez nenhum serviço',
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+        ),
+      );
+    }
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
       padding: const EdgeInsets.all(20),
