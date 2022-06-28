@@ -106,7 +106,10 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text('Sair do empréstimo?'),
+                title: const Text('Deletar profissional', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: AppColor.natural),),
                 content: const Text(
                     'Você tem certeza que deseja deletar o profissional?'),
                 actions: <Widget>[
