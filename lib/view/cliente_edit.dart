@@ -163,7 +163,12 @@ class _ClienteEditState extends State<ClienteEdit> {
             return AlertDialog(
               title: const Text('Deletar cliente'),
               content: const Text(
-                  'Você tem certeza que deseja deletar o cliente?'),
+                'Você tem certeza que deseja deletar esse cliente?',
+                style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 15,
+                    color: AppColor.natural),
+              ),
               actions: <Widget>[
                 TextButton(
                   child: const Text('Não'),
