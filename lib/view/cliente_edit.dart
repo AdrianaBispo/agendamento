@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 //model
 import '../models/cliente.dart';
@@ -194,10 +196,69 @@ class _ClienteEditState extends State<ClienteEdit> {
           ), //editar
         ],
         rows: List.generate(
-          _dataListServico.length,
-          (index) => _dataListaServicos(index, _listServico[index]),
+          _listaHistorico.length,
+          (index) => _dataListaServicos(index, _listaHistorico[index]),
         ),
     ),
+    );
+  }
+  DataRow _dataListaServicos(int index, Historico historico){
+    return DataRow(
+      cells: [
+        DataCell(
+          Text(
+            historico.profissionalNome,
+            style: const TextStyle(
+              color: AppColor.natural,
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+        DataCell(
+          Text(
+            historico.servico,
+            style: const TextStyle(
+              color: AppColor.natural,
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+        DataCell(
+          IconButton(
+            onPressed: () => showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    //colocar em um showdialog
+                    title: const Text('Deletar serviço'),
+                    content: const Text(
+                        'Você tem certeza que deseja deletar esse serviço?'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Não'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                      TextButton(
+                        child: const Text('Sim'),
+                        onPressed: () {
+                          setState(() => _listaHistorico.removeAt(index));
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                }),
+            //editar o nome e a profissão
+            icon: const Icon(
+              Icons.delete_sharp,
+              color: AppColor.natural_2,
+              size: 20.0,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
