@@ -30,6 +30,7 @@ class _ClienteEditState extends State<ClienteEdit> {
   final _nameEditController = TextEditingController();
   final _telefoneEditController = TextEditingController();
   var clienteController = ClienteController();
+  List<Historico> _listaHistorico = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
