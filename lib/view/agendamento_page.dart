@@ -13,12 +13,26 @@ class AgendamentoPage extends StatefulWidget {
   AgendamentoPage({Key? key});
 
   @override
-  State<AgendamentoPage> createState() =>_AgendamentoPage();
+  State<AgendamentoPage> createState() => _AgendamentoPage();
 }
 
-class _AgendamentoPage extends State<AgendamentoPage>{
+class _AgendamentoPage extends State<AgendamentoPage> {
   @override
-  Widget build(BuildContext context ){
-    return Container();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: AppColor.white,
+                child: SideMenu(selected: const [false, true, false, false]),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
