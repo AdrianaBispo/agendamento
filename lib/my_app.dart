@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'view/home_page.dart';
 import 'view/clientes_page.dart';
 import 'view/profissionais_page.dart';
+import 'view/agendamento_page.dart';
 //routes
 import 'utils/routes.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.HOME: (context) => HomePage(),
         AppRoutes.CLIENTES: (context) => ClientesPage(),
         AppRoutes.PROFSSIONAIS: (context) => ProfissionaisPage(),
+        AppRoutes.AGENDA: (context) => AgendamentoPage(),
       },
     );
   }
