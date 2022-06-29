@@ -7,6 +7,7 @@ import '../components/drawer_list_tile.dart';
 import '../view/home_page.dart';
 import '../view/clientes_page.dart';
 import '../view/profissionais_page.dart';
+import '../view/agendamento_page.dart';
 class SideMenu extends StatelessWidget {
   List<bool> selected;
   SideMenu({required this.selected});
@@ -22,7 +23,7 @@ class SideMenu extends StatelessWidget {
           selected: selected[0],
         ),
         DrawerListTile(
-          pagina: {},
+          pagina: AgendamentoPage(),
           texto: 'Agenda',
           icon: 'calendar',
           selected: selected[1],
