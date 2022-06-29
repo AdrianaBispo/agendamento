@@ -30,6 +30,15 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                 child: SideMenu(selected: const [false, true, false, false]),
               ),
             ),
+            Expanded(
+              flex: 5,
+              child: SizedBox(
+                  child: ListView(
+                children: [
+                  calendar(),
+                ],
+              )),
+            ),
           ],
         ),
       ),
