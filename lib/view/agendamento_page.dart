@@ -21,6 +21,12 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   final _firstDay = DateTime(2000);
   final _lastDay = DateTime(2050);
   var _focusedDay = DateTime.now();
+  DateTime? selectedCalendarDate;
+
+  @override
+  void initState() {
+    selectedCalendarDate = _focusedDay;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,39 +68,62 @@ class _AgendamentoPage extends State<AgendamentoPage> {
       child: TableCalendar(
         //altura entre a linha do dia  e a primeira linha da data
         rowHeight: 60.0,
-        //altura entre a linha da data 
+        //altura entre a linha da data
         daysOfWeekHeight: 40.0,
         headerStyle: const HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
-          titleTextStyle: TextStyle(color: AppColor.white, fontSize: 16.0, fontWeight: FontWeight.bold, ),
+          titleTextStyle: TextStyle(
+            color: AppColor.white,
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
           decoration: BoxDecoration(
             color: AppColor.blue,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5),),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(5),
+              topRight: Radius.circular(5),
+            ),
           ),
           leftChevronIcon: Icon(
-                    Icons.chevron_left,
-                    color: AppColor.white,
-                    size: 24,
-                  ),
-                  rightChevronIcon: Icon(
-                    Icons.chevron_right,
-                    color: AppColor.white,
-                    size: 24,
-                  ),
+            Icons.chevron_left,
+            color: AppColor.white,
+            size: 24,
+          ),
+          rightChevronIcon: Icon(
+            Icons.chevron_right,
+            color: AppColor.white,
+            size: 24,
+          ),
         ),
         calendarStyle: const CalendarStyle(
-              canMarkersOverflow: true,
-              weekendTextStyle: TextStyle(color: AppColor.black),
-              todayDecoration: BoxDecoration(color: AppColor.blue, shape: BoxShape.circle),
-              selectedDecoration: BoxDecoration(
-                color: AppColor.blueSecondary,
-              ),
-            ),
-          locale: 'pt_BR',
-          focusedDay: _focusedDay,
-          firstDay: _firstDay,
-          lastDay: _lastDay),
+          canMarkersOverflow: true,
+          weekendTextStyle: TextStyle(color: AppColor.black),
+          todayDecoration:
+              BoxDecoration(color: AppColor.blue, shape: BoxShape.circle),
+          selectedDecoration: BoxDecoration(
+            color: AppColor.blueSecondary,
+            shape: BoxShape.circle,
+          ),
+        ),
+        locale: 'pt_BR',
+        focusedDay: _focusedDay,
+        firstDay: _firstDay,
+        lastDay: _lastDay,
+        selectedDayPredicate: (day) {
+          return isSameDay(selectedCalendarDate, day);
+        },
+        onDaySelected: _onDaySelected,
+      ),
     );
+  }
+
+  void _onDaySelected(selectedDay, focusedDay) {
+    if (isSameDay(selectedCalendarDate, selectedDay)) {
+      setState(() {
+        selectedCalendarDate = selectedDay;
+        _focusedDay = focusedDay;
+      });
+    }
   }
 }
