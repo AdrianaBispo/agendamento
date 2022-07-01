@@ -40,6 +40,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
               child: SizedBox(
                   child: ListView(
                 children: [
+                  CustoAppBar(texto: 'Agendamento'),
                   calendar(),
                 ],
               )),
