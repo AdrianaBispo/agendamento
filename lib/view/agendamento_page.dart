@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../repository/validator.dart';
 import '../repository/cliente_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/intl.dart';
+//models
+import '../models/agenda.dart';
 //color
 import '../components/colors.dart';
 //ui
