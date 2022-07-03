@@ -29,6 +29,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     selectedCalendarDate = _focusedDay;
   }
 
+  List<Agenda> _listOfDayEvents(DateTime dateTime) {
+    var formatted = DateFormat('yyyy-MM-dd').format(dateTime);
+    return agendamentos[formatted] ?? [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +50,13 @@ class _AgendamentoPage extends State<AgendamentoPage> {
             Expanded(
               flex: 5,
               child: SizedBox(
-                  child: ListView(
-                children: [
-                  CustoAppBar(texto: 'Agendamento'),
-                  calendar(),
-                  _eventTile(),
-                ],
+                child: ListView(
+                  children: [
+                    CustoAppBar(texto: 'Agendamento'),
+                    calendar(),
+                    ..._listOfDayEvents(selectedCalendarDate!)
+                        .map((eventos) => _eventTile()),
+                  ],
               )),
             ),
           ],
