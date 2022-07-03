@@ -25,6 +25,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
 
   @override
   void initState() {
+    super.initState();
     selectedCalendarDate = _focusedDay;
   }
 
@@ -119,7 +120,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   }
 
   void _onDaySelected(selectedDay, focusedDay) {
-    if (isSameDay(selectedCalendarDate, selectedDay)) {
+    if (!isSameDay(selectedCalendarDate, selectedDay)) {
       setState(() {
         selectedCalendarDate = selectedDay;
         _focusedDay = focusedDay;
