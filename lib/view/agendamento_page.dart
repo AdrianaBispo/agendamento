@@ -189,4 +189,83 @@ class _AgendamentoPage extends State<AgendamentoPage> {
       });
     }
   }
+  _showAddEventDialog() async {
+    await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text('New Event'),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  buildTextField(
+                      controller: clienteNomeController),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  buildTextField(
+                      controller: profissionalNomeController),
+                  //servico
+                  //horario
+                  //dia
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {/*
+                    if (titleController.text.isEmpty &&
+                        descpController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please enter title & description'),
+                          duration: Duration(seconds: 3),
+                        ),
+                      );
+                      //Navigator.pop(context);
+                      return;
+                    } else {
+                      setState(() {
+                        if (mySelectedEvents[selectedCalendarDate] != null) {
+                          mySelectedEvents[selectedCalendarDate]?.add(MyEvents(
+                              eventTitle: titleController.text,
+                              eventDescp: descpController.text));
+                        } else {
+                          mySelectedEvents[selectedCalendarDate!] = [
+                            MyEvents(
+                                eventTitle: titleController.text,
+                               eventDescp: descpController.text)
+                          ];
+                        }
+                      });
+
+                     titleController.clear();
+                      descpController.clear();
+
+                      Navigator.pop(context);
+                      return;
+                    }*/
+                  },
+                  child: const Text('Add'),
+                ),
+              ],
+            ));
+  }
+buildTextField({required controller}) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 20,
+      ),
+      child: TextFormField(
+        decoration: inputdecoration('Nome'),
+        controller: controller,
+        validator: (value) {
+          return Validator.isTextValid(value);
+        },
+      ),
+    );
+  }
 }
