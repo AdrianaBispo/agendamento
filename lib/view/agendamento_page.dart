@@ -25,6 +25,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   final _lastDay = DateTime(2050);
   var _focusedDay = DateTime.now();
   DateTime? selectedCalendarDate;
+  late Map<String, List<Agenda>> agendamentos;
 
   @override
   void initState() {
