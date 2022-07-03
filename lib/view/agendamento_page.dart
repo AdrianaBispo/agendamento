@@ -38,7 +38,9 @@ class _AgendamentoPage extends State<AgendamentoPage> {
           clienteTelefone: 'clienteTelefone',
           profissionalNome: 'profissionalNome',
           profissionalServico: 'profissionalServico',
-          horario: DateTime.now()),
+          horario: DateTime.now(),
+          data: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+      ),
     ];
   }
 
