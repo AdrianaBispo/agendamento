@@ -59,9 +59,10 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                     CustoAppBar(texto: 'Agendamento'),
                     calendar(),
                     ..._listOfDayEvents(selectedCalendarDate!)
-                        .map((eventos) => _eventTile()),
+                        .map((eventos) => _eventTile(eventos)),
                   ],
-              )),
+                ),
+              ),
             ),
           ],
         ),
@@ -69,7 +70,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     );
   }
 
-  _eventTile() {
+  _eventTile(Agenda agenda) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
       child: ListTile(
@@ -82,11 +83,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
         shape: const Border(
           left: BorderSide(color: AppColor.blueSecondary, width: 3),
         ),
-        title: const Padding(
-          padding: EdgeInsets.only(bottom: 8.0),
-          child: Text('Cliente: cliente \nTelefone: tele'),
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Text('Cliente: ${agenda.clienteNome} \nTelefone: ${agenda.clienteTelefone}'),
         ),
-        subtitle: const Text('Servico: Servico \nProfissional: profissional'),
+        subtitle: Text('Servico: ${agenda.profissionalServico} \nProfissional: ${agenda.profissionalNome}\nHorario: ${agenda.horario}'),
       ),
     );
   }
