@@ -42,7 +42,13 @@ class _AgendamentoPage extends State<AgendamentoPage> {
           data: DateFormat('yyyy-MM-dd').format(DateTime.now()),
       ),
     ];
-  }
+
+    agendaController.forEach((element) { 
+      var key = DateFormat('yyyy-MM-dd').format(element.horario);
+      agendamentos[key] = [element];
+      
+    });
+  }//intState
 
   List<Agenda> _listOfDayEvents(DateTime dateTime) {
     var formatted = DateFormat('yyyy-MM-dd').format(dateTime);
