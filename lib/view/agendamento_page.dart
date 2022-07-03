@@ -58,6 +58,17 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => {}, //_showAddEventDialog(),
+        backgroundColor: AppColor.blue,
+        label: const Text('Agendar Serviço'),
+        icon: SvgPicture.asset(
+          'asset/icones/Icon/calendar.svg',
+          color: AppColor.white,
+          width: 15,
+          height: 15,
+        ),
+      ),
       body: SafeArea(
         child: Row(
           children: [
