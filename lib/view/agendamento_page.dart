@@ -26,11 +26,20 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   var _focusedDay = DateTime.now();
   DateTime? selectedCalendarDate;
   late Map<String, List<Agenda>> agendamentos;
+  late List<Agenda> agendaController;
 
   @override
   void initState() {
     super.initState();
     selectedCalendarDate = _focusedDay;
+    agendaController = [
+      Agenda(
+          clienteNome: 'clienteNome',
+          clienteTelefone: 'clienteTelefone',
+          profissionalNome: 'profissionalNome',
+          profissionalServico: 'profissionalServico',
+          horario: DateTime.now()),
+    ];
   }
 
   List<Agenda> _listOfDayEvents(DateTime dateTime) {
