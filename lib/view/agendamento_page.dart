@@ -59,22 +59,26 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     );
   }
 
-  _eventTile(){
-    return ListTile(
-                    leading: SvgPicture.asset(
-                      'asset/icones/Icon/calendar.svg',
-                      color: AppColor.blueSecondary,
-                      width: 20,
-                      height: 20,
-                    ),
-                     shape: Border(
-                       left: BorderSide(color: AppColor.blueSecondary, width: 3),),
-                    title: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Text('Cliente: cliente \nTelefone: tele'),
-                    ),
-                    subtitle: Text('Servico: Servico \nProfissional: profissional'),
-                  );
+  _eventTile() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+      child: ListTile(
+        leading: SvgPicture.asset(
+          'asset/icones/Icon/calendar.svg',
+          color: AppColor.blueSecondary,
+          width: 20,
+          height: 20,
+        ),
+        shape: const Border(
+          left: BorderSide(color: AppColor.blueSecondary, width: 3),
+        ),
+        title: const Padding(
+          padding: EdgeInsets.only(bottom: 8.0),
+          child: Text('Cliente: cliente \nTelefone: tele'),
+        ),
+        subtitle: const Text('Servico: Servico \nProfissional: profissional'),
+      ),
+    );
   }
 
   Widget calendar() {
