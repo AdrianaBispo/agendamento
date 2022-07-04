@@ -257,16 +257,26 @@ class _AgendamentoPage extends State<AgendamentoPage> {
               ],
             ));
   }
-buildTextField({required controller}) {
+
+  _buildDropField(
+      {String? controller,
+      required List<String> listaValores,
+      required String labelText}) {
     return Padding(
       padding: const EdgeInsets.only(
         bottom: 20,
       ),
-      child: TextFormField(
-        decoration: inputdecoration('Nome'),
-        controller: controller,
-        validator: (value) {
-          return Validator.isTextValid(value);
+      child: DropdownButtonFormField<String>(
+        decoration: inputdecoration(labelText),
+        //onSaved: () => {},
+        value: controller,
+        items: listaValores.map<DropdownMenuItem<String>>((String val) {
+          return DropdownMenuItem(child: Text(val), value: val);
+        }).toList(),
+        onChanged: (val) {
+          setState(() {
+            controller = val;
+          });
         },
       ),
     );
