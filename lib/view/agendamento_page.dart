@@ -27,6 +27,9 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   DateTime? selectedCalendarDate;
   late Map<String, List<Agenda>> agendamentos;
   late List<Agenda> agendaController;
+  String? clienteNomeController;
+  String? profissionalNomeController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
