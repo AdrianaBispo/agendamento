@@ -4,12 +4,14 @@ class Agenda {
   String profissionalNome;
   String profissionalServico;
   DateTime horario;
+  String data;
   Agenda({
     required this.clienteNome,
     required this.clienteTelefone,
     required this.profissionalNome,
     required this.profissionalServico,
     required this.horario,
+    required this.data,
   });
 
   Map<String, dynamic> toJson() {
@@ -19,6 +21,7 @@ class Agenda {
       'profissionalNome': profissionalNome,
       'profissionalServico': profissionalServico,
       'horario': horario,
+      'data': data,
     };
   }
 
@@ -29,6 +32,7 @@ class Agenda {
       profissionalNome: map['profissionalNome'],
       profissionalServico: map['profissionalServico'],
       horario: map['horario'],
+      data: map['data'],
     );
   }
 }
