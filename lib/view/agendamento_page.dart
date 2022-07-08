@@ -25,7 +25,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   final _lastDay = DateTime(2050);
   var _focusedDay = DateTime.now();
   DateTime? selectedCalendarDate;
-  late Map<String, List<Agenda>> agendamentos;
+  Map<String, List<Agenda>> agendamentos = {};
   late List<Agenda> agendaController;
   String? clienteNomeController;
   String? profissionalNomeController;
@@ -46,7 +46,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
       ),
     ];
 
-    agendaController.forEach((element) { 
+    agendaController.forEach((element) {
       var key = DateFormat('yyyy-MM-dd').format(element.horario);
       agendamentos[key] = [element];
       
