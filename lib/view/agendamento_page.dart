@@ -11,6 +11,7 @@ import '../components/colors.dart';
 //ui
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
+import '../components/input_decoration.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AgendamentoPage extends StatefulWidget {
@@ -28,30 +29,29 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   Map<String, List<Agenda>> agendamentos = {};
   late List<Agenda> agendaController;
   String? clienteNomeController;
+  String clienteTelefoneController = '';
   String? profissionalNomeController;
   final _formKey = GlobalKey<FormState>();
-
+  var _clienteController = ClienteController();
+  Map<String, String> _listaClientes = {};
   @override
   void initState() {
     super.initState();
     selectedCalendarDate = _focusedDay;
     agendaController = [
-      Agenda(
-          clienteNome: 'clienteNome',
-          clienteTelefone: 'clienteTelefone',
-          profissionalNome: 'profissionalNome',
-          profissionalServico: 'profissionalServico',
-          horario: DateTime.now(),
-          data: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-      ),
     ];
 
     agendaController.forEach((element) {
       var key = DateFormat('yyyy-MM-dd').format(element.horario);
       agendamentos[key] = [element];
-      
     });
-  }//intState
+    _clienteController.readAll().then(
+          (value) => _clienteController.clienteList.forEach((element) {
+            var key = element.nome;
+            _listaClientes[key] = element.telefone;
+          }),
+        );
+  } //intState
 
   List<Agenda> _listOfDayEvents(DateTime dateTime) {
     var formatted = DateFormat('yyyy-MM-dd').format(dateTime);
@@ -62,7 +62,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => {}, //_showAddEventDialog(),
+        onPressed: () => _showAddEventDialog(),
         backgroundColor: AppColor.blue,
         label: const Text('Agendar Serviço'),
         icon: SvgPicture.asset(
@@ -116,9 +116,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
         ),
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text('Cliente: ${agenda.clienteNome} \nTelefone: ${agenda.clienteTelefone}'),
+          child: Text(
+              'Cliente: ${agenda.clienteNome} \nTelefone: ${agenda.clienteTelefone}'),
         ),
-        subtitle: Text('Servico: ${agenda.profissionalServico} \nProfissional: ${agenda.profissionalNome}\nHorario: ${agenda.horario}'),
+        subtitle: Text(
+            'Servico: ${agenda.profissionalServico} \nProfissional: ${agenda.profissionalNome}\nHorario: ${agenda.horario}'),
       ),
     );
   }
@@ -192,93 +194,108 @@ class _AgendamentoPage extends State<AgendamentoPage> {
       });
     }
   }
+
   _showAddEventDialog() async {
     await showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('New Event'),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  buildTextField(
-                      controller: clienteNomeController),
-                  const SizedBox(
-                    height: 20.0,
+        builder: (BuildContext context) => StatefulBuilder(
+              builder: (context, setState) {
+                return AlertDialog(
+                  scrollable: true,
+                  title: const Text('New Event'),
+                  content: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 20,
+                            ),
+                            child: DropdownButtonFormField<String>(
+                              decoration: inputdecoration('Cliente'),
+                              //onSaved: () => {},
+                              value: clienteNomeController,
+                              items: _listaClientes
+                                  .map((nome, telefone) {
+                                    return MapEntry(
+                                      nome,
+                                      DropdownMenuItem(
+                                        value: nome,
+                                        child: Text(nome),
+                                      ),
+                                    );
+                                  })
+                                  .values
+                                  .toList(),
+                              onChanged: (val) {
+                                setState(() {
+                                  clienteNomeController = val;
+                                  clienteTelefoneController =
+                                      _listaClientes[val]!;
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            child: InputDecorator(
+                              decoration: inputdecoration('Telefone'),
+                              child: Text(clienteTelefoneController),
+                            ), //inputDecorator
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  buildTextField(
-                      controller: profissionalNomeController),
-                  //servico
-                  //horario
-                  //dia
-                ],
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {/*
-                    if (titleController.text.isEmpty &&
-                        descpController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter title & description'),
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
-                      //Navigator.pop(context);
-                      return;
-                    } else {
-                      setState(() {
-                        if (mySelectedEvents[selectedCalendarDate] != null) {
-                          mySelectedEvents[selectedCalendarDate]?.add(MyEvents(
-                              eventTitle: titleController.text,
-                              eventDescp: descpController.text));
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        /*
+                        if (titleController.text.isEmpty &&
+                            descpController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Please enter title & description'),
+                              duration: Duration(seconds: 3),
+                            ),
+                          );
+                          //Navigator.pop(context);
+                          return;
                         } else {
-                          mySelectedEvents[selectedCalendarDate!] = [
-                            MyEvents(
-                                eventTitle: titleController.text,
-                               eventDescp: descpController.text)
-                          ];
-                        }
-                      });
+                          setState(() {
+                            if (mySelectedEvents[selectedCalendarDate] != null) {
+                              mySelectedEvents[selectedCalendarDate]?.add(MyEvents(
+                                  eventTitle: titleController.text,
+                                  eventDescp: descpController.text));
+                            } else {
+                              mySelectedEvents[selectedCalendarDate!] = [
+                                MyEvents(
+                                    eventTitle: titleController.text,
+                                   eventDescp: descpController.text)
+                              ];
+                            }
+                          });
 
-                     titleController.clear();
-                      descpController.clear();
+                         titleController.clear();
+                          descpController.clear();
 
-                      Navigator.pop(context);
-                      return;
-                    }*/
-                  },
-                  child: const Text('Add'),
-                ),
-              ],
+                          Navigator.pop(context);
+                          return;
+                        }*/
+                      },
+                      child: const Text('Add'),
+                    ),
+                  ],
+                );
+              },
             ));
-  }
-
-  _buildDropField(
-      {String? controller,
-      required List<String> listaValores,
-      required String labelText}) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 20,
-      ),
-      child: DropdownButtonFormField<String>(
-        decoration: inputdecoration(labelText),
-        //onSaved: () => {},
-        value: controller,
-        items: listaValores.map<DropdownMenuItem<String>>((String val) {
-          return DropdownMenuItem(child: Text(val), value: val);
-        }).toList(),
-        onChanged: (val) {
-          setState(() {
-            controller = val;
-          });
-        },
-      ),
-    );
   }
 }
