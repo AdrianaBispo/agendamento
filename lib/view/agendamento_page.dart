@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 //repository
 import '../repository/validator.dart';
 import '../repository/cliente_controller.dart';
+import '../repository/profissional_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 //models
