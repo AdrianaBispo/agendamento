@@ -257,6 +257,39 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                               decoration: inputdecoration('Telefone'),
                               child: Text(clienteTelefoneController),
                             ), //inputDecorator
+                          ), //cliete telefone
+                          /*                 profissionalNome: 'profissionalNome',
+        profissionalServico: 'profissionalServico',
+        horario: */
+        //Profissional Nome
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 20,
+                            ),
+                            child: DropdownButtonFormField<String>(
+                              decoration: inputdecoration('Profissional'),
+                              //onSaved: () => {},
+                              value: profissionalNomeController,
+                              items: _listaProfissional
+                                  .map((nome, servicos) {
+                                    return MapEntry(
+                                      nome,
+                                      DropdownMenuItem(
+                                        value: nome,
+                                        child: Text(nome),
+                                      ),
+                                    );
+                                  })
+                                  .values
+                                  .toList(),
+                              onChanged: (val) {
+                                setState(() {
+                                  profissionalNomeController = val;
+                                  _listaServicos =
+                                      _listaProfissional[val]!;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
