@@ -327,6 +327,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                   child: Text(servico.nome),
                                 );
                               }).toList(),
+                              validator: (value){
+                                if (value == null){
+                                  return 'Selecione um serviço';
+                                }
+                              },
                               onChanged: (val) {
                                 setState(() {
                                   profissionalServicosController = val;
