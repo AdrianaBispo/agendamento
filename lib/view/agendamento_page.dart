@@ -34,7 +34,9 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   String? profissionalNomeController;
   final _formKey = GlobalKey<FormState>();
   var _clienteController = ClienteController();
+  var _profissionalController = ProfissionalController();
   Map<String, String> _listaClientes = {};
+  Map<String, List<Servicos>> _listaProfissional = {};
   @override
   void initState() {
     super.initState();
