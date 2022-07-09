@@ -261,7 +261,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                           /*                 profissionalNome: 'profissionalNome',
         profissionalServico: 'profissionalServico',
         horario: */
-        //Profissional Nome
+                          //Profissional Nome
                           Padding(
                             padding: const EdgeInsets.only(
                               bottom: 20,
@@ -285,8 +285,31 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                               onChanged: (val) {
                                 setState(() {
                                   profissionalNomeController = val;
-                                  _listaServicos =
-                                      _listaProfissional[val]!;
+                                  _listaServicos = _listaProfissional[val]!;
+                                });
+                              },
+                            ),
+                          ),
+                          //ProfissionalServico
+
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 20,
+                            ),
+                            child: DropdownButtonFormField<String>(
+                              decoration: inputdecoration('Serviços'),
+                              //onSaved: () => {},
+                              value: profissionalServicosController,
+                              items: _listaServicos.map<DropdownMenuItem<String>>((Servicos servico) {
+                                return DropdownMenuItem(
+                                  value: servico.nome,
+                                  child: Text(servico.nome),
+                                );
+                              } ).toList(),
+                              onChanged: (val) {
+                                setState(() {
+                                  profissionalServicosController = val;
+                                  _listaServicos = _listaProfissional[val]!;
                                 });
                               },
                             ),
