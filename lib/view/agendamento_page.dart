@@ -52,6 +52,12 @@ class _AgendamentoPage extends State<AgendamentoPage> {
             _listaClientes[key] = element.telefone;
           }),
         );
+    _profissionalController.readAll().then(
+      (value) => _profissionalController.profissionalList.forEach((element) {
+        var key = element.nome;
+        _listaProfissional[key] = element.servicos;
+      }),
+    );
   } //intState
 
   List<Agenda> _listOfDayEvents(DateTime dateTime) {
