@@ -254,6 +254,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                   })
                                   .values
                                   .toList(),
+                              validator: (value) {
+                                if (value == null) {
+                                  return 'Selecione um cliente';
+                                }
+                              },
                               onChanged: (val) {
                                 setState(() {
                                   clienteNomeController = val;
