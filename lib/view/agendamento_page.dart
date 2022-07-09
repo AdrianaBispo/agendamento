@@ -291,6 +291,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                   })
                                   .values
                                   .toList(),
+                                  validator: (value){
+                                    if(value == null){
+                                      return 'Selecione um profissional';
+                                    }
+                                  },
                               onChanged: (val) {
                                 setState(() {
                                   profissionalNomeController = val;
