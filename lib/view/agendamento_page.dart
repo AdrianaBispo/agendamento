@@ -367,9 +367,10 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                 cancelText: 'Cancelar',
                                 confirmText: 'Confirmar',
                                 helpText: 'Selecione o Horario',
+                                errorInvalidText: 'Valor invalido',
                               ).then(
                                 (value) => setState(() {
-                                  horarioController = value!;
+                                  if (value != null) horarioController = value;
                                 }),
                               );
                             },
