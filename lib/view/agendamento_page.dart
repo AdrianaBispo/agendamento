@@ -32,6 +32,8 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   String? clienteNomeController;
   String clienteTelefoneController = '';
   String? profissionalNomeController;
+  String? profissionalServicosController;
+  List<Servicos> _listaServicos = [];
   final _formKey = GlobalKey<FormState>();
   var _clienteController = ClienteController();
   var _profissionalController = ProfissionalController();
