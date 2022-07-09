@@ -7,6 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 //models
 import '../models/agenda.dart';
+import '../models/servicos.dart';
 //color
 import '../components/colors.dart';
 //ui
@@ -33,6 +34,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   String clienteTelefoneController = '';
   String? profissionalNomeController;
   String? profissionalServicosController;
+  TimeOfDay horarioController = TimeOfDay(hour: 0, minute: 0);
   List<Servicos> _listaServicos = [];
   final _formKey = GlobalKey<FormState>();
   var _clienteController = ClienteController();
@@ -44,6 +46,14 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     super.initState();
     selectedCalendarDate = _focusedDay;
     agendaController = [
+      Agenda(
+        clienteNome: 'clienteNome',
+        clienteTelefone: 'clienteTelefone',
+        profissionalNome: 'profissionalNome',
+        profissionalServico: 'profissionalServico',
+        horario: DateTime.now(),
+        data: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+      ),
     ];
 
     agendaController.forEach((element) {
@@ -57,11 +67,12 @@ class _AgendamentoPage extends State<AgendamentoPage> {
           }),
         );
     _profissionalController.readAll().then(
-      (value) => _profissionalController.profissionalList.forEach((element) {
-        var key = element.nome;
-        _listaProfissional[key] = element.servicos;
-      }),
-    );
+          (value) =>
+              _profissionalController.profissionalList.forEach((element) {
+            var key = element.nome;
+            _listaProfissional[key] = element.servicos;
+          }),
+        );
   } //intState
 
   List<Agenda> _listOfDayEvents(DateTime dateTime) {
@@ -252,15 +263,13 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                               },
                             ),
                           ),
+                          //cliente nome
                           SizedBox(
                             child: InputDecorator(
                               decoration: inputdecoration('Telefone'),
                               child: Text(clienteTelefoneController),
                             ), //inputDecorator
-                          ), //cliete telefone
-                          /*                 profissionalNome: 'profissionalNome',
-        profissionalServico: 'profissionalServico',
-        horario: */
+                          ), //cliente telefone
                           //Profissional Nome
                           Padding(
                             padding: const EdgeInsets.only(
@@ -300,12 +309,14 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                               decoration: inputdecoration('Serviços'),
                               //onSaved: () => {},
                               value: profissionalServicosController,
-                              items: _listaServicos.map<DropdownMenuItem<String>>((Servicos servico) {
+                              items: _listaServicos
+                                  .map<DropdownMenuItem<String>>(
+                                      (Servicos servico) {
                                 return DropdownMenuItem(
                                   value: servico.nome,
                                   child: Text(servico.nome),
                                 );
-                              } ).toList(),
+                              }).toList(),
                               onChanged: (val) {
                                 setState(() {
                                   profissionalServicosController = val;
@@ -313,6 +324,40 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                 });
                               },
                             ),
+                          ),
+                          //horario
+                          InkWell(
+                            child: InputDecorator(
+                              decoration: inputdecoration('Horario'),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text(horarioController
+                                      .format(context)
+                                      .toString()),
+                                  Icon(Icons.arrow_drop_down,
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? Color.fromARGB(255, 24, 13, 13)
+                                          : Colors.white70),
+                                ],
+                              ),
+                            ),
+                            onTap: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: TimeOfDay.now(),
+                                cancelText: 'Cancelar',
+                                confirmText: 'Confirmar',
+                                helpText: 'Selecione o Horario',
+                              ).then(
+                                (value) => setState(() {
+                                  horarioController = value!;
+                                }),
+                              );
+                            },
                           ),
                         ],
                       ),
