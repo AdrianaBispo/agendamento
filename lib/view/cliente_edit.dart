@@ -35,6 +35,8 @@ class _ClienteEditState extends State<ClienteEdit> {
   @override
   void initState() {
     super.initState();
+    _nameEditController.text = widget.cliente.nome;
+    _telefoneEditController.text = widget.cliente.telefone;
     _listaHistorico = widget.cliente.historico;
   }
 
