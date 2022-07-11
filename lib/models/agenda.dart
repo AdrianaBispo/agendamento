@@ -1,4 +1,5 @@
 class Agenda {
+  int? id;
   String clienteNome;
   String clienteTelefone;
   String profissionalNome;
@@ -16,6 +17,7 @@ class Agenda {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'clienteNome': clienteNome,
       'clienteTelefone': clienteTelefone,
       'profissionalNome': profissionalNome,
