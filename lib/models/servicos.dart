@@ -1,16 +1,13 @@
 class Servicos{
   String nome;
-  String duracao;
 
   Servicos({
     required this.nome,
-    required this.duracao,
   });
 Map<String, String> toJson() {
     //convert para map
     return {
       'nome': nome,
-      'duracao': duracao,
     };
   }
 
@@ -18,7 +15,6 @@ Map<String, String> toJson() {
     //toJson
     return Servicos(
       nome: map['nome'], 
-      duracao: map['duracao'],
       );
   }
   }
