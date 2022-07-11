@@ -46,8 +46,8 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         _quadrados(
-                            quantidade: 20.toString(),
-                            total: 'Total de vendas'),
+                            quantidade: _clienteController.clienteList.length.toString(),
+                            total: 'Total de Clientes'),
                         _quadrados(
                             quantidade: 20.toString(),
                             total: 'Total de produtos'),
