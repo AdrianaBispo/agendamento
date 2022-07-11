@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               flex: 1, //takes 1/6 of the screen
               child: Container(
                 color: AppColor.white,
-                child: SideMenu(selected: [true, false, false, false]),
+                child: SideMenu(selected: const [true, false, false, false]),
               ),
             ),
             Expanded(
