@@ -31,8 +31,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
   var profissionalController = ProfissionalController();
   final _formKeyAddServico = GlobalKey<FormState>();
   final _nameServicoController = TextEditingController();
-  final _duracaoServicoController = TextEditingController(text: '0:0');
-  final _servico = Servicos(nome: '', duracao: '0:0');
+  final _servico = Servicos(nome: '',);
   List<Servicos> _listServico = [];
 
   /// salvar a duração
@@ -42,7 +41,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
     _nameEditController.text = widget.profissional.nome;
     _profissaoEditController.text = widget.profissional.profissao;
     _listServico = widget.profissional.servicos;
-    //_duracaoServicoController.text = '00:00';
   }
 
   @override
@@ -194,16 +192,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           ),
         ),
         DataCell(
-          Text(
-            servico.duracao,
-            style: const TextStyle(
-              color: AppColor.natural,
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-        ),
-        DataCell(
           IconButton(
             onPressed: () => showDialog(
                 context: context,
@@ -345,17 +333,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
             ),
           ),
           DataColumn(
-            label: Text(
-              'Duração',
-              style: TextStyle(
-                color: AppColor.natural,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ),
-          DataColumn(
             label: Text(''),
           ), //editar
         ],
@@ -402,59 +379,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                 child: Column(
                   children: <Widget>[
                     _buildNameInput(),
-                    //_buildDuracaoInput(),
-                    InkWell(
-                      child: InputDecorator(
-                        decoration: _inputdecoration('Duração'),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              _servico.duracao,
-                            ),
-                            Icon(Icons.arrow_drop_down,
-                                color: Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? Colors.grey.shade700
-                                    : Colors.white70),
-                          ],
-                        ),
-                      ),
-                      onTap: () {
-                        Picker(
-                            adapter: NumberPickerAdapter(data: [
-                              const NumberPickerColumn(
-                                  begin: 0, end: 999, suffix: Text(" h")),
-                              const NumberPickerColumn(
-                                  begin: 0, end: 60, suffix: Text(" min")),
-                            ]),
-                            delimiter: [
-                              PickerDelimiter(
-                                child: Container(
-                                  width: 30.0,
-                                  alignment: Alignment.center,
-                                  child: const Icon(Icons.more_vert),
-                                ),
-                              ),
-                            ],
-                            hideHeader: true,
-                            title: const Text("Selecione a duração"),
-                            selectedTextStyle:
-                                const TextStyle(color: AppColor.blue),
-                            cancelTextStyle: const TextStyle(
-                                color: AppColor.red, fontSize: 14),
-                            confirmTextStyle: const TextStyle(
-                                color: AppColor.grenn, fontSize: 14),
-                            onConfirm: (Picker picker, List value) {
-                              setState(() {
-                                String horas = value[0].toString();
-                                String min = value[1].toString();
-                                _servico.duracao = horas + ':' + min;
-                              });
-                            }).showDialog(context);
-                      },
-                    ),
                     _confirmButtonServico(),
                   ],
                 ),
@@ -478,56 +402,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
         setState(() {
           _servico.nome = value!;
         });
-      },
-    );
-  }
-
-  InkWell _buildDuracaoInput() {
-    return InkWell(
-      child: InputDecorator(
-        decoration: _inputdecoration('Duração'),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              _servico.duracao,
-            ),
-            Icon(Icons.arrow_drop_down,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.grey.shade700
-                    : Colors.white70),
-          ],
-        ),
-      ),
-      onTap: () {
-        Picker(
-            adapter: NumberPickerAdapter(data: [
-              const NumberPickerColumn(begin: 0, end: 999, suffix: Text(" h")),
-              const NumberPickerColumn(begin: 0, end: 60, suffix: Text(" min")),
-            ]),
-            delimiter: [
-              PickerDelimiter(
-                child: Container(
-                  width: 30.0,
-                  alignment: Alignment.center,
-                  child: const Icon(Icons.more_vert),
-                ),
-              ),
-            ],
-            hideHeader: true,
-            title: const Text("Selecione a duração"),
-            selectedTextStyle: const TextStyle(color: AppColor.blue),
-            cancelTextStyle: const TextStyle(color: AppColor.red, fontSize: 14),
-            confirmTextStyle:
-                const TextStyle(color: AppColor.grenn, fontSize: 14),
-            onConfirm: (Picker picker, List value) {
-              setState(() {
-                String horas = value[0].toString();
-                String min = value[1].toString();
-                _servico.duracao = horas + ':' + min;
-              });
-            }).showDialog(context);
       },
     );
   }
@@ -560,7 +434,7 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
           if (form!.validate()) {
             form.save();
             _listServico.add(
-              Servicos(nome: _servico.nome, duracao: _servico.duracao),
+              Servicos(nome: _servico.nome,),
             );
             profissionalController.update(
                 profissional: Profissional(
@@ -569,7 +443,6 @@ class _ProfissionalEditState extends State<ProfissionalEdit> {
                     profissao: widget.profissional.profissao,
                     servicos: _listServico));
             Navigator.of(context).pop();
-            _servico.duracao = '0:0';
             _nameServicoController.text = '';
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Serviço salvo com sucesso ')),
