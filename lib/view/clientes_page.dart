@@ -165,9 +165,9 @@ class _ClientesPageState extends State<ClientesPage> {
           DataColumn(
             label: Text(''),
           ), //editar
-          DataColumn(
-            label: Text(''),
-          ) // historico
+          // DataColumn(
+          //   label: Text(''),
+          // ) // historico
         ],
         rows: List.generate(
           clienteLista.length,
@@ -218,17 +218,17 @@ class _ClientesPageState extends State<ClientesPage> {
             height: 20,
           ),
         ), //editar cliente
-      ),
-      DataCell(
-        IconButton(
-          onPressed: () => {},
-          icon: SvgPicture.asset(
-            'asset/icones/Icon/calendar.svg',
-            color: AppColor.natural_2,
-            width: 20,
-            height: 20,
-          ),
-        ), //agendar e historico
+      // ),
+      // DataCell(
+      //   IconButton(
+      //     onPressed: () => {},
+      //     icon: SvgPicture.asset(
+      //       'asset/icones/Icon/calendar.svg',
+      //       color: AppColor.natural_2,
+      //       width: 20,
+      //       height: 20,
+      //     ),
+      //   ), //agendar e historico
       ),
     ]);
   }
