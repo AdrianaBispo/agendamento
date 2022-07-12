@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import '../components/colors.dart';
 //ui
 import '../components/side_menu.dart';
+import '../components/circular_progress_custo.dart';
+//repository
+import '../repository/cliente_controller.dart';
+import '../repository/profissional_controller.dart';
+import '../repository/agenda_controller.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
