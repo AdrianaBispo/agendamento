@@ -16,11 +16,6 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-/*
-home
-agenda
-cliente (botão novo cadastro)
-profissionais 
 
 class _HomePageState extends State<HomePage> {
   var _clienteController = ClienteController();
@@ -45,7 +40,6 @@ class _HomePageState extends State<HomePage> {
     } );
   }
 
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,18 +80,14 @@ class _HomePageState extends State<HomePage> {
                 quantidade: _clienteController.clienteList.length.toString(),
                 total: 'Total de Clientes'),
             _quadrados(
-                            quantidade: 20.toString(),
-                            total: 'Total de produtos'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                quantidade:
+                    _profissionalController.profissionalList.length.toString(),
+                total: 'Total de Profissionais'),
+            _quadrados(
+                quantidade: agendaHoje.toString(), total: 'Agendamentos para Hoje'),
           ],
         ),
-        //   flex: 5,
-      ),
+      ],
     );
   }
 
