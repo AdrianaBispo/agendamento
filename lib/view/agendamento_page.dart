@@ -50,9 +50,9 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     super.initState();
     selectedCalendarDate = _focusedDay;
 
-    _agendaController.readAll().then((value) => setState((){
-      _loading = false;
-    }));
+    _agendaController.readAll().then((value) => setState(() {
+          _loading = false;
+        }));
     agendaLista = _agendaController.agendaList;
     agendaLista.forEach((element) {
       var key = DateFormat('yyyy-MM-dd').format(element.horario);
@@ -222,7 +222,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
               builder: (context, setState) {
                 return AlertDialog(
                   scrollable: true,
-                  title: const Text('New Event'),
+                  title: const Text('Novo Agendamento'),
                   content: Container(
                     width: MediaQuery.of(context).size.width / 2,
                     padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
@@ -325,8 +325,8 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                   child: Text(servico.nome),
                                 );
                               }).toList(),
-                              validator: (value){
-                                if (value == null){
+                              validator: (value) {
+                                if (value == null) {
                                   return 'Selecione um serviço';
                                 }
                               },
@@ -379,13 +379,24 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                   ),
                   actions: [
                     TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+                        backgroundColor: AppColor.red,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                      ),
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('Cancel'),
+                      child: const Text(
+                        'Cancelar',
+                        style: TextStyle(
+                          color: AppColor.white,
+                        ),
+                      ),
                     ),
                     TextButton(
                       child: const Text('Agendar'),
                       onPressed: () {
-                        
                         if (profissionalServicosController == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -395,7 +406,8 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                           );
                           Navigator.pop(context);
                           return;
-                        } else if (horarioController == TimeOfDay(hour: 0, minute: 0)) {
+                        } else if (horarioController ==
+                            TimeOfDay(hour: 0, minute: 0)) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Por favor, selecione o horario'),
@@ -404,19 +416,16 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                           );
                           Navigator.pop(context);
                           return;
-                            } else {
-                              print('Salvo');
-                              
-                              
-                            }
-                          //clienteNomeController = null;
-                          //clienteTelefoneController = '';    
-                          //profissionalNomeController = null;
-                          //profissionalServicosController = null;
-                          Navigator.pop(context);
-                          return;
-                        },
-                      
+                        } else {
+                          print('Salvo');
+                        }
+                        //clienteNomeController = null;
+                        //clienteTelefoneController = '';
+                        //profissionalNomeController = null;
+                        //profissionalServicosController = null;
+                        Navigator.pop(context);
+                        return;
+                      },
                     ),
                   ],
                 );
