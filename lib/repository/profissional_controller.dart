@@ -21,7 +21,4 @@ class ProfissionalController {
     _profissionalDAO.deleteProfissional(id: profissional.id!);
     profissionalList.remove(profissional);
   }//delete
-  void fechar(){
-    _profissionalDAO.closer();
-  }
 }
