@@ -4,7 +4,7 @@ class Agenda {
   String clienteTelefone;
   String profissionalNome;
   String profissionalServico;
-  DateTime horario;
+  String horario;
   String data;
   Agenda({
     required this.clienteNome,
