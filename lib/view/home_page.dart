@@ -22,8 +22,10 @@ class _HomePageState extends State<HomePage> {
   var _profissionalController = ProfissionalController();
   var _agendaController = AgendaController();
   int agendaHoje = 0;
-  var formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
-  bool _loading = true;
+  var formattedDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+  bool _loadingClientes = true;
+  bool _loadingProfissioanais = true;
+  bool _loadingAgenda = true;
   @override
   void initState() {
     super.initState();
