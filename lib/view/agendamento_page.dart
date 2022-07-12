@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../repository/validator.dart';
 import '../repository/cliente_controller.dart';
 import '../repository/profissional_controller.dart';
+import '../repository/agenda_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 //models
@@ -14,6 +15,7 @@ import '../components/colors.dart';
 import '../components/side_menu.dart';
 import '../components/custom_appBar.dart';
 import '../components/input_decoration.dart';
+import '../components/circular_progress_custo.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AgendamentoPage extends StatefulWidget {
@@ -29,7 +31,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   var _focusedDay = DateTime.now();
   DateTime? selectedCalendarDate;
   Map<String, List<Agenda>> agendamentos = {};
-  late List<Agenda> agendaController;
+  late List<Agenda> agendaLista;
   String? clienteNomeController;
   String clienteTelefoneController = '';
   String? profissionalNomeController;
@@ -41,22 +43,18 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   var _profissionalController = ProfissionalController();
   Map<String, String> _listaClientes = {};
   Map<String, List<Servicos>> _listaProfissional = {};
+  var _agendaController = AgendaController();
+  bool _loading = true;
   @override
   void initState() {
     super.initState();
     selectedCalendarDate = _focusedDay;
-    agendaController = [
-      Agenda(
-        clienteNome: 'clienteNome',
-        clienteTelefone: 'clienteTelefone',
-        profissionalNome: 'profissionalNome',
-        profissionalServico: 'profissionalServico',
-        horario: DateTime.now(),
-        data: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-      ),
-    ];
 
-    agendaController.forEach((element) {
+    _agendaController.readAll().then((value) => setState((){
+      _loading = false;
+    }));
+    agendaLista = _agendaController.agendaList;
+    agendaLista.forEach((element) {
       var key = DateFormat('yyyy-MM-dd').format(element.horario);
       agendamentos[key] = [element];
     });
@@ -296,11 +294,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                   })
                                   .values
                                   .toList(),
-                                  validator: (value){
-                                    if(value == null){
-                                      return 'Selecione um profissional';
-                                    }
-                                  },
+                              validator: (value) {
+                                if (value == null) {
+                                  return 'Selecione um profissional';
+                                }
+                              },
                               onChanged: (val) {
                                 setState(() {
                                   profissionalNomeController = val;
@@ -385,41 +383,40 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                       child: const Text('Cancel'),
                     ),
                     TextButton(
+                      child: const Text('Agendar'),
                       onPressed: () {
-                        /*
-                        if (titleController.text.isEmpty &&
-                            descpController.text.isEmpty) {
+                        
+                        if (profissionalServicosController == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Please enter title & description'),
+                              content: Text('Por favor, selecione o serviço'),
                               duration: Duration(seconds: 3),
                             ),
                           );
-                          //Navigator.pop(context);
-                          return;
-                        } else {
-                          setState(() {
-                            if (mySelectedEvents[selectedCalendarDate] != null) {
-                              mySelectedEvents[selectedCalendarDate]?.add(MyEvents(
-                                  eventTitle: titleController.text,
-                                  eventDescp: descpController.text));
-                            } else {
-                              mySelectedEvents[selectedCalendarDate!] = [
-                                MyEvents(
-                                    eventTitle: titleController.text,
-                                   eventDescp: descpController.text)
-                              ];
-                            }
-                          });
-
-                         titleController.clear();
-                          descpController.clear();
-
                           Navigator.pop(context);
                           return;
-                        }*/
-                      },
-                      child: const Text('Add'),
+                        } else if (horarioController == TimeOfDay(hour: 0, minute: 0)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Por favor, selecione o horario'),
+                              duration: Duration(seconds: 3),
+                            ),
+                          );
+                          Navigator.pop(context);
+                          return;
+                            } else {
+                              print('Salvo');
+                              
+                              
+                            }
+                          //clienteNomeController = null;
+                          //clienteTelefoneController = '';    
+                          //profissionalNomeController = null;
+                          //profissionalServicosController = null;
+                          Navigator.pop(context);
+                          return;
+                        },
+                      
                     ),
                   ],
                 );
