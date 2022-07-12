@@ -45,16 +45,28 @@ class _HomePageState extends State<HomePage> {
               flex: 5,
               child: Container(
                 color: AppColor.natural_7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        _quadrados(
-                            quantidade: _clienteController.clienteList.length.toString(),
-                            total: 'Total de Clientes'),
-                        _quadrados(
+                child: _columnQuadrado(),
+              ),
+            ),
+          ],
+        ),
+        //   flex: 5,
+      ),
+    );
+  }
+
+  Widget _columnQuadrado() {
+    if (_loading) return CenteredCircularProgress();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _quadrados(
+                quantidade: _clienteController.clienteList.length.toString(),
+                total: 'Total de Clientes'),
+            _quadrados(
                             quantidade: 20.toString(),
                             total: 'Total de produtos'),
                       ],
