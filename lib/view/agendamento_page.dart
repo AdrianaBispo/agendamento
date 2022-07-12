@@ -53,13 +53,11 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     _agendaController.readAll().then((value) {
       agendaLista = _agendaController.agendaList;
       agendaLista.forEach((element) {
-        var key = element.data; //vai usar parametro data do tipo string
+        var key = element.data; 
         agendamentos[key] = [element];
-        print("${agendamentos.keys} setState");
       });
       setState(() {
         _loading = false;
-        print(agendaLista);
       });
     });
 
