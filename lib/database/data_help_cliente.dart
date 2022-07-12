@@ -30,7 +30,6 @@ class ClienteDatabase {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     final dBPath = join(appDocumentDir.path, _dataBaseName);
     final database = await databaseFactoryIo.openDatabase(dBPath);
-    debugPrint('database aberto');
     return database;
   }
 }
