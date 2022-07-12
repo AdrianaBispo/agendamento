@@ -31,7 +31,7 @@ class _AgendamentoPage extends State<AgendamentoPage> {
   var _focusedDay = DateTime.now();
   DateTime? selectedCalendarDate;
   Map<String, List<Agenda>> agendamentos = {};
-  late List<Agenda> agendaLista;
+  late List<Agenda> agendaLista; //não inicializado
   String? clienteNomeController;
   String clienteTelefoneController = '';
   String? profissionalNomeController;
@@ -50,14 +50,19 @@ class _AgendamentoPage extends State<AgendamentoPage> {
     super.initState();
     selectedCalendarDate = _focusedDay;
 
-    _agendaController.readAll().then((value) => setState(() {
-          _loading = false;
-        }));
-    agendaLista = _agendaController.agendaList;
-    agendaLista.forEach((element) {
-      var key = DateFormat('yyyy-MM-dd').format(element.horario);
-      agendamentos[key] = [element];
+    _agendaController.readAll().then((value) {
+      agendaLista = _agendaController.agendaList;
+      agendaLista.forEach((element) {
+        var key = element.data; //vai usar parametro data do tipo string
+        agendamentos[key] = [element];
+        print("${agendamentos.keys} setState");
+      });
+      setState(() {
+        _loading = false;
+        print(agendaLista);
+      });
     });
+
     _clienteController.readAll().then(
           (value) => _clienteController.clienteList.forEach((element) {
             var key = element.nome;
@@ -71,10 +76,10 @@ class _AgendamentoPage extends State<AgendamentoPage> {
             _listaProfissional[key] = element.servicos;
           }),
         );
-  } //intState
+  }
 
   List<Agenda> _listOfDayEvents(DateTime dateTime) {
-    var formatted = DateFormat('yyyy-MM-dd').format(dateTime);
+    var formatted = DateFormat('dd-MM-yyyy').format(dateTime);
     return agendamentos[formatted] ?? [];
   }
 
@@ -366,6 +371,18 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                                 confirmText: 'Confirmar',
                                 helpText: 'Selecione o Horario',
                                 errorInvalidText: 'Valor invalido',
+                                builder: (context, child) => Theme(
+                                    data: ThemeData().copyWith(
+                                      primaryColor: const Color(0xFF8CE7F1),
+                                      colorScheme: const ColorScheme.light(
+                                          primary: AppColor.blue,
+                                          secondary: AppColor.blueSecondary,
+                                          onSecondary: AppColor.blueSecondary,
+                                          onError: AppColor.red,),
+                                      buttonTheme: const ButtonThemeData(
+                                          textTheme: ButtonTextTheme.primary),
+                                    ),
+                                    child: child!),
                               ).then(
                                 (value) => setState(() {
                                   if (value != null) horarioController = value;
@@ -395,7 +412,19 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                       ),
                     ),
                     TextButton(
-                      child: const Text('Agendar'),
+                      child: const Text(
+                        'Agendar',
+                        style: TextStyle(
+                          color: AppColor.white,
+                        ),
+                      ),
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+                        backgroundColor: AppColor.grenn,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        ),
+                      ),
                       onPressed: () {
                         if (profissionalServicosController == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -417,12 +446,30 @@ class _AgendamentoPage extends State<AgendamentoPage> {
                           Navigator.pop(context);
                           return;
                         } else {
-                          print('Salvo');
+                          _agendaController.creat(
+                            agenda: Agenda(
+                                clienteNome: clienteNomeController!,
+                                clienteTelefone: clienteTelefoneController,
+                                profissionalNome: profissionalNomeController!,
+                                profissionalServico:
+                                    profissionalServicosController!,
+                                horario: horarioController
+                                    .format(context)
+                                    .toString(),
+                                data: DateFormat('dd-MM-yyyy')
+                                    .format(_focusedDay)),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Agendamento criado com sucesso'),
+                              duration: Duration(seconds: 3),
+                            ),
+                          );
                         }
-                        //clienteNomeController = null;
-                        //clienteTelefoneController = '';
-                        //profissionalNomeController = null;
-                        //profissionalServicosController = null;
+                        clienteNomeController = null;
+                        clienteTelefoneController = '';
+                        profissionalNomeController = null;
+                        profissionalServicosController = null;
                         Navigator.pop(context);
                         return;
                       },
