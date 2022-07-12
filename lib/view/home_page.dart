@@ -23,8 +23,15 @@ cliente (botão novo cadastro)
 profissionais 
 
 
-
- */
+  Future<void> _realAll() async {
+    await _clienteController.readAll();
+    await _profissionalController.readAll();
+    await _agendaController.readAll().then((value) {
+      _agendaController.agendaList.forEach((element) {if (element.data == formattedDate){
+        agendaHoje++;
+      }});
+    } );
+  }
 
 class _HomePageState extends State<HomePage> {
   @override
