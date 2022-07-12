@@ -22,6 +22,18 @@ agenda
 cliente (botão novo cadastro)
 profissionais 
 
+class _HomePageState extends State<HomePage> {
+  var _clienteController = ClienteController();
+  var _profissionalController = ProfissionalController();
+  var _agendaController = AgendaController();
+  int agendaHoje = 0;
+  var formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  bool _loading = true;
+  @override
+  void initState() {
+    super.initState();
+    _realAll().then((value) => _loading = false);
+  }
 
   Future<void> _realAll() async {
     await _clienteController.readAll();
