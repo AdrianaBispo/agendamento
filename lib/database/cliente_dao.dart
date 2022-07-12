@@ -24,7 +24,6 @@ class ClienteDAO {
         await _clienteStore.update(txn, {'id': key}, finder: find);
       },
     );
-    debugPrint('dados inseridos');
   }
 
   Future <List<Cliente>> getAllClientes() async {
@@ -67,8 +66,6 @@ class ClienteDAO {
 
     var db = await _db as Database;
     await _clienteStore.update(db, cliente.toJson(), finder: find);
-
-    debugPrint('Atualizado');
 
     await _clienteStore.query(finder: find).getSnapshot(db);
   }
