@@ -24,7 +24,6 @@ class ProfissionalDAO {
         await _profissionalStore.update(txn, {'id': key}, finder: find);
       },
     );
-    debugPrint('dados inseridos');
   }
 
   Future <List<Profissional>> getAllProfissionais() async {
@@ -67,8 +66,6 @@ class ProfissionalDAO {
 
     var db = await _db as Database;
     await _profissionalStore.update(db, profissional.toJson(), finder: find);
-
-    debugPrint('Atualizado');
 
     await _profissionalStore.query(finder: find).getSnapshot(db);
   }
