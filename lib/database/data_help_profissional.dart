@@ -29,8 +29,6 @@ class AppDatabase {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     final dBPath = join(appDocumentDir.path, _dataBaseName);
     final database = await databaseFactoryIo.openDatabase(dBPath);
-    debugPrint('database aberto');
-    //print(dBPath);
     return database;
   }
 }
