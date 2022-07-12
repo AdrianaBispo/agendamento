@@ -29,17 +29,18 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _realAll().then((value) => _loading = false);
-  }
-
-  Future<void> _realAll() async {
-    await _clienteController.readAll();
-    await _profissionalController.readAll();
-    await _agendaController.readAll().then((value) {
-      _agendaController.agendaList.forEach((element) {if (element.data == formattedDate){
-        agendaHoje++;
-      }});
-    } );
+    _clienteController.readAll().then((value) => setState(() {
+          _loadingClientes = false;
+        }));
+    _profissionalController
+        .readAll()
+        .then((value) => _loadingProfissioanais = false);
+    _agendaController.readAll().then((value) {
+      _agendaController.agendaList.forEach((element) {
+        if(formattedDate == element.data) agendaHoje++;
+      });
+      _loadingAgenda = false;
+    });
   }
 
   @override
@@ -71,7 +72,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _columnQuadrado() {
-    if (_loading) return CenteredCircularProgress();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -79,21 +79,28 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             _quadrados(
+                loading: _loadingClientes,
                 quantidade: _clienteController.clienteList.length.toString(),
                 total: 'Total de Clientes'),
             _quadrados(
+                loading: _loadingProfissioanais,
                 quantidade:
                     _profissionalController.profissionalList.length.toString(),
                 total: 'Total de Profissionais'),
             _quadrados(
-                quantidade: agendaHoje.toString(), total: 'Agendamentos para Hoje'),
+                loading: _loadingAgenda,
+                quantidade: agendaHoje.toString(),
+                total: 'Agendamentos para Hoje'),
           ],
         ),
       ],
     );
   }
 
-  Widget _quadrados({required String quantidade, required String total}) {
+  Widget _quadrados(
+      {required bool loading,
+      required String quantidade,
+      required String total}) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -106,28 +113,30 @@ class _HomePageState extends State<HomePage> {
               Radius.circular(10),
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  quantidade,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+          child: loading
+              ? CenteredCircularProgress()
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        quantidade,
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      total,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                total,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
