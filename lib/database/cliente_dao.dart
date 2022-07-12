@@ -79,9 +79,4 @@ class ClienteDAO {
     await _clienteStore.delete(db, finder: find);
   }
 
-  Future closer() async{
-    var db = await _db as Database;
-    return db.close();
-  }
-
 }
