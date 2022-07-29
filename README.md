@@ -1,7 +1,26 @@
-# agenda
+# Agendamento
+/*Imagem*/
+Projeto com o intuito de ajudar as empresas a gerenciar a sua agenda. Com o intuito de organizar melhor o horario da empresa e evitar o agendamentos de mais de um cliente no mesmo horario.
 
-A new Flutter project.
+<!--ts-->
+   * [Sobre](#Sobre)
+   * [Tabela de Conteudo](#tabela-de-conteudo)
+   * [Instalação](#instalacao)
+   * [Como usar](#como-usar)
+      * [Pre Requisitos](#pre-requisitos)
+      * [Local files](#local-files)
+      * [Remote files](#remote-files)
+      * [Multiple files](#multiple-files)
+      * [Combo](#combo)
+   * [Tests](#testes)
+   * [Tecnologias](#tecnologias)
+<!--te-->
 
+
+### Features
+- [x] Cadastro de Profissionais
+- [x] Cadastro de cliente
+- [X] Agendamento de Serviços
 ## Getting Started
 
 This project is a starting point for a Flutter application.
