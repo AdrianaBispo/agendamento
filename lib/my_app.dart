@@ -1,6 +1,10 @@
+import 'components/colors.dart';
 import 'package:flutter/material.dart';
 //view
-import 'view/home_page.dart'; 
+import 'view/home_page.dart';
+import 'view/clientes_page.dart';
+import 'view/profissionais_page.dart';
+import 'view/agendamento_page.dart';
 //routes
 import 'utils/routes.dart';
 
@@ -12,11 +16,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: 'Montserrat',
+        primaryColor: AppColor.blue,//para os botoes
+        dividerColor: AppColor.natural_7,
+        scaffoldBackgroundColor: AppColor.stronk,
       ),
       routes: {
         AppRoutes.HOME: (context) => HomePage(),
+        AppRoutes.CLIENTES: (context) => ClientesPage(),
+        AppRoutes.PROFSSIONAIS: (context) => ProfissionaisPage(),
+        AppRoutes.AGENDA: (context) => AgendamentoPage(),
       },
     );
   }
