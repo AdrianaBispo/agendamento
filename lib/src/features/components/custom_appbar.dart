@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 //color
 import '../../shared/utils/app_color.dart';
 
-class CustoAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget {
   final String texto;
-  const CustoAppBar({Key? key, required this.texto}) : super(key: key);
+  const CustomAppBar({Key? key, required this.texto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
