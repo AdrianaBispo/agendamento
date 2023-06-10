@@ -2,7 +2,7 @@ import 'package:agenda/repository/validator.dart';
 import 'package:mobx/mobx.dart';
 part 'clientehome_store.g.dart';
 
-class Controller = _ClienteHomeStore with _$Controller;
+class ClienteHomeController = _ClienteHomeStore with _$Controller;
 
 abstract class _ClienteHomeStore with Store {
   final validator = Validator();
