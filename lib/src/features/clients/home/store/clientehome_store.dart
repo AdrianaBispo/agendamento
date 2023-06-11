@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../../shared/utils/validator.dart';
 import 'package:mobx/mobx.dart';
 part 'clientehome_store.g.dart';
@@ -44,6 +46,7 @@ abstract class _ClienteHomeStore with Store {
 
   @action
   void validateAll() {
+    log('');
     validateNome(nome);
     //validateLasteName(value);
     validateTelephone(telefone);
