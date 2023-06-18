@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 //controller
-import '../store/clientehome_store.dart';
+import '../../home/store/clientehome_store.dart';
 //component
 import 'inputname.dart';
 import 'inputtelefone.dart';
@@ -35,12 +35,12 @@ class _FormClientState extends State<FormClient> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2,
+      width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
       child: Form(
         key: _formKey,
         child: Column(
-          children: const <Widget>[
+          children: <Widget>[
             InputName(),
             InputTelefone(),
             ConfirmButton(),
