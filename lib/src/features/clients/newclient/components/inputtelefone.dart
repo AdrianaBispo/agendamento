@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import '../../home/store/clientehome_store.dart';
+import '../controller/newclient_controller.dart';
 
 class InputTelefone extends StatelessWidget {
   InputTelefone({Key? key}) : super(key: key);
 
   final _textController = TextEditingController();
-  late final ClienteHomeController controller;
+  late final NewClientController controller;
 
   @override
   Widget build(BuildContext context) {
-    controller = context.read<ClienteHomeController>();
+    controller = Modular.get<NewClientController>();
     return Observer(
       builder: (_) => Padding(
         padding: const EdgeInsets.only(
@@ -29,7 +29,7 @@ class InputTelefone extends StatelessWidget {
             FilteringTextInputFormatter.digitsOnly,
             TelefoneInputFormatter(),
           ],
-          onChanged: (value) => controller.telefone = value,
+          onChanged: (value) => controller.telephone = value,
           controller: _textController,
         ),
       ),
