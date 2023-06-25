@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../controller/newclient_controller.dart';
 
 class InputName extends StatefulWidget {
-  InputName({Key? key}) : super(key: key);
+  const InputName({Key? key}) : super(key: key);
 
   @override
   State<InputName> createState() => _InputNameState();
