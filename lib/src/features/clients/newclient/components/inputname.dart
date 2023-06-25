@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import '../../home/store/clientehome_store.dart';
+import '../controller/newclient_controller.dart';
 
 class InputName extends StatelessWidget {
   InputName({Key? key}) : super(key: key);
 
   final _textController = TextEditingController();
 
-  late final ClienteHomeController controller;
+  late final NewClientController controller;
 
   @override
   Widget build(BuildContext context) {
-    controller = context.read<ClienteHomeController>();
+    controller = Modular.get<NewClientController>();
+    
     return Observer(
       builder: (_) => Padding(
         padding: const EdgeInsets.only(
@@ -24,7 +25,7 @@ class InputName extends StatelessWidget {
             labelText: 'Nome',
             errorText: controller.error.name,
           ),
-          onChanged: (value) => controller.nome = value,
+          onChanged: (value) => controller.name = value,
           controller: _textController,
         ),
       ),
