@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'dart:developer';
 //controller
-import '../../home/store/clientehome_store.dart';
+import '../controller/newclient_controller.dart';
 //component
 import 'inputname.dart';
+import 'input_lastname.dart';
 import 'inputtelefone.dart';
 import 'confirmbutton.dart';
 
@@ -17,18 +18,19 @@ class FormClient extends StatefulWidget {
 
 class _FormClientState extends State<FormClient> {
   final _formKey = GlobalKey<FormState>();
-  late final ClienteHomeController controller;
+  late final NewClientController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = context.read<ClienteHomeController>();
+    controller = Modular.get<NewClientController>();
     controller.initialState();
   }
 
   @override
   void dispose() {
     controller.dispose();
+    log('dispose');
     super.dispose();
   }
 
@@ -42,9 +44,9 @@ class _FormClientState extends State<FormClient> {
         child: Column(
           children: <Widget>[
             InputName(),
+            InputLastName(),
             InputTelefone(),
             ConfirmButton(),
-            
           ],
         ),
       ),
