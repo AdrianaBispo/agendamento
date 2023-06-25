@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 //controller
 import '../controller/newclient_controller.dart';
 
@@ -13,7 +13,7 @@ class InputLastName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller = context.read<NewClientController>();
+    controller = Modular.get<NewClientController>();
     return Observer(
       builder: (_) => Padding(
         padding: const EdgeInsets.only(
