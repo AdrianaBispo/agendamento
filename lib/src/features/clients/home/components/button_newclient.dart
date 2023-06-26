@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//view
-import '../../newclient/view/newclient.dart';
 //utils
 import '../../../../../components/colors.dart';
 
@@ -34,13 +33,7 @@ class ButtonNewClient extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
             ),
           ),
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return NewClient();
-                },
-                fullscreenDialog: true),
-          ),
+          onPressed: () => Modular.to.navigate('/clients/newclient'),
         ),
       ),
     );
