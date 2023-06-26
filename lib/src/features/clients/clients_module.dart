@@ -9,13 +9,13 @@ import 'newclient/view/newclient.dart';
 class ClientsModule extends Module {
   @override
   List<Bind> get binds => [
-    Bind.singleton((i) => ClienteHomeController()),
-    Bind.singleton((i) => NewClientController())
-  ];
+        Bind.singleton((i) => ClienteHomeController()),
+        Bind.singleton((i) => NewClientController())
+      ];
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute('/', child: (context, args) => ClientesPage()),
-    ChildRoute('/newclient', child: (context, args) => NewClient()),
-  ];
+        ChildRoute('/', child: (context, args) => ClientesPage()),
+        ChildRoute('/newclient', child: (context, args) => NewClient()),
+      ];
 }
