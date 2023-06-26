@@ -10,7 +10,7 @@ class InputTelefone extends StatelessWidget {
   InputTelefone({Key? key}) : super(key: key);
 
   final _textController = TextEditingController();
-  late final NewClientController controller;
+  late NewClientController controller;
 
   @override
   Widget build(BuildContext context) {

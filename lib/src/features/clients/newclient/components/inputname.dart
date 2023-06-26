@@ -14,7 +14,7 @@ class InputName extends StatefulWidget {
 class _InputNameState extends State<InputName> {
   final _textController = TextEditingController();
 
-  late final NewClientController controller;
+  late NewClientController controller;
 
   @override
   void initState() {
