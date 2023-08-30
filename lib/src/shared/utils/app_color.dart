@@ -1,27 +1,31 @@
-import 'package:flutter/material.dart'
-;
-class AppColor{
+import 'package:flutter/material.dart';
+
+class AppColor {
   static AppColor? _instance;
   AppColor._();
 
   static AppColor get instance {
-    _instance ??=AppColor._();
+    _instance ??= AppColor._();
     return _instance!;
   }
 
-  Color get blue => const Color(0xff377DFF);
-  Color get blueSecondary => const Color(0xff56CCF2);
-  Color get blueTerciary => const Color(0xff9AE0F7);
-  Color get blueFourt => const Color(0xffD7F5E7);
-  Color get grenn => const Color(0xff38CB89);
-  Color get red => const Color(0xffFF5630);
-  Color get white => const Color(0xffFFFFFF);
-  Color get black => const Color(0xff1A1D1F);
-  Color get natural => const Color(0xff333333);
-  Color get natural_2 => const Color(0xff8F8F8F);
-  Color get natural_3 => const Color(0xffB2B2B2);
-  Color get natural_5 => const Color(0xffC4C4C4); //icones disable
-  Color get natural_7 => const Color(0xffEFEFEF);
-  Color get stronk => const Color(0xffF0F0F0);
+  Color get primary => const Color(0xff4058F3);
+  Color get secondary => const Color(0xff60695c);
+  Color get terciary => const Color(0xffef767a);
+  Color get alternative => const Color(0xff6daba2);
+  Color get primaryText => const Color(0xff101213);
+  Color get secondaryText => const Color(0xff9d9d9d);
+  Color get primaryBackground => const Color(0xffecf1ef);
+  Color get secondaryBackground => const Color(0xffFFFFFF);
 
+  Color get accent1 => const Color(0xffD0E0DE);
+  Color get accent2 => const Color(0xffE0E0E0);
+  Color get accent3 => const Color(0xffE0E0E0);
+  Color get accent4 => const Color(0xffEEEEEE);
+
+  Color get sucess => const Color(0xff04a24c);
+  Color get error => const Color(0xffe21c3d);
+
+  Color get warning => const Color(0xffFCDC0C);
+  Color get info => const Color(0xff1c4494);
 }
