@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 //components
 import '../components/form_client.dart';
 //utils
@@ -17,16 +18,17 @@ class _NewClientState extends State<NewClient> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Modular.to.navigate('./'),
           icon: Icon(
             Icons.close,
-            color: AppColor.instance.natural_2,
+            color: AppColor.instance.primary,
           ),
         ),
-        backgroundColor: AppColor.instance.stronk,
+        backgroundColor: AppColor.instance.primaryBackground,
         elevation: 0,
       ),
-      body: FormClient(),
+      body: const FormClient(),
+      
     );
   }
 }
