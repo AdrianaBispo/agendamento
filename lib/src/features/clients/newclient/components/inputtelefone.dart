@@ -1,28 +1,46 @@
+import 'package:agenda/src/features/components/input_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
+import '../../../../shared/utils/app_color.dart';
 import '../controller/newclient_controller.dart';
 
-class InputTelefone extends StatelessWidget {
-  InputTelefone({Key? key}) : super(key: key);
+class InputTelefone extends StatefulWidget {
+  const InputTelefone({Key? key}) : super(key: key);
 
+  @override
+  State<InputTelefone> createState() => _InputTelefoneState();
+}
+
+class _InputTelefoneState extends State<InputTelefone> {
   final _textController = TextEditingController();
+
   late NewClientController controller;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     controller = Modular.get<NewClientController>();
+    controller.initialState();
+  }
+
+  @override
+  void dispose() {
+    controller.error.dateBirth = null;
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => Padding(
-        padding: const EdgeInsets.only(
-          bottom: 20,
-        ),
+      builder: (_) => InputCustom(
+        title: 'Celular',
         child: TextFormField(
           decoration: InputDecoration(
-            labelText: 'Número de celular',
+            hintText: 'Número de Celular',
             errorText: controller.error.telephone,
           ),
           inputFormatters: [
