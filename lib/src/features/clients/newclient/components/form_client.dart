@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'dart:developer';
 //controller
 import '../controller/newclient_controller.dart';
 //component
@@ -8,6 +7,8 @@ import 'inputname.dart';
 import 'input_lastname.dart';
 import 'inputtelefone.dart';
 import 'confirmbutton.dart';
+import 'input_datanascimento.dart';
+import 'input_email.dart';
 
 class FormClient extends StatefulWidget {
   const FormClient({Key? key}) : super(key: key);
@@ -30,7 +31,6 @@ class _FormClientState extends State<FormClient> {
   @override
   void dispose() {
     controller.dispose();
-    log('dispose');
     super.dispose();
   }
 
@@ -43,10 +43,22 @@ class _FormClientState extends State<FormClient> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            InputName(),
-            InputLastName(),
-            InputTelefone(),
-            ConfirmButton(),
+            const InputName(),
+            const InputLastName(),
+            const InputEmail(),
+            Row(
+              children: const <Widget>[
+                Expanded(
+                  flex: 4,
+                  child: InputTelefone(),
+                ),
+                SizedBox(width: 20),
+                Expanded(
+                  child: InputDataNascimento(),
+                ),
+              ],
+            ),
+            const ConfirmButton(),
           ],
         ),
       ),
