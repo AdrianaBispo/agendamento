@@ -1,12 +1,12 @@
-import 'package:agenda/src/features/components/input_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import '../../../../shared/utils/app_color.dart';
 import '../controller/newclient_controller.dart';
+//component
+import '../../../components/input_custom.dart';
 
 class InputTelefone extends StatefulWidget {
   const InputTelefone({Key? key}) : super(key: key);
