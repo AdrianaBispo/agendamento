@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
 import '../controller/newclient_controller.dart';
+//component
+import '../../../components/input_custom.dart';
 
 class InputName extends StatefulWidget {
   const InputName({Key? key}) : super(key: key);
@@ -33,16 +35,12 @@ class _InputNameState extends State<InputName> {
 
   @override
   Widget build(BuildContext context) {
-    controller = Modular.get<NewClientController>();
-    
     return Observer(
-      builder: (_) => Padding(
-        padding: const EdgeInsets.only(
-          bottom: 20,
-        ),
+      builder: (_) => InputCustom(
+        title: 'Nome',
         child: TextFormField(
           decoration: InputDecoration(
-            labelText: 'Nome',
+            hintText: 'Nome',
             errorText: controller.error.name,
           ),
           onChanged: (value) => controller.name = value,
