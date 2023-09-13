@@ -5,6 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../controller/newclient_controller.dart';
 //component
 import '../../../components/input_custom.dart';
+//utils
+import '../../../../shared/utils/app_color.dart';
 
 class InputEmail extends StatefulWidget {
   const InputEmail({Key? key}) : super(key: key);
@@ -37,8 +39,9 @@ class _InputEmailState extends State<InputEmail> {
       builder: (_) => InputCustom(
         title: 'E-mail',
         child: TextFormField(
+          cursorColor: AppColor.instance.primary,
           decoration: InputDecoration(
-            labelText: 'E-mail',
+            hintText: 'E-mail',
             errorText: controller.error.email,
           ),
           onChanged: (value) => controller.email = value,
