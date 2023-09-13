@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-
+import 'package:flutter_modular/flutter_modular.dart';
+//controller
+import '../controller/newclient_controller.dart';
 //utils
 import '../../../../shared/utils/app_color.dart';
-import '../../home/store/clientehome_store.dart';
 
 
 class ConfirmButton extends StatelessWidget {
@@ -13,40 +12,39 @@ class ConfirmButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<ClienteHomeController>(context);
+    final controller = Modular.get<NewClientController>();
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
       child: TextButton.icon(
         icon: SvgPicture.asset(
           'asset/icones/Icon/add.svg',
-          color: AppColor.instance.white,
+          color: AppColor.instance.secondaryBackground,
           width: 20,
           height: 20,
         ),
         label: Text(
           'Salvar',
           style: TextStyle(
-            color: AppColor.instance.white,
+            color: AppColor.instance.secondaryBackground,
           ),
         ),
         style: TextButton.styleFrom(
-          padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
-          backgroundColor: AppColor.instance.grenn,
+          padding: const EdgeInsets.fromLTRB(70, 20, 70, 20),
+          minimumSize: const Size(350, 60),
+          backgroundColor: AppColor.instance.primary,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
         ),
         onPressed: () {
-          Dialog(){
-
-          }
-          /*controller.validateAll();
+          controller.validateAll();
           if (controller.error.hasErrors != false) {
-            Navigator.of(context).pop();
+            
+           Modular.to.navigate('./');
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Novo usuário salvo com sucesso ')),
             );
-          }*/
+          }
         }, //onPressed
       ),
     );
