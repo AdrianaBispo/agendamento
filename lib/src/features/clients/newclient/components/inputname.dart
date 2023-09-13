@@ -5,6 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../controller/newclient_controller.dart';
 //component
 import '../../../components/input_custom.dart';
+//utils
+import '../../../../shared/utils/app_color.dart';
 
 class InputName extends StatefulWidget {
   const InputName({Key? key}) : super(key: key);
@@ -39,6 +41,7 @@ class _InputNameState extends State<InputName> {
       builder: (_) => InputCustom(
         title: 'Nome',
         child: TextFormField(
+          cursorColor: AppColor.instance.primary,
           decoration: InputDecoration(
             hintText: 'Nome',
             errorText: controller.error.name,
