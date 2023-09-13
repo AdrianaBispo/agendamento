@@ -7,6 +7,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../controller/newclient_controller.dart';
 //component
 import '../../../components/input_custom.dart';
+//utils
+import '../../../../shared/utils/app_color.dart';
 
 class InputTelefone extends StatefulWidget {
   const InputTelefone({Key? key}) : super(key: key);
@@ -39,6 +41,7 @@ class _InputTelefoneState extends State<InputTelefone> {
       builder: (_) => InputCustom(
         title: 'Celular',
         child: TextFormField(
+          cursorColor: AppColor.instance.primary,
           decoration: InputDecoration(
             hintText: 'Número de Celular',
             errorText: controller.error.telephone,
