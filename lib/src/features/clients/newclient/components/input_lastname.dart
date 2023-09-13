@@ -5,7 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../controller/newclient_controller.dart';
 //component
 import '../../../components/input_custom.dart';
-
+//utils
+import '../../../../shared/utils/app_color.dart';
 class InputLastName extends StatefulWidget {
   const InputLastName({Key? key}) : super(key: key);
 
@@ -36,7 +37,8 @@ class _InputLastNameState extends State<InputLastName> {
     return Observer(
       builder: (_) => InputCustom(
         title: 'Sobrenome',
-        child: TextFormField(
+        child: TextFormField(         
+          cursorColor: AppColor.instance.primary,
           decoration: InputDecoration(
             hintText: 'Sobrenome',
             errorText: controller.error.lastname,
