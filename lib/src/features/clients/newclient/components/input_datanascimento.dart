@@ -1,4 +1,5 @@
 import 'package:agenda/src/features/components/input_custom.dart';
+import 'package:agenda/src/shared/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -38,8 +39,9 @@ class _InputDataNascimentoState extends State<InputDataNascimento> {
       builder: (_) => InputCustom(
         title: 'Data de Nascimento',
         child: TextFormField(
+          cursorColor: AppColor.instance.primary,
           decoration: InputDecoration(
-            labelText: 'Data de Nascimento',
+            hintText: 'Data',
             errorText: controller.error.dateBirth,
           ),
           inputFormatters: [
