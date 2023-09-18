@@ -4,8 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'src/appwidget.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-//initializeDateFormatting().then((_) =>
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   initializeDateFormatting().then(
     (_) => runApp(
       ModularApp(
