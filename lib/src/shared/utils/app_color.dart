@@ -9,7 +9,7 @@ class AppColor {
     return _instance!;
   }
 
-  Color get primary => const Color(0xff4058F3);
+  Color get primary => const Color(0xff1b998b);
   Color get secondary => const Color(0xff60695c);
   Color get terciary => const Color(0xffef767a);
   Color get alternative => const Color(0xff6daba2);
