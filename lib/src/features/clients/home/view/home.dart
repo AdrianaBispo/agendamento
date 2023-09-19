@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive/hive.dart';
-//componentes
-import '../../../components/custom_appbar.dart';
 import '../../cliente_hive/client_adapter.dart';
 import '../../cliente_hive/cliente_hive.dart';
-import '../components/button_newclient.dart';
-
+//componentes
+import '../../../components/button_new.dart';
+import '../../../components/custom_appbar.dart';
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
 
@@ -15,13 +13,11 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
-  List<Map<String, dynamic>> _items = [];
-
+ 
   //final _shopItem = Hive.openBox('cliente');
  //IClienteAdapter clienteadapter = Modular.get();
- /*ClienteHive clienteHive = Modular.get();*/
+ ClienteHive clienteHive = Modular.get();
    
- 
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +33,11 @@ class _ClientesPageState extends State<ClientesPage> {
                     children: <Widget>[
                       const CustomAppBar(texto: 'Clientes'),
 
-                      const ButtonNewClient(),
+                      const ButtonNew(path: '/clients/newclient', text: 'Novo Cliente',),
                       ListView.builder(
                         shrinkWrap: true,
                         itemCount: 1,
-                        itemBuilder: (context, index) => Text(/*clienteadapter.get(index).toString()*/ ''),
+                        itemBuilder: (context, index) => Text(Modular.get<IClienteAdapter>().toString()),
                       ),
                     ],
                   ),
