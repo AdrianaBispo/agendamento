@@ -16,9 +16,10 @@ class CustomAppBar extends StatelessWidget {
           texto,
           textAlign: TextAlign.left,
           style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: AppColor.instance.natural),
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: AppColor.instance.primary,
+          ),
         ),
       ),
     );
