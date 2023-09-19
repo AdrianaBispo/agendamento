@@ -1,45 +1,39 @@
 import 'package:flutter/material.dart';
-//color
-import 'colors.dart';
-//ui
-import '../components/drawer_list_tile.dart';
-//view
-import '../view/home_page.dart';
-import '../view/clientes_page.dart';
-import '../view/profissionais_page.dart';
-import '../view/agendamento_page.dart';
+//components
+import 'drawer_list_tile.dart';
+
 class SideMenu extends StatelessWidget {
   List<bool> selected;
-  SideMenu({required this.selected});
+  SideMenu({Key? key, required this.selected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        DrawerListTile(
+        /*DrawerListTile(
           pagina: HomePage(),
           texto: 'Home',
           icon: 'element',
           selected: selected[0],
         ),
         DrawerListTile(
-          pagina: AgendamentoPage(),
-          texto: 'Agenda',
+          pag: '',
+          text: 'Agenda',
           icon: 'calendar',
           selected: selected[1],
-        ),
+        ),*/
         DrawerListTile(
-          pagina: ClientesPage(),
-          texto: 'Clientes',
+          pag: '/clients/',
+          text: 'Clientes',
           icon: 'profile-2user',
           selected: selected[2],
         ),
-        DrawerListTile(
+        /*DrawerListTile(
           pagina: ProfissionaisPage(),
           texto: 'Profissionais',
           icon: 'job',
           selected: selected[3],
-        ),
+        ),*/
       ],
     );
   }
