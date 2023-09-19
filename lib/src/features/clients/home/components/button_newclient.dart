@@ -1,8 +1,7 @@
+import 'package:agenda/src/shared/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//utils
-import '../../../../../components/colors.dart';
 
 class ButtonNewClient extends StatelessWidget {
   const ButtonNewClient({Key? key}) : super(key: key);
@@ -16,19 +15,19 @@ class ButtonNewClient extends StatelessWidget {
         child: TextButton.icon(
           icon: SvgPicture.asset(
             'asset/icones/Icon/add.svg',
-            color: AppColor.white,
+            color: AppColor.instance.secondaryBackground,
             width: 20,
             height: 20,
           ),
-          label: const Text(
+          label: Text(
             'Novo Cliente',
             style: TextStyle(
-              color: AppColor.white,
+              color: AppColor.instance.secondaryBackground,
             ),
           ),
           style: TextButton.styleFrom(
             padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
-            backgroundColor: AppColor.blue,
+            backgroundColor: AppColor.instance.primary,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
             ),
