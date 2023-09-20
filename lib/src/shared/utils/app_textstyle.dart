@@ -11,10 +11,20 @@ class AppTextStyle {
     return _instance!;
   }
 
-  
-
   TextStyle hintText = TextStyle(
     color: AppColor.instance.secondaryText,
     fontSize: 13,
+  );
+
+  TextStyle dataColumn = TextStyle(
+    color: AppColor.instance.primaryText,
+    fontWeight: FontWeight.w600,
+    fontSize: 15,
+  );
+
+  TextStyle dataCell = TextStyle(
+    color: AppColor.instance.primaryText,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
   );
 }
