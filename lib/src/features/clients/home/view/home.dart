@@ -7,6 +7,8 @@ import '../../../components/button_new.dart';
 import '../../../components/custom_appbar.dart';
 import '../components/data_table_client.dart';
 import '../../../components/circular_progress_custom.dart';
+//utils
+import '../../../../shared/utils/app_textstyle.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
@@ -44,11 +46,13 @@ class _ClientesPageState extends State<ClientesPage> {
                               return const CenteredCircularProgress();
                             } else if (!snapshot.hasData &&
                                 snapshot.data == null) {
-                              return const Text(
+                              return Text(
                                 'Adcione os seus primeiros clientes',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w300),
-                              );
+                                style: AppTextStyle.instance.withoutData);
+                            } else if (snapshot.data!.isEmpty) {
+                              return Text(
+                                'Adcione os seus primeiros clientes',
+                                style: AppTextStyle.instance.withoutData);
                             } else {
                               return DataTableCliente(
                                   listClient: snapshot.data!);
