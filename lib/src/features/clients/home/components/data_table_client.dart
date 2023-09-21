@@ -15,14 +15,6 @@ class DataTableCliente extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* if (_loading) return CenteredCircularProgress();
-    if (_clienteController.clienteList.isEmpty) {
-      return const Text(
-        'Adcione os seus primeiros clientes',
-        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
-      );
-    }
-    return */
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
       padding: const EdgeInsets.all(20),
