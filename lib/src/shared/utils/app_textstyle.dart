@@ -11,6 +11,12 @@ class AppTextStyle {
     return _instance!;
   }
 
+  TextStyle withoutData = TextStyle(
+    color: AppColor.instance.primaryText,
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+  );
+
   TextStyle hintText = TextStyle(
     color: AppColor.instance.secondaryText,
     fontSize: 13,
