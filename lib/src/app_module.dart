@@ -13,7 +13,8 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.singleton((i) => StartController()),
-        Bind.factory<IClienteAdapter>((i) => ClienteHive()), 
+        Bind.singleton<IClienteAdapter>((i) => ClienteHive()), 
+  
       ];
 
   @override
