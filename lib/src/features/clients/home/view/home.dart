@@ -43,16 +43,25 @@ class _ClientesPageState extends State<ClientesPage> {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const CenteredCircularProgress();
+                              return SizedBox(
+                                width: 500.0,
+                                height: 300.0,
+                                child: Stack(
+                                  children: const <Widget>[
+                                    Positioned.fill(
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: CenteredCircularProgress(),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
                             } else if (!snapshot.hasData &&
                                 snapshot.data == null) {
-                              return Text(
-                                'Adcione os seus primeiros clientes',
-                                style: AppTextStyle.instance.withoutData);
+                              return textDataEmpity();
                             } else if (snapshot.data!.isEmpty) {
-                              return Text(
-                                'Adcione os seus primeiros clientes',
-                                style: AppTextStyle.instance.withoutData);
+                              return textDataEmpity();
                             } else {
                               return DataTableCliente(
                                   listClient: snapshot.data!);
@@ -65,6 +74,24 @@ class _ClientesPageState extends State<ClientesPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  SizedBox textDataEmpity() {
+    return SizedBox(
+      width: 500.0,
+      height: 300.0,
+      child: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('Adcione os seus primeiros clientes',
+                  style: AppTextStyle.instance.withoutData),
+            ),
+          )
+        ],
       ),
     );
   }
