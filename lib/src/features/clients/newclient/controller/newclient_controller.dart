@@ -1,10 +1,9 @@
 import 'dart:developer';
-import 'package:agenda/models/historico.dart';
-import 'package:all_validations_br/all_validations_br.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../shared/utils/validator.dart';
 import 'package:mobx/mobx.dart';
 //utils
+import '../../../../shared/utils/validator.dart';
+//models
 import '../../../../shared/models/cliente.dart';
 import '../../cliente_hive/client_adapter.dart';
 part 'newclient_controller.g.dart';
