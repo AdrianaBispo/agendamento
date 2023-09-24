@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+//controller
+import '../start/controller/start_controller.dart';
 //components
 import 'drawer_list_tile.dart';
 
+// ignore: must_be_immutable
 class SideMenu extends StatelessWidget {
-  List<bool> selected;
-  SideMenu({Key? key, required this.selected}) : super(key: key);
+
+  final controller = Modular.get<StartController>();
+
+  SideMenu({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        /*DrawerListTile(
+    return Observer(builder: (_) {
+      return Column(
+        children: <Widget>[
+          /*DrawerListTile(
           pagina: HomePage(),
           texto: 'Home',
           icon: 'element',
@@ -22,19 +32,24 @@ class SideMenu extends StatelessWidget {
           icon: 'calendar',
           selected: selected[1],
         ),*/
-        DrawerListTile(
-          pag: '/clients/',
-          text: 'Clientes',
-          icon: 'profile-2user',
-          selected: selected[2],
-        ),
-        /*DrawerListTile(
+          DrawerListTile(
+            text: 'Clientes',
+            icon: 'profile-2user',
+            selected: controller.selected[2],
+            onTap: () {
+              controller.onTap(2);
+
+              //lista[2]
+            },
+          ),
+          /*DrawerListTile(
           pagina: ProfissionaisPage(),
           texto: 'Profissionais',
           icon: 'job',
           selected: selected[3],
         ),*/
-      ],
-    );
+        ],
+      );
+    });
   }
 }
