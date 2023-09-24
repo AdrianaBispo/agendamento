@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //utils
 import '../../shared/utils/app_color.dart';
 
 class DrawerListTile extends StatelessWidget {
   final String text;
-  final String pag;
+  final VoidCallback onTap;
   final String icon;
   final bool selected;
 
@@ -14,7 +13,7 @@ class DrawerListTile extends StatelessWidget {
     required this.icon,
     required this.selected,
     required this.text,
-    required this.pag,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -37,9 +36,7 @@ class DrawerListTile extends StatelessWidget {
       ),
       child: ListTile(
         selected: selected,
-        onTap: () {
-          Modular.to.navigate(pag);
-        },
+        onTap: onTap,
         horizontalTitleGap: 0.0,
         leading: SvgPicture.asset(
           'asset/icones/Icon/$icon.svg',
@@ -50,7 +47,7 @@ class DrawerListTile extends StatelessWidget {
           height: 20,
         ),
         dense: true,
-        visualDensity: VisualDensity(vertical: -3),
+        visualDensity: const VisualDensity(vertical: -3),
         title: Text(
           text,
           style: TextStyle(
