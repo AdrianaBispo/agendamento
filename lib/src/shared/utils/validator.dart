@@ -35,7 +35,7 @@ class Validator {
   static isEmailValid(String? email) {
     if (email == null) {
       return 'Campo obrigatório';
-    } else if (AllValidations.isPhoneNumber(email) == false) {
+    } else if (AllValidations.isEmail(email) == false) {
       return 'E-mail inválido';
     }
     return null;
