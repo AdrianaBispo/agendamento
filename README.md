@@ -1,9 +1,9 @@
   <h1>Agendamento</h1>
 
-<img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge"/>
+<img src="http://img.shields.io/static/v1?label=STATUS&message=Refactoring&color=BLUE&style=for-the-badge"/>
 
 <h4 align="center"> 
-	🚧  App de Agendamento 🚀 Concluído  🚧
+	🚧  App de Agendamento 🚀 Refactoring  🚧
 </h4> <!-- Status -->
 
 <h2 id="sumario">Tabela de conteúdos</h2>
@@ -12,7 +12,6 @@
     <li><a href="#funcionalidade">Funcionalidades</a></li>
     <li><a href="#linguagem">Linguagens e Ferramentas</a></li>
     <li><a href="#started">Getting Started</a></li>
-    <li><a href="#screenshot">ScreenShots</a></li>
     <li><a href='#autor'>Autor</a></li>
     <!--<li><a href=#licenca>Licença</a></li>-->
 </ul>
@@ -54,33 +53,10 @@ As seguintes ferramentas foram usadas na construção do projeto:
 Para clonar e rodar essa aplicação, você precisa do [Git](https://git-scm.com) and [Flutter](https://docs.flutter.dev/get-started/install) instalados no seu computador. Digite os seguites comandos:
 
     - Baixe ou clone este repositório usando o link abaixo:
-    $ git clone https://github.com/AdrianaBispo/To-do-App.git
+    $ git clone https://github.com/AdrianaBispo/agendamento.git
     
     - Vá para a raiz do projeto e execute o seguinte comando no console para obter as dependências necessárias:
     $ flutter pub get
-    
-<h2 id="screenshot">ScreenShots</h2>
-
-<p align="center"> 
-  <img src="screenshot/todo_app_ (1).png" width="250px">
-  </p>
-
-    
-<p align="center"> 
-  <img src="screenshot/todo_app_ (2).png" width="250px"/>
-</p>
-
-<p align="center"> 
-  <img src="screenshot/todo_app_ (3).png" width="250px"/>
-</p>
-
-<p align="center"> 
-  <img src="screenshot/todo_app_ (4).png" width="250px"/>
-</p>
-
-<p align="center"> 
-  <img src="screenshot/todo_app_ (5).png" width="250px"/>
-</p>
 
 
 <h2 id="autor">Autor</h2>
