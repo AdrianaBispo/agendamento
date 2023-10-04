@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:all_validations_br/all_validations_br.dart';
 
 class Validator {
@@ -25,8 +27,8 @@ class Validator {
     DateTime dataHoje = DateTime.now().toLocal();
     if (data.toString().isEmpty) {
       return 'Campo obrigatório';
-    } else if (data.isBefore(dataHoje)) {
-      // data for é antes da data de hoje
+    } else if (data.isAfter(dataHoje)) {
+      // data for é depois da data de hoje
       return 'Data invalida';
     }
     return null;
