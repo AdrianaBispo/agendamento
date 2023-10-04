@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:intl/intl.dart';
 //utils
 import '../../../../shared/utils/validator.dart';
 //models
@@ -14,7 +15,7 @@ abstract class _NewClientStore with Store {
   final validator = Validator();
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
-  final IClienteAdapter clienteadapter = Modular.get();
+  final IClienteAdapter clienteadapter =  Modular.get<IClienteAdapter>();
 
   @observable
   String name = '';
@@ -39,6 +40,7 @@ abstract class _NewClientStore with Store {
       reaction((_) => dateBirth, validatedateBirth),
       reaction((_) => email, validateEmail),
     ];
+    error.telephone = null;
   }
 
   void dispose() {
@@ -64,7 +66,9 @@ abstract class _NewClientStore with Store {
 
   @action
   void validatedateBirth(String value) {
-    error.dateBirth = Validator.isDateValid(DateTime.parse(value));
+    value = value.replaceAll('/', '-');
+    final DateTime dateParse = DateFormat('dd-MM-yyyy').parse(value);
+    error.dateBirth = Validator.isDateValid(dateParse);
   }
 
   @action
