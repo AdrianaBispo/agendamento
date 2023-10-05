@@ -30,7 +30,7 @@ class ClienteHive implements IClienteAdapter {
   @override
   Future<void> create(Cliente data) async {
     final box = await completer.future;
-    box.put(data.id, data.toJson());
+    box.put(box.length, data.toJson());
   }
 
   @override

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive/hive.dart';
-//componentes
-import '../../../components/custom_appbar.dart';
 import '../../cliente_hive/client_adapter.dart';
-import '../../cliente_hive/cliente_hive.dart';
-import '../components/button_newclient.dart';
+import '../../../../shared/models/cliente.dart';
+//componentes
+import '../../../components/button_new.dart';
+import '../../../components/custom_appbar.dart';
+import '../components/data_table_client.dart';
+import '../../../components/circular_progress_custom.dart';
+//utils
+import '../../../../shared/utils/app_textstyle.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
@@ -15,13 +18,8 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
-  List<Map<String, dynamic>> _items = [];
-
-  //final _shopItem = Hive.openBox('cliente');
- //IClienteAdapter clienteadapter = Modular.get();
- /*ClienteHive clienteHive = Modular.get();*/
-   
- 
+  Future<List<Cliente>> clienteHive =
+      Modular.get<IClienteAdapter>().readAllRegisters();
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +30,43 @@ class _ClientesPageState extends State<ClientesPage> {
             Expanded(
               flex: 5,
               child: SizedBox(
-                child: SingleChildScrollView( 
+                child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
                       const CustomAppBar(texto: 'Clientes'),
-
-                      const ButtonNewClient(),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 1,
-                        itemBuilder: (context, index) => Text(/*clienteadapter.get(index).toString()*/ ''),
+                      const ButtonNew(
+                        path: '/clients/newclient',
+                        text: 'Novo Cliente',
                       ),
+                      FutureBuilder<List<Cliente>>(
+                          future: clienteHive,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return SizedBox(
+                                width: 500.0,
+                                height: 300.0,
+                                child: Stack(
+                                  children: const <Widget>[
+                                    Positioned.fill(
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: CenteredCircularProgress(),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            } else if (!snapshot.hasData &&
+                                snapshot.data == null) {
+                              return textDataEmpity();
+                            } else if (snapshot.data!.isEmpty) {
+                              return textDataEmpity();
+                            } else {
+                              return DataTableCliente(
+                                  listClient: snapshot.data!);
+                            }
+                          }),
                     ],
                   ),
                 ),
@@ -50,6 +74,24 @@ class _ClientesPageState extends State<ClientesPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  SizedBox textDataEmpity() {
+    return SizedBox(
+      width: 500.0,
+      height: 300.0,
+      child: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('Adcione os seus primeiros clientes',
+                  style: AppTextStyle.instance.withoutData),
+            ),
+          )
+        ],
       ),
     );
   }

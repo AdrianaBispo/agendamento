@@ -38,7 +38,7 @@ class ConfirmButton extends StatelessWidget {
         ),
         onPressed: () {
           controller.validateAll();
-          if (controller.error.hasErrors != false) {
+          if (controller.error.hasErrors == false) {
             
            Modular.to.navigate('./');
             ScaffoldMessenger.of(context).showSnackBar(
