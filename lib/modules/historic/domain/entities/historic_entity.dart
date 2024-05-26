@@ -1,8 +1,8 @@
 class HistoricEntity {
-  String profissionalNome;
-  String servico;
+  String nameProfessional;
+  String service;
   HistoricEntity({
-    required this.profissionalNome,
-    required this.servico,
+    required this.nameProfessional,
+    required this.service,
   });
 }
