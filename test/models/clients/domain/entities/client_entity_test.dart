@@ -5,7 +5,7 @@ main() {
   late ClientEntity clientEntity;
 
   setUp(() {
-    clientEntity = ClientEntity(
+    clientEntity = ClientEntity(1,
         name: 'name', telephone: '+55 78 99999-9999', historic: []);
   });
   group('', () {
@@ -13,6 +13,9 @@ main() {
       expect(clientEntity, isNotNull);
     });
 
+    test('Espero que o valor do id seja "1" ', () {
+      expect(clientEntity.id, 1);
+    });
     test('Espero que o valor de nome seja "nome" ', () {
       expect(clientEntity.name, 'nome');
     });
