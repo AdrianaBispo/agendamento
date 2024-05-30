@@ -5,7 +5,8 @@ class ClientEntity {
   String name;
   String telephone;
   List<HistoricEntity> historic;
-  ClientEntity({
+  ClientEntity(
+    this.id,{
     required this.name,
     required this.telephone,
     required this.historic,
