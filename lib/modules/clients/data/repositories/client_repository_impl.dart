@@ -29,7 +29,7 @@ class ClientRepositoryImpl implements ClientRepository {
     try {
       return Right(_clienteLocal);
     } catch (e) {
-      return Left(GetAllClientsException());
+      return Left(GetAllClientsException(message: e.toString()));
     }
   }
 
