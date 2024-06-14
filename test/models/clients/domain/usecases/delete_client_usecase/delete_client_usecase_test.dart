@@ -11,7 +11,6 @@ class ClientRepositoryMock extends Mock implements ClientRepository {}
 main() {
   late ClientRepositoryMock clientRepository;
   late DeleteClientUseCaseImpl usecase;
-  late ClientEntity expectedClient;
 
   setUp(() {
     clientRepository = ClientRepositoryMock();
@@ -23,10 +22,21 @@ main() {
 
   test('deve retornar um ClientEntity', () async {
     when(() => clientRepository.deleteClient(1))
-        .thenAnswer((_) async => Right(expectedClient));
+        .thenAnswer((_) async => Future.value());
 
     final result = await usecase.call(1);
 
-    expect(result, equals(Right(expectedClient)));
+    expect(result, equals(Right(null)));
+  });
+
+  test('deve retornar FailureDeleteClient ao falhar na exclusão', () async {
+    // Arrange
+    when(() => clientRepository.deleteClient(1)).thenThrow(Exception());
+
+    // Act
+    final result = await usecase.call(1);
+
+    // Assert
+    expect(result, isA<Left<FailureDeleteClient, void>>());
   });
 }
