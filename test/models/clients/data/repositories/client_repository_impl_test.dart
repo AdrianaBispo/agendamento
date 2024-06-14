@@ -18,7 +18,7 @@ void main() {
     clienteData = MockClientDataSource();
     clienteRepository = ClientRepositoryImpl(clienteData);
   });
-  group('client repository impl', () {
+  group('getAll', () {
     test('Deve retornar uma lista de ClientEntity ', () async {
       final List<ClientDto> expectedAnwer = [];
       when(() => clienteData.getAll()).thenAnswer(
