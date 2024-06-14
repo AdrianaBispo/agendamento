@@ -21,7 +21,7 @@ main() {
         name: 'name', telephone: '+55 78 99999-9999', historic: []);
   });
 
-  test('deve retornar uma lista de ClientEntity', () async {
+  test('deve retornar um ClientEntity', () async {
     when(() => clientRepository.createClient(expectedClient))
         .thenAnswer((_) async => Right(expectedClient));
 
