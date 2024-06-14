@@ -31,7 +31,7 @@ void main() {
       expect(result.getOrElse(() => []), isA<List<ClientEntity>>());
     });
 
-    test('', () async {
+    test('Deve retornar um tipo de FailureGetAllClients', () async {
       when(() => clienteRepository.getAllClient()).thenThrow(FailureGetAllClients);
 
       final result = await clienteRepository.getAllClient();
