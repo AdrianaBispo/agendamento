@@ -12,3 +12,8 @@ abstract class FailureCreateClient implements Exception {}
 abstract class FailureUpdateClient implements Exception {}
 
 abstract class FailureDeleteClient implements Exception {}
+
+class deleteClientsException implements FailureGetAllClients {
+  final String message;
+  deleteClientsException({required this.message});
+}
