@@ -20,7 +20,7 @@ main() {
         name: 'name', telephone: '+55 78 99999-9999', historic: []);
   });
 
-  test('deve retornar um ClientEntity', () async {
+  test('deve retornar void ao deletar o registro', () async {
     when(() => clientRepository.deleteClient(1))
         .thenAnswer((_) async => Future.value());
 
