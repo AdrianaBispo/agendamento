@@ -16,4 +16,11 @@ void main() {
       expect(result, isA<List<ClientDto>>());
     }, timeout: const Timeout(Duration(minutes: 1)));
   });
+
+  group('delete', () {
+    test('Deve retornar void quando deletar o registro') async{
+      final result = await dataSource.call(1);
+      expect(result, equals(Right(null)));
+    }
+  });
 }
