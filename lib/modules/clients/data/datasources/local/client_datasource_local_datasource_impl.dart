@@ -49,7 +49,7 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
   @override
   Future<void> deleteClient({required int id}) async {
     final find = Finder(filter: Filter.equals('id', id));
-    var dataBase = await _db as Database;
+    var dataBase =  await _initDb() as Database;
     await _clienteStore.delete(db, finder: find);
   }
 
