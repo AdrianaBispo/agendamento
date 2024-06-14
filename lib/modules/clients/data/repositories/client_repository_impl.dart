@@ -18,9 +18,12 @@ class ClientRepositoryImpl implements ClientRepository {
   }
 
   @override
-  Future<Either<FailureDeleteClient, ClientEntity>> deleteClient(int id) {
-    // TODO: implement deleteClient
-    throw UnimplementedError();
+  Future<Either<FailureDeleteClient, void>> deleteClient(int id) {
+    try {
+      await _clientLocalDataSource.deleteClient(id);
+    } catch (e) {
+      throw Left(deleteClientsException(message: e.toString()));
+    }
   }
 
   @override
@@ -33,7 +36,7 @@ class ClientRepositoryImpl implements ClientRepository {
       }
       return Right(result);
     } catch (e) {
-      return Left(GetAllClientsException(message: e.toString()));
+      throw Left(GetAllClientsException(message: e.toString()));
     }
   }
 
