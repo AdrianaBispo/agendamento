@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 import '../datasources/client_datasource.dart';
 
 class ClientRepositoryImpl implements ClientRepository {
-  ClientDataSource _clientLocalDataSource;
+  final ClientDataSource _clientLocalDataSource;
 
   ClientRepositoryImpl(this._clientLocalDataSource);
 
@@ -24,10 +24,14 @@ class ClientRepositoryImpl implements ClientRepository {
   }
 
   @override
-  Future<Either<FailureGetAllClients, List<ClientEntity>>> getAllClient() async {
-    final _clienteLocal = await _clientLocalDataSource.getAll();
+  Future<Either<FailureGetAllClients, List<ClientEntity>>>
+      getAllClient() async {
     try {
-      return Right(_clienteLocal);
+      final List<ClientEntity>? result = await _clientLocalDataSource.getAll();
+      if (result == null || result.isEmpty) {
+        return const Right(<ClientEntity>[]);
+      }
+      return Right(result);
     } catch (e) {
       return Left(GetAllClientsException(message: e.toString()));
     }
