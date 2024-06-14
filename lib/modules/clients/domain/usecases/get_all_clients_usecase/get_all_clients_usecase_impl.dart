@@ -7,10 +7,10 @@ import 'package:dartz/dartz.dart';
 
 import 'get_all_clients_usecase.dart';
 
-class GetallClientsUseCaseImp implements GetallClientsUseCase {
+class GetallClientsUseCaseImpl implements GetallClientsUseCase {
   final ClientRepository _clientRepository;
 
-  GetallClientsUseCaseImp(this._clientRepository);
+  GetallClientsUseCaseImpl(this._clientRepository);
 
   @override
   Future<Either<FailureGetAllClients, List<ClientEntity>>> call() async {
