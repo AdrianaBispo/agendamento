@@ -35,14 +35,15 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
       //ordem alfabetica
       SortOrder('name'),
     ]);
-
     final recordSnapshots = await _clienteStore.find(
       await _initDb() as Database,
       finder: finder,
     );
+
     // Making a List<ClientDto> out of List<RecordSnapshot>
-    return recordSnapshots.map((snapshot) {
+    final result =  recordSnapshots.map((snapshot) {
       return ClientDto.fromJson(snapshot.value);
     }).toList();
+    return result;
   }
 }
