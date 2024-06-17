@@ -15,7 +15,7 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
 
   ClientLocalDataSourceImpl();
 
-  Future _initDb() async {
+  Future _initDatabase() async {
     if (_dataBase != null) return _dataBase;
     if (Platform.isAndroid || Platform.isIOS) {
       _dir = await getApplicationDocumentsDirectory();
@@ -35,7 +35,7 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
       SortOrder('name'),
     ]);
     final recordSnapshots = await _clienteStore.find(
-      await _initDb() as Database,
+      await _initDatabase() as Database,
       finder: finder,
     );
 
@@ -49,7 +49,7 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
   @override
   Future<void> deleteClient({required int id}) async {
     final find = Finder(filter: Filter.equals('id', id));
-    var dataBase =  await _initDb() as Database;
+    var dataBase =  await _initDatabase() as Database;
     await _clienteStore.delete(db, finder: find);
   }
 
