@@ -13,9 +13,12 @@ class ClientRepositoryImpl implements ClientRepository {
   @override
   Future<Either<FailureCreateClient, ClientEntity>> createClient(
       ClientEntity clientEntity) {
-    // TODO: implement createClient
-    throw UnimplementedError();
-  }
+     try {
+      await _clientLocalDataSource.createClient(client: clientEntity);
+      return Right(client);
+    } catch (e) {
+      throw Left(CreateClientsException(message: e.toString()));
+    }
 
   @override
   Future<Either<FailureDeleteClient, void>> deleteClient(int id) async{
