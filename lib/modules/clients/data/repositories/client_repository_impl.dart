@@ -18,9 +18,10 @@ class ClientRepositoryImpl implements ClientRepository {
   }
 
   @override
-  Future<Either<FailureDeleteClient, void>> deleteClient(int id) {
+  Future<Either<FailureDeleteClient, void>> deleteClient(int id) async{
     try {
       await _clientLocalDataSource.deleteClient(id);
+      return Right(null);
     } catch (e) {
       throw Left(deleteClientsException(message: e.toString()));
     }
