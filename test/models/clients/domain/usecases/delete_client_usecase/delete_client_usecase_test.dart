@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:agenda/modules/clients/domain/usecases/delete_client_usecase/delete_client_usecase_impl.dart';
-import 'package:agenda/modules/clients/domain/entities/client_entity.dart';
 import 'package:agenda/modules/clients/domain/repositories/client_repository.dart';
 
 class ClientRepositoryMock extends Mock implements ClientRepository {}
