@@ -54,7 +54,11 @@ class ClientRepositoryImpl implements ClientRepository {
   @override
   Future<Either<FailureUpdateClient, ClientEntity>> updateClient(
       ClientEntity clientEntity) {
-    // TODO: implement updateClient
-    throw UnimplementedError();
+   try {
+      final ClientEntity client = await _clientLocalDataSource.updateClient(client: clientEntity) 
+      return Right(client);
+    } catch (e){
+      throw Left(UpdateClientException(message: e.toString()));
+    }
   }
 }
