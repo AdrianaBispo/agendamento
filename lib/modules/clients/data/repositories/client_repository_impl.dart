@@ -23,7 +23,7 @@ class ClientRepositoryImpl implements ClientRepository {
       await _clientLocalDataSource.deleteClient(id);
       return Right(null);
     } catch (e) {
-      throw Left(deleteClientsException(message: e.toString()));
+      throw Left(DeleteClientsException(message: e.toString()));
     }
   }
 
