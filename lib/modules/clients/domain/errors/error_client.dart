@@ -14,6 +14,12 @@ class GetClientException implement FailureGetClient{
 
 abstract class FailureCreateClient implements Exception {}
 
+class CreateClientException implement FailureCreateClient {
+  final String message;
+  CreateClientException({required this.message});
+}
+
+
 abstract class FailureUpdateClient implements Exception {}
 
 class UpdateClientException implements FailureUpdateClient {
