@@ -11,6 +11,6 @@ class DeleteClientUseCaseImpl implements DeleteClientUseCase {
 
   @override
   Future<Either<FailureDeleteClient,void>> call(int id) async{
-    await _clientRepository.deleteClient(id);
+    return await _clientRepository.deleteClient(id);
   }
 }
