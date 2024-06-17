@@ -72,4 +72,20 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
     return result;
   }
 
+  Future<ClientDto> createClient({required ClientDto client}) {
+    var dataBase =  await _initDatabase() as Database;
+    var find = Finder(
+      filter: Filter.equals("id", null),
+    );
+
+    await dataBase.transaction(
+      (txn) async {
+        // Add the object, get the auto incremented id
+        var key = await _clienteStore.add(txn, cliente.toJson());
+        // Set the Id in our object
+        await _clienteStore.update(txn, {'id': key}, finder: find);
+      },
+    );
+  }
+
 }
