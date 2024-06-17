@@ -47,7 +47,7 @@ class ClientRepositoryImpl implements ClientRepository {
       final ClientEntity client = await _clientLocalDataSource.getClient(id: id);
       return Right(client);
     } catch (e){
-      throw Left(UpdateClientException(message: e.toString()));
+      throw Left(GetClientException(message: e.toString()));
     }
   }
 
