@@ -47,6 +47,15 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
   }
 
   @override
+  Future<ClientEntity> getClient({required int id}) {
+    final filter = Finder(filter: Filter.equals('id', id));
+    var dataBase = await _initDatabase() as Database;
+    var snapshot = await _clienteStore.query(filter: find).findFirst(dataBase);
+    final ClientDto result = ClientDto.fromJson(snapshot.value);
+    return result;
+  }
+
+  @override
   Future<void> deleteClient({required int id}) async {
     final find = Finder(filter: Filter.equals('id', id));
     var dataBase =  await _initDatabase() as Database;
