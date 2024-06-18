@@ -7,14 +7,14 @@ class GetAllClientsException implements FailureGetAllClients {
 
 abstract class FailureGetClient implements Exception {}
 
-class GetClientException implement FailureGetClient{
+class GetClientException implements FailureGetClient{
   final String message;
   GetClientException({required this.message});
 }
 
 abstract class FailureCreateClient implements Exception {}
 
-class CreateClientException implement FailureCreateClient {
+class CreateClientException implements FailureCreateClient {
   final String message;
   CreateClientException({required this.message});
 }
