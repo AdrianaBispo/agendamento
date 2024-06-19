@@ -14,7 +14,7 @@ class ClientRepositoryImpl implements ClientRepository {
   Future<Either<FailureCreateClient, ClientEntity>> createClient(
       ClientEntity clientEntity) {
      try {
-      await _clientLocalDataSource.createClient(client: clientEntity);
+      final client = await _clientLocalDataSource.createClient(client: clientEntity);
       return Right(client);
     } catch (e) {
       throw Left(CreateClientsException(message: e.toString()));
