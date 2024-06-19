@@ -55,8 +55,32 @@ void main() {
     when(() => clientRepository.deleteClient(1)).thenThrow(Exception());
     final result = await usecase.call(1);
 
-    expect(result.fold((l) => l, (r) => null), isA<deleteClientsException>());
+    expect(result.fold((l) => l, (r) => null), isA<DeleteClientsException>());
   });
 
   });//deleteClient
+
+  group ('getClient', {
+    test('Deve retornar ClientEntity quando buscar um cliente com sucesso', async {
+      ClientEntity expectedAnwer = ClientEntity(
+        id: 1,
+        name: 'John Doe',
+        telephone: '+55 78 99999-9999',
+        historic: [],
+      );
+      when(() => clientRepository.getClient(id: 1))
+        .thenAnswer((_) async => expectedAnwer);
+
+       final result = await clienteRepository.getClient(id: 1));
+      expect(result, equals(Right(expectedAnwer)));
+    });
+
+    test('deve retornar um tipo de FailureGetClient ao falhar em obter um cliente', () async {
+      when(() => clientRepository.getClient(id: 1)).thenThrow(FailureGetClient);
+      final result = await clientRepository.getClient(id: 1);
+
+      expect(result.fold((l) => l, (r) => null), isA<GetClientException>());
+    });
+
+  });//getClient
 }
