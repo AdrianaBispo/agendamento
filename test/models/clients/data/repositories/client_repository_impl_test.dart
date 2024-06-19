@@ -18,23 +18,23 @@ void main() {
     clienteData = MockClientDataSource();
     clienteRepository = ClientRepositoryImpl(clienteData);
   });
-    group('getAll', () {
+  group('getAll', () {
     test('Deve retornar uma lista de ClientEntity ', () async {
       final List<ClientDto> expectedAnwer = [];
-      when(() => clienteData.getAll()).thenAnswer(
+      when(() => clientData.getAll()).thenAnswer(
         (_) async => expectedAnwer,
       );
 
-      final result = await clienteRepository.getAllClient();
+      final result = await clientRepository.getAllClient();
  
       expect(result, isA<Right>());
       expect(result.getOrElse(() => []), isA<List<ClientEntity>>());
     });
 
     test('Deve retornar um tipo de FailureGetAllClients', () async {
-      when(() => clienteRepository.getAllClient()).thenThrow(FailureGetAllClients);
+      when(() => clientRepository.getAllClient()).thenThrow(FailureGetAllClients);
 
-      final result = await clienteRepository.getAllClient();
+      final result = await clientRepository.getAllClient();
 
       expect(result.fold((l) => l, (r) => null), isA<GetAllClientsException>());
     });
@@ -61,25 +61,62 @@ void main() {
 
   group('getClient', () {
     test('Deve retornar ClientEntity quando buscar um cliente com sucesso', () async {
-      final ClientEntity expectedAnwer = ClientEntity(
-        id: 1,
-        name: 'John Doe',
-        telephone: '+55 78 99999-9999',
-        historic: [],
-      );
+      final ClientEntity expectedAnwer = client; 
+
       when(() => clientRepository.getClient(id: 1))
         .thenAnswer((_) async => expectedAnwer);
 
-      final result = await clienteRepository.getClient(id: 1);
+      final result = await clientRepository.getClient(id: 1);
       expect(result, equals(Right(expectedAnwer)));
     });
 
-    test('deve retornar um tipo de FailureGetClient ao falhar em obter um cliente', () async {
+    test('Deve retornar um tipo de FailureGetClient ao falhar em obter um cliente', () async {
       when(() => clientRepository.getClient(id: 1)).thenThrow(FailureGetClient);
       final result = await clientRepository.getClient(id: 1);
       expect(result.fold((l) => l, (r) => null), isA<GetClientException>());
     });
 
   });//getClient
+
+  
+  group('updateClient', () {
+    test('Deve retornar ClientEntity quando atualizar um cliente com sucesso', () async {
+      final ClientEntity expectedAnwer = client;
+
+      when(() => clientRepository.updateClient(client: client))
+        .thenAnswer((_) async => expectedAnwer);
+
+      final result = await clientRepository.updateClient(client: expectedAnwer);
+      expect(result, equals(Right(expectedAnwer)));
+    });
+
+    test('Deve retornar um tipo de FailureGetClient ao falhar em obter um cliente', () async {
+      when(() => clientRepository.updateClient(client: client)).thenThrow(FailureUpdateClient);
+      final result = await clientRepository.updateClient(client: expectedAnwer);
+      expect(result.fold((l) => l, (r) => null), isA<UpdateClientException>());
+    });
+
+  });//updateClient
+
+
+  group('createClient', () {
+    test('Deve retornar ClientEntity ao criar um cliente com sucesso', () async {
+      final ClientEntity expectedAnwer = client;
+
+      when(() => clientRepository.createClient(client: cliente))
+        .thenAnswer((_) async => expectedAnwer);
+
+      final result = await clientRepository.createClient(client: expectedAnwer);
+      expect(result, equals(Right(expectedAnwer)));
+    });
+
+    test('Deve retornar um tipo de FailureUpdateClient ao falhar em obter um cliente', () async {
+      when(() => clientRepository.createClient(client: client)).thenThrow(FailureUpdateClient);
+      final result = await clientRepository.createClient(client: expectedAnwer);
+      expect(result.fold((l) => l, (r) => null), isA<UpdateClientException>());
+    });
+
+  });//createClient
+
 
 }
