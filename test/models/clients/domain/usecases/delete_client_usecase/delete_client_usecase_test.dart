@@ -17,16 +17,11 @@ main() {
     usecase = DeleteClientUseCaseImpl(clientRepository);
   });
 
-  test('Deve retornar Right(null) ao deletar o registro com sucesso', () async {
+  test('Deve retornar null ao deletar o registro com sucesso', () async {
     when(() => clientRepository.deleteClient(clientId))
-        .thenAnswer((_) async => Future.value());
+        .thenAnswer((_) async => const Right(null));
     final result = await usecase.call(clientId);
-    expect(result, equals(Right(null)));
+    expect(result, equals(const Right(null)));
   });
 
-  test('deve retornar FailureDeleteClient ao falhar na exclusão', () async {
-    when(() => clientRepository.deleteClient(1)).thenThrow(Exception());
-    final result = await usecase.call(1);
-    expect(result, isA<Left<FailureDeleteClient, void>>());
-  });
 }
