@@ -11,7 +11,7 @@ class GetClientUseCaseImpl implements GetClientUseCase{
 
   @override
   Future<Either<FailureGetClient, ClientEntity>> call(int id) async{
-    return await _clientRepository.getClient(id);
+    return await _clientRepository.getClient(id: id);
   }
 
 }
