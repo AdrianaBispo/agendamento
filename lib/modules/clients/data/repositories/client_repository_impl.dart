@@ -4,6 +4,7 @@ import 'package:agenda/modules/clients/domain/repositories/client_repository.dar
 import 'package:dartz/dartz.dart';
 
 import '../datasources/client_datasource.dart';
+import '../dtos/client_dto.dart';
 
 class ClientRepositoryImpl implements ClientRepository {
   final ClientDataSource _clientLocalDataSource;
@@ -12,19 +13,20 @@ class ClientRepositoryImpl implements ClientRepository {
 
   @override
   Future<Either<FailureCreateClient, ClientEntity>> createClient(
-      ClientEntity clientEntity) {
+      ClientEntity clientEntity) async{
      try {
-      final client = await _clientLocalDataSource.createClient(client: clientEntity);
+      final client = await _clientLocalDataSource.createClient(client: clientEntity as ClientDto);
       return Right(client);
     } catch (e) {
-      throw Left(CreateClientsException(message: e.toString()));
+      throw Left(CreateClientException(message: e.toString()));
     }
+      }
 
   @override
   Future<Either<FailureDeleteClient, void>> deleteClient(int id) async{
     try {
-      await _clientLocalDataSource.deleteClient(id);
-      return Right(null);
+      await _clientLocalDataSource.deleteClient(id: id);
+      return const Right(null);
     } catch (e) {
       throw Left(DeleteClientsException(message: e.toString()));
     }
@@ -56,9 +58,9 @@ class ClientRepositoryImpl implements ClientRepository {
 
   @override
   Future<Either<FailureUpdateClient, ClientEntity>> updateClient(
-      ClientEntity clientEntity) {
+      ClientEntity clientEntity) async{
    try {
-      final ClientEntity client = await _clientLocalDataSource.updateClient(client: clientEntity) 
+      final ClientEntity client = await _clientLocalDataSource.updateClient(client: clientEntity as ClientDto);
       return Right(client);
     } catch (e){
       throw Left(UpdateClientException(message: e.toString()));
