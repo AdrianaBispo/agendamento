@@ -1,13 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:agenda/modules/historic/dtos/historic_dto.dart';
 import 'package:agenda/modules/clients/data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
 
 void main() {
   late ClientLocalDataSourceImpl dataSource;
+  late ClientDto client;
 
   setUp(() async {
-    TestWidgetsFlutterBinding.ensureInitialized();
     dataSource = ClientLocalDataSourceImpl();
+    client = ClientDto(1,
+        nameClient: 'Daiane Elisa Gabriela Rodrigues',
+        telephoneClient: '71 98465-4754',
+        historicClient: <HistoricDto>[]);
   });
 
   group('getAll', () {
@@ -19,8 +24,7 @@ void main() {
 
   group('delete', () {
     test('Deve retornar void quando deletar o registro', () async{
-      final result = await dataSource.call(1);
-      expect(result, equals(Right(null)));
+      expect( () async => await dataSource.deleteClient(id: 1), isA<void>(),);
     });
   });
 
