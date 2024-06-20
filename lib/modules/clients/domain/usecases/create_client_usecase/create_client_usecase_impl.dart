@@ -12,6 +12,6 @@ class CreateClientUseCaseImpl implements CreateClientUseCase {
 
   @override
   Future<Either<FailureCreateClient, void>> call(ClientEntity clientEntity) async{
-    return await _clientRepository.createClient(clientEntity);
+    return await _clientRepository.createClient(clientEntity: clientEntity);
   }
 }
