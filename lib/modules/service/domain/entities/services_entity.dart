@@ -1,6 +1,6 @@
 class ServiceEntity {
-    String description;
-    ServiceEntity({
-        required this.nome,
+  String description;
+  ServiceEntity({
+    required this.description,
   });
 }
