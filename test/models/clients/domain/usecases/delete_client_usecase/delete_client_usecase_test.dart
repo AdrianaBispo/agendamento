@@ -18,7 +18,7 @@ main() {
   });
 
   test('Deve retornar null ao deletar o registro com sucesso', () async {
-    when(() => clientRepository.deleteClient(clientId))
+    when(() => clientRepository.deleteClient(id: clientId))
         .thenAnswer((_) async => const Right(null));
     final result = await usecase.call(clientId);
     expect(result, equals(const Right(null)));
