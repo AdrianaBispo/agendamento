@@ -11,11 +11,12 @@ import '../client_datasource.dart';
 class ClientLocalDataSourceImpl implements ClientDataSource {
   Database? _dataBase;
   final _clienteStore = intMapStoreFactory.store('clientes');
-  late Directory _dir;
+  
 
   ClientLocalDataSourceImpl();
 
   Future _initDatabase() async {
+    Directory _dir;
     if (_dataBase != null) return _dataBase;
     if (Platform.isAndroid || Platform.isIOS) {
       _dir = await getApplicationDocumentsDirectory();
@@ -29,7 +30,6 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
 
   @override
   Future<List<ClientDto>> getAll() async {
-    // Finder object can also sort data.
     final finder = Finder(sortOrders: [
       //ordem alfabetica
       SortOrder('name'),
@@ -38,8 +38,6 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
       await _initDatabase() as Database,
       finder: finder,
     );
-
-    // Making a List<ClientDto> out of List<RecordSnapshot>
     final result =  recordSnapshots.map((snapshot) {
       return ClientDto.fromJson(snapshot.value);
     }).toList();
@@ -47,11 +45,11 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
   }
 
   @override
-  Future<ClientEntity> getClient({required int id}) {
+  Future<ClientDto> getClient({required int id}) async{
     final filter = Finder(filter: Filter.equals('id', id));
     var dataBase = await _initDatabase() as Database;
-    var snapshot = await _clienteStore.query(filter: find).findFirst(dataBase);
-    final ClientDto result = ClientDto.fromJson(snapshot.value);
+    var snapshot = await _clienteStore.query(finder: filter).getSnapshot(dataBase);
+    final result = ClientDto.fromJson(snapshot!.value);
     return result;
   }
 
@@ -59,33 +57,35 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
   Future<void> deleteClient({required int id}) async {
     final find = Finder(filter: Filter.equals('id', id));
     var dataBase =  await _initDatabase() as Database;
-    await _clienteStore.delete(db, finder: find);
+    await _clienteStore.delete(dataBase, finder: find);
   }
 
   @override
-  Future<ClientDto> updateClient({required ClientDto client}) {
+  Future<ClientDto> updateClient({required ClientDto client}) async{
     final find = Finder(filter: Filter.equals('id', client.id));
     var dataBase =  await _initDatabase() as Database;
     await _clienteStore.update(dataBase, client.toJson(), finder: find);
     var snapshot = await _clienteStore.query(finder: find).getSnapshot(dataBase);
-    final ClientDto result = ClientDto.fromJson(snapshot.value);
+    final ClientDto result = ClientDto.fromJson(snapshot!.value);
     return result;
   }
 
-  Future<ClientDto> createClient({required ClientDto client}) {
+  @override
+  Future<ClientDto> createClient({required ClientDto client}) async{
     var dataBase =  await _initDatabase() as Database;
     var find = Finder(
       filter: Filter.equals("id", null),
     );
 
-    await dataBase.transaction(
+    final result = await dataBase.transaction(
       (txn) async {
         // Add the object, get the auto incremented id
-        var key = await _clienteStore.add(txn, cliente.toJson());
+        var key = await _clienteStore.add(txn, client.toJson());
         // Set the Id in our object
         await _clienteStore.update(txn, {'id': key}, finder: find);
       },
     );
+    return result;
   }
 
 }
