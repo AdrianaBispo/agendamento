@@ -11,7 +11,7 @@ class UpdateClientUseCaseImpl implements UpdateClientUseCase {
 
   @override
   Future<Either<FailureUpdateClient, ClientEntity>> call(ClientEntity clientEntity) async{
-    return await _clientRepository.updateClient(clientEntity);
+    return await _clientRepository.updateClient(clientEntity: clientEntity);
   }
 
   
