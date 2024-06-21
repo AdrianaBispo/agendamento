@@ -44,17 +44,21 @@ void main() {
 
       final result = await clientRepository.getAllClient();
 
-      expect(Left(result), isA<GetAllClientsException>());
+      expect(result.isLeft(), true);
+      expect(result.fold((l) => l, (r) => id), isA<GetAllClientsException>());
+      expect(result, completes);
+
     });
   }); //getAll
 
   group('deleteClient', () {
     test('Deve retornar void quando deletar o registro', () async {
       when(() => clientRepository.deleteClient(id: 1))
-          .thenAnswer((_) async => Future.value());
+          .thenAnswer((_) async => const Right(null));
 
       final result = await clientRepository.deleteClient(id: 1);
       expect(result, equals(const Right(null)));
+      expect(result, completes);
     });
 
     test('deve retornar FailureDeleteClient ao falhar na exclusão', () async {
