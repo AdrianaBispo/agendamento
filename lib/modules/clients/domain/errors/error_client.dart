@@ -29,7 +29,7 @@ class UpdateClientException implements FailureUpdateClient {
 
 abstract class FailureDeleteClient implements Exception {}
 
-class DeleteClientsException implements FailureGetAllClients {
+class DeleteClientsException implements FailureDeleteClient {
   final String message;
   DeleteClientsException({required this.message});
 }
