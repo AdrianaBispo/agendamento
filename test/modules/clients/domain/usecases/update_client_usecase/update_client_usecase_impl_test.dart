@@ -22,7 +22,7 @@ main() {
   });
 
   test('deve retornar uma lista de ClientEntity', () async {
-    when(() => clientRepository.updateClient(expectedClient))
+    when(() => clientRepository.updateClient(clientEntity: expectedClient))
         .thenAnswer((_) async => Right(expectedClient));
 
     final result = await usecase.call(expectedClient);
