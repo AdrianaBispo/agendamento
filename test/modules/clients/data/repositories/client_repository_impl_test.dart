@@ -36,6 +36,7 @@ void main() {
 
       expect(result, isA<Right>());
       expect(result.getOrElse(() => []), isA<List<ClientEntity>>());
+      expect(clientRepository.getAllClient(), completes);
     });
 
     test('Deve retornar um tipo de FailureGetAllClients', () async {
@@ -46,8 +47,6 @@ void main() {
 
       expect(result.isLeft(), true);
       expect(result.fold((l) => l, (r) => id), isA<GetAllClientsException>());
-      expect(result, completes);
-
     });
   }); //getAll
 
@@ -58,14 +57,15 @@ void main() {
 
       final result = await clientRepository.deleteClient(id: 1);
       expect(result, equals(const Right(null)));
-      expect(result, completes);
+      expect(clientRepository.deleteClient(id: 1), completes);
     });
 
     test('deve retornar FailureDeleteClient ao falhar na exclusão', () async {
       when(() => clientRepository.deleteClient(id: 1))
           .thenThrow(FailureDeleteClient);
       final result = await clientRepository.deleteClient(id: 1);
-      expect(result.fold((l) => l, (r) => null), isA<DeleteClientsException>());
+      expect(result.fold((l) => l, (r) => id), isA<DeleteClientsException>());
+       expect(result.isLeft(), true);
     });
   }); //deleteClient
 
