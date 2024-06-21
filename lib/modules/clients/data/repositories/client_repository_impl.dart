@@ -28,7 +28,7 @@ class ClientRepositoryImpl implements ClientRepository {
       await _clientLocalDataSource.deleteClient(id: id);
       return const Right(null);
     } catch (e) {
-      throw Left(DeleteClientsException(message: e.toString()));
+      return Left(DeleteClientsException(message: e.toString()));
     }
   }
 
@@ -42,7 +42,7 @@ class ClientRepositoryImpl implements ClientRepository {
       }
       return Right(result);
     } catch (e) {
-      throw Left(GetAllClientsException(message: e.toString()));
+      return Left(GetAllClientsException(message: e.toString()));
     }
   }
 
