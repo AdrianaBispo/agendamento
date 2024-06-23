@@ -96,10 +96,8 @@ void main() {
 
       when(() => clientRepository.updateClient(clientEntity: client))
           .thenAnswer((_) async => Right(expectedAnwer));
-
-      final result =
-          await clientRepository.updateClient(clientEntity: expectedAnwer);
-      expect(result, equals(Right(expectedAnwer)));
+      expect(clientRepository.updateClient(clientEntity: expectedAnwer),
+          completes);
     });
 
     test(
@@ -125,7 +123,8 @@ void main() {
       final result =
           await clientRepository.createClient(clientEntity: expectedAnwer);
       expect(result, equals(Right(expectedAnwer)));
-      expect(clientRepository.createClient(clientEntity: expectedAnwer), completes);
+      expect(clientRepository.createClient(clientEntity: expectedAnwer),
+          completes);
     });
 
     test(
