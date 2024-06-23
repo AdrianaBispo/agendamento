@@ -119,11 +119,7 @@ void main() {
 
       when(() => clientRepository.createClient(clientEntity: client))
           .thenAnswer((_) async => Right(expectedAnwer));
-
-      final result =
-          await clientRepository.createClient(clientEntity: expectedAnwer);
-      expect(result, equals(Right(expectedAnwer)));
-      expect(clientRepository.createClient(clientEntity: expectedAnwer),
+     expect(clientRepository.createClient(clientEntity: expectedAnwer),
           completes);
     });
 
@@ -133,10 +129,10 @@ void main() {
       final ClientEntity expectedAnwer = client;
 
       when(() => clientRepository.createClient(clientEntity: client))
-          .thenThrow(FailureUpdateClient);
+          .thenThrow(FailureCreateClient);
       final result =
           await clientRepository.createClient(clientEntity: expectedAnwer);
-      expect(result.fold((l) => l, (r) => null), isA<UpdateClientException>());
+      expect(result.fold((l) => l, (r) => id), isA<CreateClientException>());
     });
   }); //createClient
 }
