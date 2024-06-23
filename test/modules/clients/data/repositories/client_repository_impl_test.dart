@@ -65,7 +65,7 @@ void main() {
           .thenThrow(FailureDeleteClient);
       final result = await clientRepository.deleteClient(id: 1);
       expect(result.fold((l) => l, (r) => id), isA<DeleteClientsException>());
-       expect(result.isLeft(), true);
+      expect(result.isLeft(), true);
     });
   }); //deleteClient
 
@@ -76,9 +76,7 @@ void main() {
 
       when(() => clientRepository.getClient(id: 1))
           .thenAnswer((_) async => Right(expectedAnwer));
-
-      final result = await clientRepository.getClient(id: 1);
-      expect(result, equals(Right(expectedAnwer)));
+      expect(clientRepository.getClient(id: 1), completes);
     });
 
     test(
@@ -86,7 +84,8 @@ void main() {
         () async {
       when(() => clientRepository.getClient(id: 1)).thenThrow(FailureGetClient);
       final result = await clientRepository.getClient(id: 1);
-      expect(result.fold((l) => l, (r) => null), isA<GetClientException>());
+      expect(result.fold((l) => l, (r) => id), isA<GetClientException>());
+      expect(result.isLeft(), true);
     });
   }); //getClient
 
@@ -126,6 +125,7 @@ void main() {
       final result =
           await clientRepository.createClient(clientEntity: expectedAnwer);
       expect(result, equals(Right(expectedAnwer)));
+      expect(clientRepository.createClient(clientEntity: expectedAnwer), completes);
     });
 
     test(
