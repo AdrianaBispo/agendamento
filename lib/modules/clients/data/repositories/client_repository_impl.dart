@@ -13,17 +13,19 @@ class ClientRepositoryImpl implements ClientRepository {
 
   @override
   Future<Either<FailureCreateClient, ClientEntity>> createClient(
-      {required ClientEntity clientEntity}) async{
-     try {
-      final client = await _clientLocalDataSource.createClient(client: clientEntity as ClientDto);
+      {required ClientEntity clientEntity}) async {
+    try {
+      final client = await _clientLocalDataSource.createClient(
+          client: clientEntity as ClientDto);
       return Right(client);
     } catch (e) {
-      throw Left(CreateClientException(message: e.toString()));
+      return Left(CreateClientException(message: e.toString()));
     }
-      }
+  }
 
   @override
-  Future<Either<FailureDeleteClient, void>> deleteClient({required int id}) async{
+  Future<Either<FailureDeleteClient, void>> deleteClient(
+      {required int id}) async {
     try {
       await _clientLocalDataSource.deleteClient(id: id);
       return const Right(null);
@@ -47,23 +49,30 @@ class ClientRepositoryImpl implements ClientRepository {
   }
 
   @override
-  Future<Either<FailureGetClient, ClientEntity>> getClient({required int id}) async{
+  Future<Either<FailureGetClient, ClientEntity>> getClient(
+      {required int id}) async {
     try {
-      final ClientEntity client = await _clientLocalDataSource.getClient(id: id);
-      return Right(client);
-    } catch (e){
-      throw Left(GetClientException(message: e.toString()));
+      final ClientEntity? result =
+          await _clientLocalDataSource.getClient(id: id);
+      if (result == null) {
+        return Left(
+            GetClientException(message: 'Não foi encontrado o cliente'));
+      }
+      return Right(result);
+    } catch (e) {
+      return Left(GetClientException(message: e.toString()));
     }
   }
 
   @override
   Future<Either<FailureUpdateClient, ClientEntity>> updateClient(
-      {required ClientEntity clientEntity}) async{
-   try {
-      final ClientEntity client = await _clientLocalDataSource.updateClient(client: clientEntity as ClientDto);
+      {required ClientEntity clientEntity}) async {
+    try {
+      final ClientEntity client = await _clientLocalDataSource.updateClient(
+          client: clientEntity as ClientDto);
       return Right(client);
-    } catch (e){
-      throw Left(UpdateClientException(message: e.toString()));
+    } catch (e) {
+      return Left(UpdateClientException(message: e.toString()));
     }
   }
 }
