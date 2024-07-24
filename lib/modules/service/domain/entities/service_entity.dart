@@ -1,5 +1,5 @@
 class ServiceEntity {
-  String description;
+  final String description;
   ServiceEntity({
     required this.description,
   });
