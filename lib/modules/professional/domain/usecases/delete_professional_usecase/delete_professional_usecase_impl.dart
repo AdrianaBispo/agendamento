@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../entities/professional_entity.dart';
 import '../../errors/error_professional.dart';
 import '../../repositories/professional_repository.dart';
-import 'delete_client_usecase.dart';
+import 'delete_professional_usecase.dart';
 
 class DeleteProfessionalUseCaseImpl implements DeleteProfessionalUseCase {
   final ProfessionalRepository _professionalRepository;
@@ -11,7 +10,7 @@ class DeleteProfessionalUseCaseImpl implements DeleteProfessionalUseCase {
   DeleteProfessionalUseCaseImpl(this._professionalRepository);
 
   @override
-  Future<Either<FailureDeleteClient,void>> call(int id) async{
+  Future<Either<FailureDeleteProfessional,void>> call(int id) async{
     return await _professionalRepository.deleteProfessional(id: id);
   }
 }
