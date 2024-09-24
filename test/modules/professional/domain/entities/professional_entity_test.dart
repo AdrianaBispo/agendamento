@@ -1,4 +1,4 @@
-import 'package:agenda/modules/clients/domain/entities/client_entity.dart';
+import 'package:agenda/modules/professional/domain/entities/professional_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
