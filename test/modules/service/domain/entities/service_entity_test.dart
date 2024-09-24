@@ -1,5 +1,5 @@
+import 'package:agenda/modules/service/domain/entities/service_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:agenda/modules/service/domain/entities/services_entity.dart';
 
 void main() {
   late ServiceEntity service;
