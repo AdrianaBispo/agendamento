@@ -1,10 +1,10 @@
+import 'package:agenda/modules/professional/domain/entities/professional_entity.dart';
+import 'package:agenda/modules/professional/domain/repositories/professional_repository.dart';
+import 'package:agenda/modules/professional/domain/usecases/create_professional_usecase/create_professional_usecase_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:agenda/modules/clients/domain/usecases/create_client_usecase/create_client_usecase_impl.dart';
-import 'package:agenda/modules/clients/domain/entities/client_entity.dart';
-import 'package:agenda/modules/clients/domain/repositories/client_repository.dart';
 
 class ProfessionalRepositoryMock extends Mock implements ProfessionalRepository {}
 
@@ -14,15 +14,15 @@ main() {
   late ProfessionalEntity expectedProfessional;
 
   setUp(() {
-    clientRepository = ProfessionalRepositoryMock();
-    usecase = CreateProfessionalUseCaseImpl(clientRepository);
+    professionalRepository = ProfessionalRepositoryMock();
+    usecase = CreateProfessionalUseCaseImpl(professionalRepository);
 
     expectedProfessional = ProfessionalEntity(1,
         name: 'name', profession: 'profession', services: []);
   });
 
   test('deve retornar um ProfessionalEntity', () async {
-    when(() => clientRepository.createProfessional(clientEntity: expectedProfessional))
+    when(() => professionalRepository.createProfessional(professionalEntity: expectedProfessional))
         .thenAnswer((_) async => Right(expectedProfessional));
 
     final result = await usecase.call(expectedProfessional);
