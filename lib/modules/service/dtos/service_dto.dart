@@ -1,9 +1,11 @@
-class serviceDto extends ServiceEntity {
+import 'package:agenda/modules/service/domain/entities/service_entity.dart';
+
+class ServiceDto extends ServiceEntity {
   final String descriptionDto;
 
   ServiceDto({
     required this.descriptionDto,
-  }): super(
+  }) : super(
     description: descriptionDto,
   );
 
