@@ -5,5 +5,5 @@ import '../../errors/error_professional.dart';
 
 
 abstract class GetallProfessionalUseCase{
- Future<Either<FailureGetAllProfessional, List<Profissional>>> call();
+ Future<Either<FailureGetAllProfessional, List<ProfessionalEntity>>> call();
 }
