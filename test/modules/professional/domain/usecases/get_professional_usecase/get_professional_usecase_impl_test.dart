@@ -17,7 +17,7 @@ main() {
     professionalRepository = ProfessionalRepositoryMock();
     usecase = GetProfessionalUseCaseImpl(professionalRepository);
 
-    expectedProfessional = ProfessionalEntityProfessionalEntity(1,
+    expectedProfessional = ProfessionalEntity(1,
         name: 'name', profession: 'profession', services: []);
   });
 
