@@ -12,7 +12,7 @@ class AppTheme {
       dividerColor: AppColor.instance.accent3,
       scaffoldBackgroundColor: AppColor.instance.primaryBackground,
       textTheme: TextTheme(
-        headline6: TextStyle(
+        titleLarge: TextStyle(
           color: AppColor.instance.primaryText,
           fontSize: 13,
         ),
