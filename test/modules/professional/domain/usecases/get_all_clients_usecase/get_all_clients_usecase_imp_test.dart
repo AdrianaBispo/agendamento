@@ -5,16 +5,17 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+
 class ProfessionalRepositoryMock extends Mock implements ProfessionalRepository {}
 
 main() {
   late ProfessionalRepositoryMock professionalRepository;
-  late GetallProfessionalsUseCaseImpl usecase;
+  late GetallProfessionalUseCaseImpl usecase;
   late List<ProfessionalEntity> expectedProfessionals;
 
   setUp(() {
     professionalRepository = ProfessionalRepositoryMock();
-    usecase = GetallProfessionalsUseCaseImpl(professionalRepository);
+    usecase = GetallProfessionalUseCaseImpl(professionalRepository);
 
     expectedProfessionals = <ProfessionalEntity>[];
   });
