@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import '../../components/side_menu.dart';
 import '../controller/start_controller.dart';
-//utils
-import '../../../shared/utils/app_color.dart';
+import '../widgets/side_menu.dart';
+//core
+import 'package:agenda/core/utils/app_color.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);
