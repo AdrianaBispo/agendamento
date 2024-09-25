@@ -1,3 +1,5 @@
+import 'package:agenda/modules/clients/data/datasources/client_datasource.dart';
+import 'package:agenda/modules/clients/data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //view
 import 'features/start/view/start_page.dart';
@@ -14,6 +16,7 @@ class AppModule extends Module {
   List<Bind> get binds => [
         Bind.singleton((i) => StartController()),
         Bind.singleton<IClienteAdapter>((i) => ClienteHive()), 
+        Bind.singleton<ClientDataSource>((i) => ClientLocalDataSourceImpl()),
   
       ];
 
