@@ -22,7 +22,7 @@ class InputCustom extends StatelessWidget {
             padding: const EdgeInsets.only(left: 3, bottom: 10),
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           child,
