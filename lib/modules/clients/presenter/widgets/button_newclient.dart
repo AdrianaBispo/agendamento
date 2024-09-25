@@ -1,6 +1,6 @@
-import 'package:agenda/src/shared/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:agenda/core/utils/app_color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ButtonNewClient extends StatelessWidget {
