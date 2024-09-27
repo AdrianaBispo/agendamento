@@ -10,7 +10,7 @@ import '../client_datasource.dart';
 
 class ClientLocalDataSourceImpl implements ClientDataSource {
   Database? _dataBase;
-  final _clienteStore = intMapStoreFactory.store('clientes');
+  final _clienteStore = intMapStoreFactory.store('client');
   
 
   ClientLocalDataSourceImpl();
