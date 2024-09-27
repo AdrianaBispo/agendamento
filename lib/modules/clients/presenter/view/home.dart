@@ -1,5 +1,5 @@
 import 'package:agenda/core/utils/app_textstyle.dart';
-import 'package:agenda/modules/clients/data/datasources/local/client_datasource_local_datasource_impl.dart';
+import 'package:agenda/modules/clients/presenter/controller/client_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -7,7 +7,7 @@ import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
 
 //Widget
 import 'package:agenda/modules/clients/presenter/widgets/data_table_client.dart';
-import 'package:agenda/components/circular_progress_custo.dart';
+import 'package:agenda/widgets/circular_progress_custo.dart';
 import 'package:agenda/src/features/components/button_new.dart';
 import 'package:agenda/src/features/components/custom_appbar.dart';
 
@@ -21,8 +21,8 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
-  Future<List<ClientDto>> clienteHive =
-      Modular.get<ClientLocalDataSourceImpl>().getAll();
+  ClientController clientController =
+      Modular.get<ClientController>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _ClientesPageState extends State<ClientesPage> {
                         text: 'Novo Cliente',
                       ),
                       FutureBuilder<List<ClientDto>>(
-                          future: clienteHive,
+                          future: clientController.getAll(),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
