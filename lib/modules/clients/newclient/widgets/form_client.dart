@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import '../../../../src/features/clients/newclient/controller/newclient_controller.dart';
+import 'package:agenda/modules/clients/newclient/controller/newclient_controller.dart';
 //component
 import 'inputname.dart';
 import 'inputtelefone.dart';
