@@ -1,10 +1,10 @@
+import 'package:agenda/core/utils/app_color.dart';
+import 'package:agenda/modules/clients/newclient/controller/newclient_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import '../controller/newclient_controller.dart';
 //utils
-import '../../../../shared/utils/app_color.dart';
 
 
 class ConfirmButton extends StatelessWidget {
