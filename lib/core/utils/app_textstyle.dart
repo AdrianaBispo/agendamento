@@ -33,4 +33,10 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.normal,
   );
+
+  TextStyle appBar = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    color: AppColor.instance.primary,
+  );
 }

@@ -7,7 +7,7 @@ import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
 
 //Widget
 import 'package:agenda/modules/clients/presenter/widgets/data_table_client.dart';
-import 'package:agenda/widgets/circular_progress_custo.dart';
+import 'package:agenda/modules/widgets/circular_progress_custo.dart';
 import 'package:agenda/src/features/components/button_new.dart';
 import 'package:agenda/src/features/components/custom_appbar.dart';
 
