@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-//components
-import 'colors.dart';
+//core
+import 'package:agenda/core/utils/app_color.dart';
 
 class ButtonPadrao extends StatelessWidget {
-  String texto;
-  void Function()? onPressed;
-  Color color;
-  ButtonPadrao(
-      {required this.texto, required this.color, required this.onPressed});
+  final String texto;
+  final void Function()? onPressed;
+  final Color color;
+  const ButtonPadrao(
+      {Key? key,
+      required this.texto,
+      required this.color,
+      required this.onPressed})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,8 +19,8 @@ class ButtonPadrao extends StatelessWidget {
       child: TextButton(
         child: Text(
           texto,
-          style: const TextStyle(
-            color: AppColor.white,
+          style: TextStyle(
+            color: AppColor.instance.primaryBackground,
           ),
         ),
         style: TextButton.styleFrom(
