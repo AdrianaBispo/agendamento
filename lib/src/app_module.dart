@@ -2,11 +2,11 @@ import 'package:agenda/modules/clients/data/datasources/client_datasource.dart';
 import 'package:agenda/modules/clients/data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //view
-import 'features/start/view/start_page.dart';
+import '../modules/start/presenter/view/start_page.dart';
 //controller
-import 'features/start/controller/start_controller.dart';
+import '../modules/start/presenter/controller/start_controller.dart';
 //module
-import 'features/clients/clients_module.dart';
+import 'package:agenda/src/features/clients/clients_module.dart';
 //database
 import 'features/clients/cliente_hive/client_adapter.dart';
 import 'features/clients/cliente_hive/cliente_hive.dart';
