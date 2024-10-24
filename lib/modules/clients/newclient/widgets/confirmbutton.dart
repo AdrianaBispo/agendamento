@@ -42,7 +42,7 @@ class ConfirmButton extends StatelessWidget {
             
            Modular.to.navigate('./');
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Novo usuário salvo com sucesso ')),
+              const SnackBar(content: Text('Salvo com sucesso!')),
             );
           }
         }, //onPressed
