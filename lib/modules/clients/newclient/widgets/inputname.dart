@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 //controller
 import 'package:agenda/modules/clients/newclient/controller/newclient_controller.dart';
 //component
-import '../../../../src/features/components/input_custom.dart';
+import '../../../professional/presenter/widgets/input_custom.dart';
 
 class InputName extends StatefulWidget {
   const InputName({Key? key}) : super(key: key);

@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 //controller
 import 'package:agenda/modules/clients/newclient/controller/newclient_controller.dart';
 //widget
-import '../../../../src/features/components/input_custom.dart';
+import '../../../professional/presenter/widgets/input_custom.dart';
 //core
 import 'package:agenda/core/utils/app_color.dart';
 
