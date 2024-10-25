@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../widgets/input_custom.dart';
+import '../controller/edit_client_controller.dart';
+
 class InputNameEdit extends StatefulWidget {
   const InputNameEdit({Key? key}) : super(key: key);
 
@@ -42,7 +45,7 @@ class _InputNameEditState extends State<InputNameEdit> {
               hintText: 'Nome',
               errorText: controller.error.name,
             ),
-            onSaved: (value) => controller.name = value,
+            onSaved: (value) => controller.name = value!,
             controller: _textController,
           ),
         ),

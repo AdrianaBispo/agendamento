@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import '../../newclient/widgets/confirmbutton.dart';
+import 'input_telefone_edit.dart';
+import 'input_nome_edit.dart';
 
 class ClientData extends StatefulWidget {
   const ClientData({Key? key}) : super(key: key);
@@ -18,12 +20,12 @@ class _ClientDataState extends State<ClientData> {
       padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
       child: Form(
         key: _formKey,
-        child: Column(
+        child: const Column(
           children: <Widget>[
-            const InputNameEdit(),
-            const InputTelefoneEdit(),
+            InputNameEdit(),
+            InputTelefoneEdit(),
             SizedBox(width: 20),
-            const ConfirmButton(),
+            ConfirmButton(),
           ],
         ),
       ),
