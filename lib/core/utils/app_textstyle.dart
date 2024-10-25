@@ -39,4 +39,14 @@ class AppTextStyle {
     fontSize: 20,
     color: AppColor.instance.primary,
   );
+
+  TextStyle titleLarge = TextStyle(
+    color: AppColor.instance.primaryText,
+    fontSize: 13,
+  );
+
+  TextStyle labelText = TextStyle(
+    color: AppColor.instance.primaryText,
+    fontSize: 14,
+  );
 }
