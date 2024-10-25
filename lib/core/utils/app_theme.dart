@@ -12,16 +12,10 @@ class AppTheme {
       dividerColor: AppColor.instance.accent3,
       scaffoldBackgroundColor: AppColor.instance.primaryBackground,
       textTheme: TextTheme(
-        titleLarge: TextStyle(
-          color: AppColor.instance.primaryText,
-          fontSize: 13,
-        ),
+        titleLarge: AppTextStyle.instance.titleLarge,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(
-          color: AppColor.instance.primaryText,
-          fontSize: 14,
-        ),
+        labelStyle:AppTextStyle.instance.labelText,
         hintStyle: AppTextStyle.instance.hintText,
         contentPadding: const EdgeInsets.symmetric(
           vertical: 20.0,
