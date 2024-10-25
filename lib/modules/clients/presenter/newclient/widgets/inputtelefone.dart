@@ -4,9 +4,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //controller
-import 'package:agenda/modules/clients/newclient/controller/newclient_controller.dart';
+import '../controller/newclient_controller.dart';
 //widget
-import '../../../professional/presenter/widgets/input_custom.dart';
+import '../../../../widgets/input_custom.dart';
 //core
 import 'package:agenda/core/utils/app_color.dart';
 

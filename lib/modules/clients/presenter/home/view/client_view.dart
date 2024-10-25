@@ -1,17 +1,15 @@
-import 'package:agenda/core/utils/app_textstyle.dart';
-import 'package:agenda/modules/clients/presenter/controller/client_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
+import '../controller/client_controller.dart';
 
 //Widget
-import 'package:agenda/modules/clients/presenter/widgets/data_table_client.dart';
-import 'package:agenda/modules/widgets/circular_progress_custo.dart';
-import 'package:agenda/src/features/components/button_new.dart';
-import 'package:agenda/src/features/components/custom_appbar.dart';
-
-
+import '../../../../widgets/circular_progress_custo.dart';
+import '../widgets/data_table_client.dart';
+import '../widgets/button_newclient.dart';
+import '../../../../widgets/custom_app_bar.dart';
+import '../../../../widgets/data_empity.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({Key? key}) : super(key: key);
@@ -21,8 +19,7 @@ class ClientesPage extends StatefulWidget {
 }
 
 class _ClientesPageState extends State<ClientesPage> {
-  ClientController clientController =
-      Modular.get<ClientController>();
+  ClientController clientController = Modular.get<ClientController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +33,14 @@ class _ClientesPageState extends State<ClientesPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      const CustomAppBar(texto: 'Clientes'),
-                      const ButtonNew(
-                        path: '/clients/newclient',
-                        text: 'Novo Cliente',
-                      ),
+                      const CustoAppBar(texto: 'Clientes'),
+                      const ButtonNewClient(),
                       FutureBuilder<List<ClientDto>>(
                           future: clientController.getAll(),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return SizedBox(
+                              return const SizedBox(
                                 width: 500.0,
                                 height: 300.0,
                                 child: Stack(
@@ -62,9 +56,13 @@ class _ClientesPageState extends State<ClientesPage> {
                               );
                             } else if (!snapshot.hasData &&
                                 snapshot.data == null) {
-                              return textDataEmpity();
+                              return const EmpityData(
+                                text: 'Adcione os seus primeiros clientes',
+                              );
                             } else if (snapshot.data!.isEmpty) {
-                              return textDataEmpity();
+                              return const EmpityData(
+                                text: 'Adcione os seus primeiros clientes',
+                              );
                             } else {
                               return DataTableCliente(
                                   listClient: snapshot.data!);
@@ -77,24 +75,6 @@ class _ClientesPageState extends State<ClientesPage> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  SizedBox textDataEmpity() {
-    return SizedBox(
-      width: 500.0,
-      height: 300.0,
-      child: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text('Adcione os seus primeiros clientes',
-                  style: AppTextStyle.instance.withoutData),
-            ),
-          )
-        ],
       ),
     );
   }

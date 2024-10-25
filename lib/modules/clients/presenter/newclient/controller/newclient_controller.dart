@@ -1,9 +1,10 @@
 import 'dart:developer';
 import 'package:agenda/core/utils/validator.dart';
-import '../../../clients/data/dtos/client_dto.dart';
-import '../../data/datasources/local/client_datasource_local_datasource_impl.dart';
+import '../../../data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../../data/dtos/client_dto.dart';
 
 part 'newclient_controller.g.dart';
 
