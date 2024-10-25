@@ -1,7 +1,9 @@
-import '../../../clients/data/dtos/client_dto.dart';
-import '../../data/datasources/local/client_datasource_local_datasource_impl.dart';
+import '../../../../../core/utils/validator.dart';
+import '../../../data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../newclient/controller/newclient_controller.dart';
 
 part 'client_controller.g.dart';
 
@@ -52,6 +54,6 @@ abstract class _ClientEditStore with Store {
 
   @action
   void update() {
-   clientLocalDataSource.updateClient();
+   clientLocalDataSource.updateClient(client: null);
   }
 }

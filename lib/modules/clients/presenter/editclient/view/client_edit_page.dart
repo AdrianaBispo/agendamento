@@ -1,22 +1,9 @@
-
 import 'package:flutter/material.dart';
-//model
-import '../models/cliente.dart';
-import '../models/historico.dart';
-//repository
-import '../repository/validator.dart';
-import '../repository/cliente_controller.dart'; //database
-//routes
-import '../utils/routes.dart';
+
+import '../widgets/client_data.dart';
+
+
 //components
-import '../components/colors.dart';
-import '../components/side_menu.dart';
-import '../components/custom_appBar.dart';
-import '../components/input_decoration.dart';
-import '../components/button_padrao.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_picker/flutter_picker.dart';
-import '../components/conteiner_arredondado.dart';
 
 class ClienteEdit extends StatefulWidget {
   Cliente cliente;
@@ -27,9 +14,6 @@ class ClienteEdit extends StatefulWidget {
 }
 
 class _ClienteEditState extends State<ClienteEdit> {
-  final _formKeyCliente = GlobalKey<FormState>();
-  final _nameEditController = TextEditingController();
-  final _telefoneEditController = TextEditingController();
   var clienteController = ClienteController();
   List<Historico> _listaHistorico = [];
   @override
@@ -55,14 +39,14 @@ class _ClienteEditState extends State<ClienteEdit> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                      const CustomAppBar(texto: 'Editar'),
-                        ClientData(),
+                      const CustonAppBar(texto: 'Editar'),
+                        const ClientData(),
                         Container(
                           margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                           padding: const EdgeInsets.all(20),
                           width: MediaQuery.of(context).size.width / 2,
                           decoration: const BoxDecoration(
-                            color: AppColor.white,
+                            color: AppColor.instance.white,
                             borderRadius: BorderRadius.all(
                               Radius.circular(5),
                             ),

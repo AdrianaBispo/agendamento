@@ -13,7 +13,7 @@ class ConfirmButtonEdit extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
       child: TextButton(
-        label: Text(
+        child: Text(
           'Editar cliente',
           style: TextStyle(
             color: AppColor.instance.secondaryBackground,
@@ -35,7 +35,7 @@ class ConfirmButtonEdit extends StatelessWidget {
               const SnackBar(content: Text('Cliente editado com sucesso!')),
             );
           }
-        },
+        }, child: null,
       ),
     );
   }
