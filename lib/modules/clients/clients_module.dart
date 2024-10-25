@@ -1,10 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 //contoller
-//import 'home/store/clientehome_store.dart';
-import 'newclient/controller/newclient_controller.dart';
+import 'presenter/newclient/controller/newclient_controller.dart';
 //view
-import 'home/view/home.dart';
-import 'newclient/view/newclient.dart';
+import 'presenter/home/view/client_view.dart';
+import 'presenter/newclient/view/newclient_view.dart';
 
 class ClientsModule extends Module {
   @override
