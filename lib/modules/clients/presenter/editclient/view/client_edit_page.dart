@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/utils/app_color.dart';
+import '../../../../widgets/custom_app_bar.dart';
+import '../../../data/dtos/client_dto.dart';
 import '../widgets/client_data.dart';
 
 
 //components
 
-class ClienteEdit extends StatefulWidget {
-  Cliente cliente;
-  ClienteEdit({required this.cliente});
+class ClienteEditPage extends StatefulWidget {
+  ClientDto cliente;
+  ClienteEditPage({required this.cliente});
 
   @override
-  State<ClienteEdit> createState() => _ClienteEditState();
+  State<ClienteEditPage> createState() => _ClienteEditPageState();
 }
 
-class _ClienteEditState extends State<ClienteEdit> {
-  var clienteController = ClienteController();
-  List<Historico> _listaHistorico = [];
+class _ClienteEditPageState extends State<ClienteEditPage> {
+  /*var clienteController = ClienteController();
   @override
   void initState() {
     super.initState();
     _nameEditController.text = widget.cliente.nome;
     _telefoneEditController.text = widget.cliente.telefone;
     _listaHistorico = widget.cliente.historico;
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -39,21 +41,21 @@ class _ClienteEditState extends State<ClienteEdit> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                      const CustonAppBar(texto: 'Editar'),
+                      const CustomAppBar(texto: 'Editar'),
                         const ClientData(),
-                        Container(
+                        /*Container(
                           margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                           padding: const EdgeInsets.all(20),
                           width: MediaQuery.of(context).size.width / 2,
-                          decoration: const BoxDecoration(
-                            color: AppColor.instance.white,
-                            borderRadius: BorderRadius.all(
+                          decoration:  BoxDecoration(
+                            color: AppColor.instance.secondaryBackground,
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(5),
                             ),
                           ),
                           child: _dataListaHistorico(),
-                        ),
-                        _deletarCliente(),
+                        ),*/
+                        //_deletarCliente(),
                       ],
                     ),
                   ],
@@ -65,7 +67,7 @@ class _ClienteEditState extends State<ClienteEdit> {
       ),
     );
   }
-
+/*
   Widget _dataListaHistorico() {
     if (widget.cliente.historico.isEmpty) {
       return const Padding(
@@ -327,4 +329,5 @@ class _ClienteEditState extends State<ClienteEdit> {
       ),
     ); //Custo AppBar
   }
+*/
 }
