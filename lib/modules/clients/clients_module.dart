@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 //contoller
+import 'presenter/editclient/view/client_edit_page.dart';
 import 'presenter/newclient/controller/newclient_controller.dart';
 //view
 import 'presenter/home/view/client_view.dart';
@@ -15,5 +16,7 @@ class ClientsModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => const ClientesPage()),
         ChildRoute('/newclient', child: (context, args) => const NewClient()),
+        ChildRoute('/newclient',
+            child: (context, args) => ClienteEditPage(cliente: args.data)),
       ];
 }
