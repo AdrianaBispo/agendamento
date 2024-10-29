@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:agenda/core/utils/app_textstyle.dart';
 
-class CustoAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget {
   final String texto;
-  const CustoAppBar({Key? key, required this.texto}) : super(key: key);
+  const CustomAppBar({Key? key, required this.texto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
