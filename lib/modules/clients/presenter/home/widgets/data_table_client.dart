@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //Core
 import 'package:agenda/core/utils/app_color.dart';
@@ -55,24 +56,32 @@ class DataTableCliente extends StatelessWidget {
     );
   }
 
-  DataRow listaClientes(ClientDto cliente) {
+  DataRow listaClientes(ClientDto client) {
     return DataRow(cells: [
       DataCell(
         Text(
-          cliente.name,
+          client.name,
           style: AppTextStyle.instance.dataCell,
         ),
       ),
       DataCell(
         Text(
-          cliente.telephone,
+          client.telephone,
           style: AppTextStyle.instance.dataCell,
         ),
       ),
       DataCell(
         //user edite
         IconButton(
-          onPressed: () => {},
+          onPressed: () => Modular.to.navigate(
+            '/clients/editclient',
+            arguments: ClientDto(
+              client.idClient,
+              nameClient: client.nameClient,
+              telephoneClient: client.telephoneClient,
+              historicClient: client.historicClient,
+            ),
+          ),
           icon: SvgPicture.asset(
             'asset/icones/Icon/profile-2user.svg',
             color: AppColor.instance.secondaryText,
