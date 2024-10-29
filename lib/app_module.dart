@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agenda/modules/clients/data/datasources/client_datasource.dart';
 import 'package:agenda/modules/clients/data/datasources/local/client_datasource_local_datasource_impl.dart';
-import 'package:agenda/modules/professional/professional_module.dart';
 //view
 import '../modules/start/presenter/view/start_page.dart';
 //controller
@@ -25,7 +24,6 @@ class AppModule extends Module {
           child: (context, args) => const StartPage(),
           children: [
             ModuleRoute('/clients', module: ClientsModule()),
-            ModuleRoute('/professional', module: ProfessionalModule()),
           ],
         ),
       ];
