@@ -27,7 +27,7 @@ abstract class _StartControllerBase with Store implements Disposable {
   ];
 
   @observable
-  final List<void> _telas = [
+  List<void> _telas = [
     //Modular.to.navigate(''), //home
     //Modular.to.navigate(''), //agenda
     Modular.to.navigate('/clients/'),
