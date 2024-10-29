@@ -33,7 +33,7 @@ class _ClientesPageState extends State<ClientesPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      const CustoAppBar(texto: 'Clientes'),
+                      const CustomAppBar(texto: 'Clientes'),
                       const ButtonNewClient(),
                       FutureBuilder<List<ClientDto>>(
                           future: clientController.getAll(),
