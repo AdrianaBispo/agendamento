@@ -8,15 +8,15 @@ import '../widgets/client_data.dart';
 
 //components
 
-class ClienteEditPage extends StatefulWidget {
+class ClienteEditView extends StatefulWidget {
   ClientDto cliente;
-  ClienteEditPage({required this.cliente});
+  ClienteEditView({required this.cliente});
 
   @override
-  State<ClienteEditPage> createState() => _ClienteEditPageState();
+  State<ClienteEditView> createState() => _ClienteEditViewState();
 }
 
-class _ClienteEditPageState extends State<ClienteEditPage> {
+class _ClienteEditViewState extends State<ClienteEditView> {
   /*var clienteController = ClienteController();
   @override
   void initState() {
