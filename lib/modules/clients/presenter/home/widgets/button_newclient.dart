@@ -19,14 +19,17 @@ class ButtonNewClient extends StatelessWidget {
             width: 20,
             height: 20,
           ),
-          label: Text(
-            'Novo Cliente',
-            style: TextStyle(
-              color: AppColor.instance.secondaryBackground,
+          label: FittedBox(
+            child: Text(
+              'Novo Cliente',
+              style: TextStyle(
+                color: AppColor.instance.secondaryBackground,
+              ),
             ),
           ),
           style: TextButton.styleFrom(
-            padding: const EdgeInsets.fromLTRB(15, 20, 20, 20),
+            minimumSize: const Size(100, 60),
+            maximumSize:  const Size(200, 90),
             backgroundColor: AppColor.instance.primary,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
