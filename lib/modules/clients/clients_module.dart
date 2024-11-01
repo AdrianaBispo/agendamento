@@ -19,7 +19,7 @@ class ClientsModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => const ClientesPage()),
-        ChildRoute('/newclient', child: (context, args) => const NewClient()),
+        ChildRoute('/newclient', child: (context, args) => const NewClientView()),
         ChildRoute('/editclient',
             child: (context, args) => ClienteEditPage(cliente: args.data)),
       ];
