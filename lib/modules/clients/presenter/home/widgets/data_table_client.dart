@@ -26,6 +26,7 @@ class DataTableCliente extends StatelessWidget {
         ),
       ),
       child: DataTable(
+        columnSpacing: 10,
         columns: <DataColumn>[
           DataColumn(
             label: Text(
@@ -59,15 +60,19 @@ class DataTableCliente extends StatelessWidget {
   DataRow listaClientes(ClientDto client) {
     return DataRow(cells: [
       DataCell(
-        Text(
-          client.name,
-          style: AppTextStyle.instance.dataCell,
+        FittedBox(
+          child: Text(
+            client.name,
+            style: AppTextStyle.instance.dataCell,
+          ),
         ),
       ),
       DataCell(
-        Text(
-          client.telephone,
-          style: AppTextStyle.instance.dataCell,
+        FittedBox(
+          child: Text(
+            client.telephone,
+            style: AppTextStyle.instance.dataCell,
+          ),
         ),
       ),
       DataCell(
@@ -87,17 +92,19 @@ class DataTableCliente extends StatelessWidget {
             color: AppColor.instance.secondaryText,
             width: 20,
             height: 20,
+            ),
           ),
         ), //editar cliente
-      ),
       DataCell(
-        IconButton(
-          onPressed: () => {},
-          icon: SvgPicture.asset(
-            'asset/icones/Icon/calendar.svg',
-            color: AppColor.instance.secondaryText,
-            width: 20,
-            height: 20,
+        FittedBox(
+          child: IconButton(
+            onPressed: () => {},
+            icon: SvgPicture.asset(
+              'asset/icones/Icon/calendar.svg',
+              color: AppColor.instance.secondaryText,
+              width: 20,
+              height: 20,
+            ),
           ),
         ), //agendar e historico
       ),
