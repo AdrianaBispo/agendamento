@@ -35,9 +35,7 @@ class _InputNameEditState extends State<InputNameEdit> {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InputCustom(
+      builder: (_) => InputCustom(
           title: 'Nome',
           child: TextFormField(
             cursorColor: AppColor.instance.primary,
@@ -49,7 +47,6 @@ class _InputNameEditState extends State<InputNameEdit> {
             controller: _textController,
           ),
         ),
-      ),
     );
   }
 }
