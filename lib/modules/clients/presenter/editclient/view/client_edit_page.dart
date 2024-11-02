@@ -5,7 +5,6 @@ import '../../../../widgets/custom_app_bar.dart';
 import '../../../data/dtos/client_dto.dart';
 import '../widgets/client_data.dart';
 
-
 //components
 
 class ClienteEditPage extends StatefulWidget {
@@ -36,13 +35,13 @@ class _ClienteEditPageState extends State<ClienteEditPage> {
               flex: 5,
               child: SizedBox(
                 child: ListView(
-                  children: [
+                  children: const [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                      const CustomAppBar(texto: 'Editar'),
-                        const ClientData(),
+                        CustomAppBar(texto: 'Editar'),
+                        ClientData(),
                         /*Container(
                           margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                           padding: const EdgeInsets.all(20),
@@ -296,38 +295,6 @@ class _ClienteEditPageState extends State<ClienteEditPage> {
     );
   }
 
-  Widget _custoAppBar() {
-    return SafeArea(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 20, top: 20),
-            width: 50,
-            height: 50,
-            decoration: const BoxDecoration(
-              color: AppColor.blue,
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
-              ),
-            ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: AppColor.white,
-              ),
-              onPressed: () => {
-                Navigator.pushReplacementNamed(context, AppRoutes.CLIENTES),
-              },
-            ),
-          ),
-          CustoAppBar(
-            texto: 'Editar',
-          ),
-        ],
-      ),
-    ); //Custo AppBar
-  }
+
 */
 }
