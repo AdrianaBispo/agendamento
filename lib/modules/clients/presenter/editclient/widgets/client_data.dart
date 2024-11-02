@@ -24,8 +24,10 @@ class _ClientDataState extends State<ClientData> {
           children: <Widget>[
             InputNameEdit(),
             InputTelefoneEdit(),
-            SizedBox(width: 20),
-            ConfirmButton(),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: ConfirmButton(),
+            ),
           ],
         ),
       ),
