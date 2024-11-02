@@ -21,6 +21,6 @@ class ClientsModule extends Module {
         ChildRoute('/', child: (context, args) => const ClientHomeView()),
         ChildRoute('/newclient', child: (context, args) => const NewClientView()),
         ChildRoute('/editclient',
-            child: (context, args) => ClienteEditPage(cliente: args.data)),
+            child: (context, args) => ClienteEditView(cliente: args.data)),
       ];
 }

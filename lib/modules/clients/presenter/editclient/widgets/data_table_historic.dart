@@ -4,7 +4,7 @@ import 'package:agenda/core/utils/app_color.dart';
 import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
 
 class DataTableHistoric extends StatelessWidget {
-  final List<ClientDto> listClient;
+  final List<HistoricDto> listClientHistoric;
   const DataTableHistoric({
     Key? key,
     required this.listClient,
