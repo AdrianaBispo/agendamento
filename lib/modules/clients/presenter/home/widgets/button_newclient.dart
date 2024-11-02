@@ -28,8 +28,8 @@ class ButtonNewClient extends StatelessWidget {
             ),
           ),
           style: TextButton.styleFrom(
-            minimumSize: const Size(100, 60),
-            maximumSize:  const Size(200, 90),
+            minimumSize: const Size(100, 50),
+            maximumSize: const Size(200, 60),
             backgroundColor: AppColor.instance.primary,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
