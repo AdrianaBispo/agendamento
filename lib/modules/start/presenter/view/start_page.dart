@@ -25,11 +25,28 @@ class _StartPageState extends State<StartPage> {
           ? AppBar(
               elevation: 0,
               backgroundColor: AppColor.instance.primaryBackground,
-              leading: IconButton(
-                  onPressed: () {
-                    _drawerKey.currentState?.openDrawer();
-                  },
-                  icon: Icon(Icons.menu, color: AppColor.instance.primary)),
+              leading: Container(
+                margin: const EdgeInsets.only(left: 20, top: 20),
+                decoration: BoxDecoration(
+                  color: AppColor.instance.primary,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                ),
+                child: Center(
+                  child: IconButton(
+                    onPressed: () {
+                      _drawerKey.currentState?.openDrawer();
+                    },
+                    padding: const EdgeInsets.all(0),
+                    icon: Icon(
+                      Icons.menu,
+                      color: AppColor.instance.secondaryBackground,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ),
               actions: const [],
             )
           : const PreferredSize(
