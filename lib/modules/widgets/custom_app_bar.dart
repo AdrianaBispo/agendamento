@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agenda/core/utils/app_textstyle.dart';
+import 'package:agenda/core/theme/app_textstyle.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String texto;

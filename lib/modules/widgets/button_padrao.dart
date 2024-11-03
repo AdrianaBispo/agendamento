@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //core
-import 'package:agenda/core/utils/app_color.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
 class ButtonPadrao extends StatelessWidget {
   final String texto;

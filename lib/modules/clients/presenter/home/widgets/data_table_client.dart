@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//Core
-import 'package:agenda/core/utils/app_color.dart';
-import 'package:agenda/core/utils/app_textstyle.dart';
+//theme
+import 'package:agenda/core/theme/app_color.dart';
+import 'package:agenda/core/theme/app_textstyle.dart';
 import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
 
 class DataTableCliente extends StatelessWidget {

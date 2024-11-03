@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//core
-import 'package:agenda/core/utils/app_color.dart';
+//theme
+import 'package:agenda/core/theme/app_color.dart';
 
 class DrawerListTile extends StatelessWidget {
   final String text;

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //widgets
 import '../widgets/form_client.dart';
-//core
-import 'package:agenda/core/utils/app_color.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
 class NewClientView extends StatefulWidget {
   const NewClientView({Key? key}) : super(key: key);

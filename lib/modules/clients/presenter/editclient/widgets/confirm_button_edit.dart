@@ -1,8 +1,7 @@
-import 'package:agenda/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import '../controller/edit_client_controller.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
 
 class ConfirmButtonEdit extends StatelessWidget {

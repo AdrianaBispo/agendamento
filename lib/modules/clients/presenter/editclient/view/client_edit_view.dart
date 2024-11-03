@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_color.dart';
+import 'package:agenda/core/theme/app_textstyle.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../data/dtos/client_dto.dart';
 import '../widgets/client_data.dart';

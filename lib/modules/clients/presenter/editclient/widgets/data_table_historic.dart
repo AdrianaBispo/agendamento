@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-//Core
-import 'package:agenda/core/utils/app_color.dart';
-import '../../../../../core/utils/app_textstyle.dart';
+import '../../../../../core/theme/app_color.dart';
+import '../../../../../core/theme/app_textstyle.dart';
 import '../../../../historic/dtos/historic_dto.dart';
 
 class DataTableHistoric extends StatelessWidget {

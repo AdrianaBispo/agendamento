@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/theme/app_color.dart';
 import '../../../../widgets/input_custom.dart';
 import '../controller/edit_client_controller.dart';
 
