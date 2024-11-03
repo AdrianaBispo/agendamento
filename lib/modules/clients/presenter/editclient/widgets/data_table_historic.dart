@@ -13,13 +13,10 @@ class DataTableHistoric extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (listHistoric.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.only(top: 20.0),
-        child: Center(
-          child: Text(
-            'Não existem registros de serviços',
-            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
-          ),
+      return const Center(
+        child: Text(
+          'Não existem registros de serviços',
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
         ),
       );
     }
@@ -60,15 +57,19 @@ class DataTableHistoric extends StatelessWidget {
     return DataRow(
       cells: [
         DataCell(
-          Text(
-            name,
-            style: AppTextStyle.instance.dataCell,
+          FittedBox(
+            child: Text(
+              name,
+              style: AppTextStyle.instance.dataCell,
+            ),
           ),
         ),
         DataCell(
-          Text(
-            description,
-            style: AppTextStyle.instance.dataCell,
+          FittedBox(
+            child: Text(
+              description,
+              style: AppTextStyle.instance.dataCell,
+            ),
           ),
         ),
         DataCell(
