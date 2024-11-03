@@ -1,34 +1,23 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
-import 'package:agenda/core/theme/app_textstyle.dart';
 import '../../../../../core/theme/app_color.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../data/dtos/client_dto.dart';
 import '../widgets/client_data.dart';
 import '../widgets/data_table_historic.dart';
 
-//components
-
 class ClienteEditView extends StatefulWidget {
-  ClientDto cliente;
-  ClienteEditView({Key? key, required this.cliente}) : super(key: key);
+  final ClientDto cliente;
+  const ClienteEditView({
+    Key? key,
+    required this.cliente,
+  }) : super(key: key);
 
   @override
   State<ClienteEditView> createState() => _ClienteEditViewState();
 }
 
 class _ClienteEditViewState extends State<ClienteEditView> {
-  /*var clienteController = ClienteController();
-  @override
-  void initState() {
-    super.initState();
-    _nameEditController.text = widget.cliente.nome;
-    _telefoneEditController.text = widget.cliente.telefone;
-    _listaHistorico = widget.cliente.historico;
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +51,6 @@ class _ClienteEditViewState extends State<ClienteEditView> {
                             ),
                           ),
                         ),
-                        //_deletarCliente(),
                       ],
                     ),
                   ],
@@ -74,85 +62,4 @@ class _ClienteEditViewState extends State<ClienteEditView> {
       ),
     );
   }
-/*
-
-  _deletarCliente() {
-    return ButtonPadrao(
-      texto: 'Deletar Cliente',
-      color: AppColor.red,
-      onPressed: () => showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Padding(
-                padding: EdgeInsets.only(left: 20.0),
-                child: Text(
-                  'Deletar cliente',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                      color: AppColor.natural),
-                ),
-              ),
-              content: Container(
-                width: MediaQuery.of(context).size.width / 2,
-                padding: const EdgeInsets.fromLTRB(20, 0, 10, 20),
-                child: const Text(
-                  'Você tem certeza que deseja deletar esse cliente?',
-                  style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15,
-                      color: AppColor.natural),
-                ),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: const Text(
-                    'Não',
-                    style: TextStyle(
-                      color: AppColor.white,
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    backgroundColor: AppColor.red,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),
-                  ),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-                TextButton(
-                  child: const Text(
-                    'Sim',
-                    style: TextStyle(
-                      color: AppColor.white,
-                    ),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    backgroundColor: AppColor.grenn,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),
-                  ),
-                  onPressed: () => {
-                    clienteController.delete(
-                        cliente: Cliente(
-                            nome: widget.cliente.nome,
-                            telefone: widget.cliente.telefone,
-                            historico: _listaHistorico)),
-                    Navigator.of(context).pop(),
-                    Navigator.pushReplacementNamed(
-                        context, AppRoutes.PROFSSIONAIS),
-                  },
-                ),
-              ],
-            );
-          }),
-    );
-  }
-
-
-*/
 }
