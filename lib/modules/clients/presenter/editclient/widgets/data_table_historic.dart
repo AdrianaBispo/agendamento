@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 //Core
 import 'package:agenda/core/utils/app_color.dart';
-import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
+import '../../../../../core/utils/app_textstyle.dart';
+import '../../../../historic/dtos/historic_dto.dart';
 
 class DataTableHistoric extends StatelessWidget {
-  final List<HistoricDto> listClientHistoric;
+  final List<HistoricDto> listHistoric;
   const DataTableHistoric({
     Key? key,
-    required this.listClient,
+    required this.listHistoric,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   if (widget.cliente.historico.isEmpty) {
+    if (listHistoric.isEmpty) {
       return const Padding(
         padding: EdgeInsets.only(top: 20.0),
         child: Center(
@@ -24,68 +25,57 @@ class DataTableHistoric extends StatelessWidget {
       );
     }
     return DataTable(
-      columns: const [
+      columns: [
         DataColumn(
           label: Text(
             'Profissional',
-            style: TextStyle(
-              color: AppColor.natural,
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              fontStyle: FontStyle.italic,
-            ),
+            style: AppTextStyle.instance.dataColumn,
           ),
         ),
         DataColumn(
           label: Text(
             'Serviço',
-            style: TextStyle(
-              color: AppColor.natural,
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              fontStyle: FontStyle.italic,
-            ),
+            style: AppTextStyle.instance.dataColumn,
           ),
         ),
-        DataColumn(
+        const DataColumn(
           label: Text(''),
         ), //editar
       ],
-        rows: List.generate(
-          listClient.length,
-          (index) => listHistoric(
-            listClient[index],
-          ),
+      rows: List.generate(
+        listHistoric.length,
+        (index) => rowHistoric(
+          name: listHistoric[index].nameProfessionalDto,
+          description: listHistoric[index].servicesDto,
+          context: context,
         ),
+      ),
     );
   }
 
-  DataRow listHistoric(ClientDto cliente) {
+  DataRow rowHistoric({
+    required String name,
+    required String description,
+    required BuildContext context,
+  }) {
     return DataRow(
       cells: [
         DataCell(
           Text(
-            historico.profissionalNome,
-            style: const TextStyle(
-              color: AppColor.natural,
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-            ),
+            name,
+            style: AppTextStyle.instance.dataCell,
           ),
         ),
         DataCell(
           Text(
-            historico.servico,
-            style: const TextStyle(
-              color: AppColor.natural,
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-            ),
+            description,
+            style: AppTextStyle.instance.dataCell,
           ),
         ),
         DataCell(
           IconButton(
-            onPressed: () => showDialog(
+            onPressed: () {},
+            /*=> showDialog(
                 context: context,
                 builder: (context) {
                   return AlertDialog(
@@ -150,11 +140,12 @@ class DataTableHistoric extends StatelessWidget {
                       ),
                     ],
                   );
-                }),
-            //editar o nome e a profissão
-            icon: const Icon(
+                  
+                }),*/
+            //editar o name e a profissão
+            icon: Icon(
               Icons.delete_sharp,
-              color: AppColor.natural_2,
+              color: AppColor.instance.secondaryText,
               size: 20.0,
             ),
           ),
