@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/app_textstyle.dart';
+import '../../core/theme/app_textstyle.dart';
 
 class EmpityData extends StatelessWidget {
   final String text;

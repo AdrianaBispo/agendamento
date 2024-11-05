@@ -11,14 +11,14 @@ import '../widgets/button_newclient.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../../widgets/data_empity.dart';
 
-class ClientesPage extends StatefulWidget {
-  const ClientesPage({Key? key}) : super(key: key);
+class ClientHomeView extends StatefulWidget {
+  const ClientHomeView({Key? key}) : super(key: key);
 
   @override
-  State<ClientesPage> createState() => _ClientesPageState();
+  State<ClientHomeView> createState() => _ClientHomeViewState();
 }
 
-class _ClientesPageState extends State<ClientesPage> {
+class _ClientHomeViewState extends State<ClientHomeView> {
   ClientController clientController = Modular.get<ClientController>();
 
   @override

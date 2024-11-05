@@ -8,7 +8,7 @@ import '../controller/newclient_controller.dart';
 //widget
 import '../../../../widgets/input_custom.dart';
 //core
-import 'package:agenda/core/utils/app_color.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
 class InputTelefone extends StatefulWidget {
   const InputTelefone({Key? key}) : super(key: key);

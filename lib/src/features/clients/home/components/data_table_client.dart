@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 //utils
+import '../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_textstyle.dart';
 import '../../../../shared/utils/app_color.dart';
 import '../../../../shared/utils/app_textstyle.dart';
 //models

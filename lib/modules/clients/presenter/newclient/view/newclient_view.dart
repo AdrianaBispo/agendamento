@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 //widgets
 import '../widgets/form_client.dart';
-//core
-import 'package:agenda/core/utils/app_color.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
-class NewClient extends StatefulWidget {
-  const NewClient({Key? key}) : super(key: key);
+class NewClientView extends StatefulWidget {
+  const NewClientView({Key? key}) : super(key: key);
 
   @override
-  State<NewClient> createState() => _NewClientState();
+  State<NewClientView> createState() => _NewClientViewState();
 }
 
-class _NewClientState extends State<NewClient> {
+class _NewClientViewState extends State<NewClientView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

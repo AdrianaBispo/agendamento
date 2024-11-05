@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agenda/core/utils/app_color.dart';
+import '../../core/theme/app_color.dart';
 
 class ContainerArredondado extends StatelessWidget {
   final Widget child;

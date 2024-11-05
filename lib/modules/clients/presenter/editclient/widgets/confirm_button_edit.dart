@@ -1,7 +1,7 @@
-import 'package:agenda/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../controller/edit_client_controller.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
 
 class ConfirmButtonEdit extends StatelessWidget {
@@ -9,7 +9,7 @@ class ConfirmButtonEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<NewClientController>();
+    final controller = Modular.get<ClientEditController>();
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
       child: TextButton(
@@ -30,12 +30,12 @@ class ConfirmButtonEdit extends StatelessWidget {
         onPressed: () {
           controller.validateAll();
           if (controller.error.hasErrors == false) {
-            controller.update();
+            //controller.update();
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Cliente editado com sucesso!')),
             );
           }
-        }, child: null,
+        }, 
       ),
     );
   }

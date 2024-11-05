@@ -17,15 +17,17 @@ class _ClientDataState extends State<ClientData> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
+      padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
       child: Form(
         key: _formKey,
         child: const Column(
           children: <Widget>[
             InputNameEdit(),
             InputTelefoneEdit(),
-            SizedBox(width: 20),
-            ConfirmButton(),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: ConfirmButton(),
+            ),
           ],
         ),
       ),

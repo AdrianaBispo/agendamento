@@ -1,4 +1,4 @@
-import 'package:agenda/core/utils/app_textstyle.dart';
+import 'package:agenda/core/theme/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
 class InputCustom extends StatelessWidget {

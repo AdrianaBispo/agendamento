@@ -1,10 +1,10 @@
-import 'package:agenda/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../widgets/input_custom.dart';
 import '../controller/edit_client_controller.dart';
+import 'package:agenda/core/theme/app_color.dart';
 
 class InputNameEdit extends StatefulWidget {
   const InputNameEdit({Key? key}) : super(key: key);
@@ -35,9 +35,7 @@ class _InputNameEditState extends State<InputNameEdit> {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InputCustom(
+      builder: (_) => InputCustom(
           title: 'Nome',
           child: TextFormField(
             cursorColor: AppColor.instance.primary,
@@ -49,7 +47,6 @@ class _InputNameEditState extends State<InputNameEdit> {
             controller: _textController,
           ),
         ),
-      ),
     );
   }
 }
