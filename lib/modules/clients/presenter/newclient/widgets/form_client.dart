@@ -3,9 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 //controller
 import '../controller/newclient_controller.dart';
 //component
-import 'inputname.dart';
-import 'inputtelefone.dart';
-import 'confirmbutton.dart';
+import 'desktop_form.dart';
+import 'mobile_form.dart';
 
 class FormClient extends StatefulWidget {
   const FormClient({Key? key}) : super(key: key);
@@ -37,25 +36,10 @@ class _FormClientState extends State<FormClient> {
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
       child: Form(
-        key: _formKey,
-        child: const Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 4,
-                  child: InputName(),
-                ),
-                SizedBox(width: 20),
-                Expanded(
-                  child: InputTelefone(),
-                ),
-              ],
-            ),
-            ConfirmButton(),
-          ],
-        ),
-      ),
+          key: _formKey,
+          child: MediaQuery.of(context).size.width >= 800 //desktop
+              ? const DesktopForm()
+              : const MobileForm()),
     );
   }
 }
