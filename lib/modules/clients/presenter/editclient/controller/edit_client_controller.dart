@@ -19,6 +19,8 @@ abstract class _ClientEditStore with Store {
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
 
+  late ClientDto clientDto;
+
   @observable
   String name = '';
 
