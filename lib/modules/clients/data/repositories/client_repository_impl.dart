@@ -12,12 +12,12 @@ class ClientRepositoryImpl implements ClientRepository {
   ClientRepositoryImpl(this._clientLocalDataSource);
 
   @override
-  Future<Either<FailureCreateClient, ClientEntity>> createClient(
+  Future<Either<FailureCreateClient, void>> createClient(
       {required ClientEntity clientEntity}) async {
     try {
-      final client = await _clientLocalDataSource.createClient(
+      await _clientLocalDataSource.createClient(
           client: clientEntity as ClientDto);
-      return Right(client);
+      return const Right(null);
     } catch (e) {
       return Left(CreateClientException(message: e.toString()));
     }
