@@ -29,17 +29,24 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
 
   @override
   Future<List<ClientDto>> getAll() async {
+    var db = await _initDatabase() as Database;
+
     final finder = Finder(sortOrders: [
       //ordem alfabetica
       SortOrder('name'),
     ]);
-    final recordSnapshots = await _clientStore.find(
-      await _initDatabase() as Database,
+    /*final recordSnapshots = await _clientStore.find(
+      db,
       finder: finder,
-    );
+    );*/
+    /*final result = recordSnapshots.map((snapshot) {
+      return ClientDto.fromJson(snapshot.value);
+    }).toList();*/
+    final recordSnapshots = await _clientStore.find(db);
     final result = recordSnapshots.map((snapshot) {
       return ClientDto.fromJson(snapshot.value);
     }).toList();
+    print(result);
     return result;
   }
 
@@ -71,18 +78,14 @@ class ClientLocalDataSourceImpl implements ClientDataSource {
   }
 
   @override
-  Future<ClientDto> createClient({required ClientDto client}) async {
-    var dataBase = await _initDatabase() as Database;
-    /*var find = Finder(
+  Future<void> createClient({required ClientDto client}) async {
+    var db = await _initDatabase() as Database;
+    var find = Finder(
       filter: Filter.equals("id", null),
-    );*/
-
-    final result = await dataBase.transaction(
-      (txn) async {
-        // Add the object, get the auto incremented id
-        await _clientStore.add(txn, client.toJson());
-      },
     );
-    return result;
+
+    int key = await _clientStore.add(db, client.toJson());
+
+    await _clientStore.update(db, {'id': key}, finder: find);
   }
 }
