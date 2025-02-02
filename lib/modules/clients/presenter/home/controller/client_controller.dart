@@ -11,8 +11,22 @@ abstract class _ClientStore with Store {
   final ClientLocalDataSourceImpl clientLocalDataSource =
       Modular.get<ClientLocalDataSourceImpl>();
 
+  List<ClientDto> repositories = [];
+
+  @computed
+  bool get hasResults =>
+      listClient != ObservableFuture.value([]) &&
+      listClient.status == FutureStatus.fulfilled;
+
+  @observable
+  ObservableFuture<List<ClientDto>> listClient = ObservableFuture.value([]);
+
   @action
-  Future<List<ClientDto>> getAll() {
-    return clientLocalDataSource.getAll();
+  Future<List<ClientDto>> getAll() async {
+    repositories = [];
+    final result = clientLocalDataSource.getAll();
+    listClient = ObservableFuture(result);
+    repositories = await listClient;
+    return repositories;
   }
 }
