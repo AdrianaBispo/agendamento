@@ -5,5 +5,5 @@ abstract class ClientDataSource{
   Future<void> deleteClient({required int id});
   Future<ClientDto> getClient({required int id});
   Future<ClientDto> updateClient({required ClientDto client});
-  Future<ClientDto> createClient({required ClientDto client});
+  Future<void> createClient({required ClientDto client});
 }
