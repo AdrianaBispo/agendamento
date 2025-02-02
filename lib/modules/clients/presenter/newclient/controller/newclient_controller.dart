@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:agenda/core/utils/validator.dart';
 import '../../../data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -46,13 +45,12 @@ abstract class _NewClientStore with Store {
   }
 
   @action
-  void validateAll() {
-    log('ValidateAll');
+  void validateAll() async{
     validateNome(name);
     validateTelephone(telephone);
 
     if (error.hasErrors == false) {
-      clientLocalDataSource.createClient(client: 
+    await clientLocalDataSource.createClient(client: 
         ClientDto(
           null,
           nameClient: name,
