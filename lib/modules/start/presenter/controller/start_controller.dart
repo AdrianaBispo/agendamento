@@ -8,6 +8,7 @@ class StartController = _StartControllerBase with _$StartController;
 
 abstract class _StartControllerBase with Store implements Disposable {
   final pageViewController = PageController();
+  // ignore: unused_field
   late List<ReactionDisposer> _disposers;
 
   @override
