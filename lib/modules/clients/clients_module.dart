@@ -19,7 +19,7 @@ class ClientsModule extends Module {
         //NewClient
         Bind((i) => NewClientController(i.get<ClientRepositoryImpl>())),
         //EditClient
-        Bind((i) => ClientEditController()),
+        Bind((i) => ClientEditController(i.get<ClientRepositoryImpl>())),
       ];
 
   @override
