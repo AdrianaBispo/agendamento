@@ -1,9 +1,10 @@
 import 'package:agenda/core/utils/validator.dart';
-import '../../../data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../data/dtos/client_dto.dart';
+import '../../../domain/repositories/client_repository.dart';
+import '../../home/controller/client_controller.dart';
 
 part 'newclient_controller.g.dart';
 
@@ -13,7 +14,20 @@ abstract class _NewClientStore with Store {
   final validator = Validator();
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
-  final ClientLocalDataSourceImpl clientLocalDataSource =  Modular.get<ClientLocalDataSourceImpl>();
+
+  final ClientRepository _repository;
+
+  _NewClientStore(this._repository);
+
+  ClientController clientController = Modular.get<ClientController>();
+
+  @observable
+  int value = 0;
+
+  @action
+  void increment() {
+    value++;
+  }
 
   @observable
   String name = '';
@@ -45,13 +59,13 @@ abstract class _NewClientStore with Store {
   }
 
   @action
-  void validateAll() async{
+  Future<void> validateAll() async {
     validateNome(name);
     validateTelephone(telephone);
 
     if (error.hasErrors == false) {
-    await clientLocalDataSource.createClient(client: 
-        ClientDto(
+      await _repository.createClient(
+        clientEntity: ClientDto(
           null,
           nameClient: name,
           telephoneClient: telephone,
@@ -59,6 +73,7 @@ abstract class _NewClientStore with Store {
         ),
       );
     }
+    await clientController.getAll();
   }
 }
 
@@ -73,7 +88,5 @@ abstract class _FormErrorState with Store {
   String? telephone;
 
   @computed
-  bool get hasErrors =>
-      name != null ||
-      telephone != null;
+  bool get hasErrors => name != null || telephone != null;
 }
