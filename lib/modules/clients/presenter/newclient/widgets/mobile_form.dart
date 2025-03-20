@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'confirmbutton.dart';
 import 'inputname.dart';
@@ -9,12 +10,14 @@ class MobileForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        InputName(),
-        SizedBox(width: 20),
-        InputTelefone(),
-        ConfirmButton(),
+        const InputName(),
+        const SizedBox(width: 20),
+        const InputTelefone(),
+        Observer(builder: (context) {
+          return const ConfirmButton();
+        }),
       ],
     );
   }

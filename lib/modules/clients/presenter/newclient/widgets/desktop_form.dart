@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'confirmbutton.dart';
 import 'inputname.dart';
@@ -9,9 +10,9 @@ class DesktopForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: <Widget>[
-        Row(
+       const Row(
           children: <Widget>[
             Expanded(
               flex: 4,
@@ -23,7 +24,11 @@ class DesktopForm extends StatelessWidget {
             ),
           ],
         ),
-        ConfirmButton(),
+        Observer(
+          builder: (context) {
+            return const ConfirmButton();
+          }
+        ),
       ],
     );
   }
