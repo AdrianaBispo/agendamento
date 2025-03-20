@@ -1,25 +1,27 @@
 import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
-
 import '../../../../../core/utils/validator.dart';
-import '../../../data/datasources/local/client_datasource_local_datasource_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
+import '../../../domain/repositories/client_repository.dart';
+import '../../home/controller/client_controller.dart';
 
-import '../../newclient/controller/newclient_controller.dart';
+import 'package:mobx/mobx.dart';
 
 part 'edit_client_controller.g.dart';
 
 class ClientEditController = _ClientEditStore with _$ClientEditController;
 
 abstract class _ClientEditStore with Store {
-  final ClientLocalDataSourceImpl clientLocalDataSource =
-      Modular.get<ClientLocalDataSourceImpl>();
+  final ClientRepository _repository;
 
   final validator = Validator();
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
 
   late ClientDto clientDto;
+
+  ClientController clientController = Modular.get<ClientController>();
+
+  _ClientEditStore(this._repository);
 
   @observable
   String name = '';
@@ -57,9 +59,24 @@ abstract class _ClientEditStore with Store {
   }
 
   @action
-  void update(ClientDto client) {
-    clientLocalDataSource.updateClient(
-      client: client,
+  Future<void> update(ClientDto client) async {
+    await _repository.updateClient(
+      clientEntity: client,
     );
+    await clientController.getAll();
   }
+}
+
+// ignore: library_private_types_in_public_api
+class FormErrorState = _FormErrorState with _$FormErrorState;
+
+abstract class _FormErrorState with Store {
+  @observable
+  String? name;
+
+  @observable
+  String? telephone;
+
+  @computed
+  bool get hasErrors => name != null || telephone != null;
 }
