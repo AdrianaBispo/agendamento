@@ -26,6 +26,8 @@ class _ClienteEditViewState extends State<ClienteEditView> {
   void initState() {
     super.initState();
     clientController.clientDto = widget.cliente;
+    clientController.name = widget.cliente.nameClient;
+    clientController.telephone = widget.cliente.telephoneClient;
   }
 
   @override
