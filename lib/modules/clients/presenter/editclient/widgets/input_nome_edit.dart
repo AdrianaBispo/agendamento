@@ -22,6 +22,7 @@ class _InputNameEditState extends State<InputNameEdit> {
   void initState() {
     super.initState();
     controller = Modular.get<ClientEditController>();
+    _textController.text = controller.name;
     controller.initialState();
   }
 
@@ -38,7 +39,7 @@ class _InputNameEditState extends State<InputNameEdit> {
       builder: (_) => InputCustom(
           title: 'Nome',
           child: TextFormField(
-            cursorColor: AppColor.instance.primary,
+            cursorColor: AppColor.instance.primary,            
             decoration: InputDecoration(
               hintText: 'Nome',
               errorText: controller.error.name,
