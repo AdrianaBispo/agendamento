@@ -1,20 +1,24 @@
 
-class ProfessionalDto extends ProfessionalEnttity {
+import 'package:agenda/modules/service/dtos/service_dto.dart';
+import '../../domain/entities/professional_entity.dart';
+
+class ProfessionalDto extends ProfessionalEntity {
   final int? idProfessional;
   final String nameProfessional;
   final String professionProfessional;
-  final List<ServiceEntity> servicesProfessional;
+  final List<ServiceDto> servicesProfessional;
+
   ProfessionalDto(
-    idProfessional, {
+    this.idProfessional, {
     required this.nameProfessional,
     required this.professionProfessional,
     required this.servicesProfessional,
   }): super(
-    idProfessional, {
+    idProfessional, 
       name: nameProfessional,
       profession: professionProfessional,
       services: servicesProfessional,
-    }
+    
   );
 
   Map<String, dynamic> toJson() {
