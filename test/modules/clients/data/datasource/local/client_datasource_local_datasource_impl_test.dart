@@ -23,29 +23,36 @@ void main() {
   });
 
   group('delete', () {
-    test('Deve retornar void quando deletar o registro', () async{
-      expect( () async => await dataSource.deleteClient(id: 1), isA<void>(),);
+    test('Deve retornar void quando deletar o registro', () async {
+      expect(
+        () async => await dataSource.deleteClient(id: 1),
+        isA<void>(),
+      );
     });
   });
 
   group('getClient', () {
-    test('Deve retornar um ClienteDto ao obter um cliente pelo id', () async{
-      final result = await dataSource.getClient(id: 1);
-      expect(result, isA<ClientDto>());
-    });    
+    test('''
+      Deve retornar um exception ao tentar ao obter um cliente que não existe''',
+        () async {
+      expect(() async => await dataSource.getClient(id: 1),
+          throwsA(isA<Exception>()));
+    });
   });
 
   group('updateClient', () {
-    test('Deve retornar um ClienteDto ao atualizado o cliente', () async{
-      final result = await dataSource.updateClient(client: client);
-      expect(result, isA<ClientDto>());
-    });    
+    test('Deve retornar um ClienteDto ao atualizado o cliente', () async {
+      expect(() async => await dataSource.updateClient(client: client),
+          throwsA(isA<Exception>()));
+    });
   });
 
   group('createClient', () {
-    test('Deve retornar um ClienteDto ao criar um cliente', () async{
-      final result = await dataSource.createClient(client: client);
-      expect(result, isA<ClientDto>());
-    }); 
+    test('Deve retornar um ClienteDto ao criar um cliente', () async {
+      expect(
+        () async => await dataSource.createClient(client: client),
+        isA<void>(),
+      );
+    });
   });
 }

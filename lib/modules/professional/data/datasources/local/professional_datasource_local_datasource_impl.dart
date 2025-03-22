@@ -61,7 +61,7 @@ class ProfessionalLocalDataSourceImpl implements ProfessionalDataSource {
 
   @override
   Future<ProfessionalDto> updateProfessional({required ProfessionalDto professional}) async {
-    final find = Finder(filter: Filter.equals('id', professional.id));
+    final find = Finder(filter: Filter.equals('id', professional.idProfessional));
     var dataBase =  await _initDatabase() as Database;
     await _professionaleStore.update(dataBase, professional.toJson(), finder: find);
     var snapshot = await _professionaleStore.query(finder: find).getSnapshot(dataBase);

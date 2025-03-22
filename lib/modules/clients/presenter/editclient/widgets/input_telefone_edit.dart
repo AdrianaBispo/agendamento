@@ -30,6 +30,7 @@ class _InputTelefoneEditState extends State<InputTelefoneEdit> {
   @override
   void dispose() {
     controller.error.telephone = null;
+    _textController.text = controller.telephone;
     super.dispose();
   }
 

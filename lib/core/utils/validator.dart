@@ -1,43 +1,58 @@
-import 'dart:developer';
-
 import 'package:all_validations_br/all_validations_br.dart';
 
-class Validator {
-  static isTextValid(String? text) {
-    if (text == null) {
+abstract class AppValidacoes<T> {
+  String? call(String? value);
+}
+
+class AppValidacaoTexto extends AppValidacoes {
+  @override
+  String? call(String? value) {
+    if (value == null) {
       return 'Campo obrigatório';
-    } else if (text.length < 5) {
+    } else if (value.length < 5) {
       return 'Texto curto demais';
-    } else if (text.isEmpty) {
+    } else if (value.isEmpty) {
       return 'Campo obrigatório';
     }
-    return;
+    return null;
   }
+}
 
-  static isTelefoneValid(String? telefone) {
-    if (telefone == null) {
+class AppValidacaoTelefone extends AppValidacoes {
+  @override
+  String? call(String? value) {
+    if (value == null) {
       return 'Campo obrigatório';
-    } else if (AllValidations.isPhoneNumber(telefone) == false) {
+    } else if (AllValidations.isPhoneNumber(value) == false) {
       return 'Número de celular inválido';
     }
     return null;
   }
+}
 
-  static isDateValid(DateTime data) {
+class AppValidacaoData extends AppValidacoes {
+  @override
+  String? call(String? value) {
     DateTime dataHoje = DateTime.now().toLocal();
-    if (data.toString().isEmpty) {
+
+    if (value.toString().isEmpty) {
       return 'Campo obrigatório';
-    } else if (data.isAfter(dataHoje)) {
-      // data for é depois da data de hoje
+    } else if (value == null) {
+      return 'Campo obrigatório';
+    } else if (DateTime.parse(value).isBefore(dataHoje)) {
+      // data for é antes da data de hoje
       return 'Data invalida';
     }
     return null;
   }
+}
 
-  static isEmailValid(String? email) {
-    if (email == null) {
+class AppValidacaoEmail extends AppValidacoes {
+  @override
+  String? call(String? value) {
+    if (value == null) {
       return 'Campo obrigatório';
-    } else if (AllValidations.isEmail(email) == false) {
+    } else if (AllValidations.isEmail(value) == false) {
       return 'E-mail inválido';
     }
     return null;

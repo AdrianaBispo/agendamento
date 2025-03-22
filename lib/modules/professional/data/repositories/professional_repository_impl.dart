@@ -12,12 +12,12 @@ class ProfessionalRepositoryImpl implements ProfessionalRepository {
   ProfessionalRepositoryImpl(this._professionalLocalDataSource);
 
   @override
-  Future<Either<FailureCreateProfessional, ProfessionalEntity>> createProfessional(
+  Future<Either<FailureCreateProfessional, void>> createProfessional(
       {required ProfessionalEntity professionalEntity}) async {
     try {
-      final professional = await _professionalLocalDataSource.createProfessional(
+      await _professionalLocalDataSource.createProfessional(
           professional: professionalEntity as ProfessionalDto);
-      return Right(professional);
+      return const Right(null);
     } catch (e) {
       return Left(CreateProfessionalException(message: e.toString()));
     }
@@ -38,7 +38,8 @@ class ProfessionalRepositoryImpl implements ProfessionalRepository {
   Future<Either<FailureGetAllProfessional, List<ProfessionalEntity>>>
       getAllProfessional() async {
     try {
-      final List<ProfessionalEntity>? result = await _professionalLocalDataSource.getAll();
+      final List<ProfessionalEntity>? result =
+          await _professionalLocalDataSource.getAll();
       if (result == null || result.isEmpty) {
         return const Right(<ProfessionalEntity>[]);
       }
@@ -55,8 +56,8 @@ class ProfessionalRepositoryImpl implements ProfessionalRepository {
       final ProfessionalEntity? result =
           await _professionalLocalDataSource.getProfessional(id: id);
       if (result == null) {
-        return Left(
-            GetProfessionalException(message: 'Não existem dados a serem exibidos'));
+        return Left(GetProfessionalException(
+            message: 'Não foi encontrado o profissional'));
       }
       return Right(result);
     } catch (e) {
@@ -65,11 +66,13 @@ class ProfessionalRepositoryImpl implements ProfessionalRepository {
   }
 
   @override
-  Future<Either<FailureUpdateProfessional, ProfessionalEntity>> updateProfessional(
-      {required ProfessionalEntity professionalEntity}) async {
+  Future<Either<FailureUpdateProfessional, ProfessionalEntity>>
+      updateProfessional(
+          {required ProfessionalEntity professionalEntity}) async {
     try {
-      final ProfessionalEntity professional = await _professionalLocalDataSource.updateProfessional(
-          professional: professionalEntity as ProfessionalDto);
+      final ProfessionalEntity professional =
+          await _professionalLocalDataSource.updateProfessional(
+              professional: professionalEntity as ProfessionalDto);
       return Right(professional);
     } catch (e) {
       return Left(UpdateProfessionalException(message: e.toString()));

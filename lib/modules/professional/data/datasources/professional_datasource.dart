@@ -4,6 +4,6 @@ abstract class ProfessionalDataSource {
   Future<List<ProfessionalDto>> getAll();
   Future<void> deleteProfessional({required int id});
   Future<ProfessionalDto> getProfessional({required int id});
-  Future<ProfessionalDto> updateProfessional({required ProfessionalDto client});
-  Future<ProfessionalDto> createProfessional({required ProfessionalDto client});
+  Future<ProfessionalDto> updateProfessional({required ProfessionalDto professional});
+  Future<ProfessionalDto> createProfessional({required ProfessionalDto professional});
 }

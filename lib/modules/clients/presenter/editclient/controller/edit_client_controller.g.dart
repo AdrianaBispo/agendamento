@@ -40,6 +40,14 @@ mixin _$ClientEditController on _ClientEditStore, Store {
     });
   }
 
+  late final _$updateAsyncAction =
+      AsyncAction('_ClientEditStore.update', context: context);
+
+  @override
+  Future<void> update(ClientDto client) {
+    return _$updateAsyncAction.run(() => super.update(client));
+  }
+
   late final _$_ClientEditStoreActionController =
       ActionController(name: '_ClientEditStore', context: context);
 
@@ -77,21 +85,60 @@ mixin _$ClientEditController on _ClientEditStore, Store {
   }
 
   @override
-  void update(ClientDto client) {
-    final _$actionInfo = _$_ClientEditStoreActionController.startAction(
-        name: '_ClientEditStore.update');
-    try {
-      return super.update(client);
-    } finally {
-      _$_ClientEditStoreActionController.endAction(_$actionInfo);
-    }
+  String toString() {
+    return '''
+name: ${name},
+telephone: ${telephone}
+    ''';
+  }
+}
+
+mixin _$FormErrorState on _FormErrorState, Store {
+  Computed<bool>? _$hasErrorsComputed;
+
+  @override
+  bool get hasErrors =>
+      (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors,
+              name: '_FormErrorState.hasErrors'))
+          .value;
+
+  late final _$nameAtom = Atom(name: '_FormErrorState.name', context: context);
+
+  @override
+  String? get name {
+    _$nameAtom.reportRead();
+    return super.name;
+  }
+
+  @override
+  set name(String? value) {
+    _$nameAtom.reportWrite(value, super.name, () {
+      super.name = value;
+    });
+  }
+
+  late final _$telephoneAtom =
+      Atom(name: '_FormErrorState.telephone', context: context);
+
+  @override
+  String? get telephone {
+    _$telephoneAtom.reportRead();
+    return super.telephone;
+  }
+
+  @override
+  set telephone(String? value) {
+    _$telephoneAtom.reportWrite(value, super.telephone, () {
+      super.telephone = value;
+    });
   }
 
   @override
   String toString() {
     return '''
 name: ${name},
-telephone: ${telephone}
+telephone: ${telephone},
+hasErrors: ${hasErrors}
     ''';
   }
 }

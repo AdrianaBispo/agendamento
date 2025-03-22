@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'package:agenda/modules/clients/data/dtos/client_dto.dart';
 import '../controller/client_controller.dart';
 
 //Widget
@@ -11,15 +10,10 @@ import '../widgets/button_newclient.dart';
 import '../../../../widgets/custom_app_bar.dart';
 import '../../../../widgets/data_empity.dart';
 
-class ClientHomeView extends StatefulWidget {
-  const ClientHomeView({Key? key}) : super(key: key);
+class ClientHomeView extends StatelessWidget {
+  ClientHomeView({Key? key}) : super(key: key);
 
-  @override
-  State<ClientHomeView> createState() => _ClientHomeViewState();
-}
-
-class _ClientHomeViewState extends State<ClientHomeView> {
-  ClientController clientController = Modular.get<ClientController>();
+  final ClientController clientController = Modular.get<ClientController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,39 +29,34 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                     children: <Widget>[
                       const CustomAppBar(texto: 'Clientes'),
                       const ButtonNewClient(),
-                      FutureBuilder<List<ClientDto>>(
-                          future: clientController.getAll(),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const SizedBox(
-                                width: 500.0,
-                                height: 300.0,
-                                child: Stack(
-                                  children: <Widget>[
-                                    Positioned.fill(
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: CenteredCircularProgress(),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            } else if (!snapshot.hasData &&
-                                snapshot.data == null) {
-                              return const EmpityData(
-                                text: 'Adcione os seus primeiros clientes',
-                              );
-                            } else if (snapshot.data!.isEmpty) {
-                              return const EmpityData(
-                                text: 'Adcione os seus primeiros clientes',
-                              );
-                            } else {
-                              return DataTableCliente(
-                                  listClient: snapshot.data!);
-                            }
-                          }),
+                      Observer(
+                        builder: (_) {
+                          if (clientController.loading) {
+                            return const SizedBox(
+                              width: 500.0,
+                              height: 300.0,
+                              child: Stack(
+                                children: <Widget>[
+                                  Positioned.fill(
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: CenteredCircularProgress(),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            );
+                          } else if (clientController.repositories.isEmpty) {
+                            return const EmpityData(
+                              text: 'Adcione os seus primeiros clientes',
+                            );
+                          } else {
+                            return DataTableCliente(
+                              listClient: clientController.repositories,
+                            );
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
