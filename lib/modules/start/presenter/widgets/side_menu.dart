@@ -8,7 +8,6 @@ import 'drawer_list_tile.dart';
 
 // ignore: must_be_immutable
 class SideMenu extends StatelessWidget {
-
   final controller = Modular.get<StartController>();
 
   SideMenu({
@@ -42,12 +41,14 @@ class SideMenu extends StatelessWidget {
               //lista[2]
             },
           ),
-          /*DrawerListTile(
-          pagina: ProfissionaisPage(),
-          texto: 'Profissionais',
-          icon: 'job',
-          selected: selected[3],
-        ),*/
+          DrawerListTile(
+            text: 'Profissionais',
+            icon: 'job',
+            selected: controller.selected[3],
+            onTap: () {
+              controller.onTap(3);
+            },
+          ),
         ],
       );
     });
