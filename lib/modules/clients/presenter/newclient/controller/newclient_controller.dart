@@ -1,7 +1,7 @@
-import 'package:agenda/core/utils/validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../../core/utils/validator.dart';
 import '../../../data/dtos/client_dto.dart';
 import '../../../domain/repositories/client_repository.dart';
 import '../../home/controller/client_controller.dart';
@@ -11,7 +11,6 @@ part 'newclient_controller.g.dart';
 class NewClientController = _NewClientStore with _$NewClientController;
 
 abstract class _NewClientStore with Store {
-  final validator = Validator();
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
 
@@ -50,12 +49,14 @@ abstract class _NewClientStore with Store {
 
   @action
   void validateNome(String value) {
-    error.name = Validator.isTextValid(value);
+    final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
+    error.name = appValidacaoTexto.call(value);
   }
 
   @action
   void validateTelephone(String value) {
-    error.telephone = Validator.isTelefoneValid(value);
+    final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
+    error.telephone = appValidacaoTexto.call(value);
   }
 
   @action
