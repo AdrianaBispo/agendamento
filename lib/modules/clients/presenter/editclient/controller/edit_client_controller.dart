@@ -13,7 +13,6 @@ class ClientEditController = _ClientEditStore with _$ClientEditController;
 abstract class _ClientEditStore with Store {
   final ClientRepository _repository;
 
-  final validator = Validator();
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
 
@@ -44,12 +43,14 @@ abstract class _ClientEditStore with Store {
 
   @action
   void validateNome(String value) {
-    error.name = Validator.isTextValid(value);
+    final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
+    error.name = appValidacaoTexto.call(value);
   }
 
   @action
   void validateTelephone(String value) {
-    error.telephone = Validator.isTelefoneValid(value);
+    final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
+    error.telephone = appValidacaoTexto.call(value);
   }
 
   @action
