@@ -1,5 +1,4 @@
 import 'package:agenda/core/utils/validator.dart';
-import 'package:agenda/repository/validator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
@@ -51,7 +50,7 @@ abstract class _EditProfessionalStore with Store {
 
   @action
   void validateProfession(String value) {
-    error.profession = Validator.isTextValid(value);
+    error.profession = appValidacaoTexto.call(value);
   }
 
   @action
