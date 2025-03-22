@@ -7,7 +7,6 @@ import '../../../domain/repositories/professional_repository.dart';
 import '../../home/controller/professional_controller.dart';
 part 'edit_professional_controller.g.dart';
 
-
 class EditProfessionalController = _EditProfessionalStore
     with _$EditProfessionalController;
 
@@ -15,7 +14,6 @@ abstract class _EditProfessionalStore with Store {
   final ProfessionalRepository _repository;
   late List<ReactionDisposer> _disposers;
   FormErrorState error = FormErrorState();
-  final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
 
   late ProfessionalDto clientDto;
 
@@ -45,11 +43,13 @@ abstract class _EditProfessionalStore with Store {
 
   @action
   void validateNome(String value) {
+    final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
     error.name = appValidacaoTexto.call(value);
   }
 
   @action
   void validateProfession(String value) {
+    final AppValidacaoTexto appValidacaoTexto = AppValidacaoTexto();
     error.profession = appValidacaoTexto.call(value);
   }
 
