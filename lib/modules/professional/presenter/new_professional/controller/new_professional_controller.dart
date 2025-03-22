@@ -20,7 +20,7 @@ abstract class _NewProfessionalStore with Store {
 
   _NewProfessionalStore(this._repository);
 
-  ProfessionalController clientController = Modular.get<ProfessionalController>();
+  ProfessionalController professionalController = Modular.get<ProfessionalController>();
 
   @observable
   int value = 0;
@@ -74,7 +74,7 @@ abstract class _NewProfessionalStore with Store {
         ),
       );
     }
-    await clientController.getAll();
+    await professionalController.getAll();
   }
 }
 
