@@ -13,13 +13,13 @@ mixin _$StartController on _StartControllerBase, Store {
       Atom(name: '_StartControllerBase.selected', context: context);
 
   @override
-  List<bool> get selected {
+  ObservableList<bool> get selected {
     _$selectedAtom.reportRead();
     return super.selected;
   }
 
   @override
-  set selected(List<bool> value) {
+  set selected(ObservableList<bool> value) {
     _$selectedAtom.reportWrite(value, super.selected, () {
       super.selected = value;
     });
@@ -29,13 +29,13 @@ mixin _$StartController on _StartControllerBase, Store {
       Atom(name: '_StartControllerBase._telas', context: context);
 
   @override
-  List<void> get _telas {
+  List<String> get _telas {
     _$_telasAtom.reportRead();
     return super._telas;
   }
 
   @override
-  set _telas(List<void> value) {
+  set _telas(List<String> value) {
     _$_telasAtom.reportWrite(value, super._telas, () {
       super._telas = value;
     });
