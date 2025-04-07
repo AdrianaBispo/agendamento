@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Modular.setInitialRoute('/clients/');
     return MaterialApp.router(
       title: 'Agendamento',
       debugShowCheckedModeBanner: false,
