@@ -18,9 +18,9 @@ class ClientsModule extends Module {
     i.addSingleton<ClientRepository>(
         () => ClientRepositoryImpl(i.get<ClientLocalDataSourceImpl>()));
         
-    i.add(() => ClientController(i.get<ClientRepositoryImpl>()));
-    i.add(() => NewClientController(i.get<ClientRepositoryImpl>()));
-    i.add(() => ClientEditController(i.get<ClientRepositoryImpl>()));
+    i.add(() => ClientController(i.get<ClientRepository>()));
+    i.add(() => NewClientController(i.get<ClientRepository>()));
+    i.add(() => ClientEditController(i.get<ClientRepository>()));
   }
 
   @override

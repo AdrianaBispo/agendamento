@@ -17,11 +17,11 @@ class ProfessionalModule extends Module {
     i.addSingleton<ProfessionalRepository>(() =>
         ProfessionalRepositoryImpl(i.get<ProfessionalLocalDataSourceImpl>()));
 
-    i.add(() => ProfessionalController(i.get<ProfessionalRepositoryImpl>()));
+    i.add(() => ProfessionalController(i.get<ProfessionalRepository>()));
 
-    i.add(() => ProfessionalController(i.get<ProfessionalRepositoryImpl>()));
-    i.add(() => NewProfessionalController(i.get<ProfessionalRepositoryImpl>()));
-    i.add(() => EditProfessionalController(i.get<ProfessionalRepositoryImpl>()));
+    i.add(() => ProfessionalController(i.get<ProfessionalRepository>()));
+    i.add(() => NewProfessionalController(i.get<ProfessionalRepository>()));
+    i.add(() => EditProfessionalController(i.get<ProfessionalRepository>()));
   }
 
   @override
