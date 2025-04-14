@@ -44,6 +44,12 @@ Este aplicativo de agendamento foi criado para facilitar o agendamento de serviÃ
   </p>
   <img src="screenshots/clientes_home.png" width="250px">
 </p>
+<p align="center"> 
+  <p>
+    Profissional
+  </p>
+  <img src="screenshots/professional_home.png" width="250px">
+</p>
 
 <!-- final funcionalidades -->
 <h2 id='linguagem'>ğŸ›  Linguagens e Ferramentas</h2>
