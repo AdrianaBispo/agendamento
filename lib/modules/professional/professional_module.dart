@@ -17,9 +17,8 @@ class ProfessionalModule extends Module {
     i.addSingleton<ProfessionalRepository>(() =>
         ProfessionalRepositoryImpl(i.get<ProfessionalLocalDataSourceImpl>()));
 
-    i.add(() => ProfessionalController(i.get<ProfessionalRepository>()));
-
-    i.add(() => ProfessionalController(i.get<ProfessionalRepository>()));
+    i.addSingleton(
+        () => ProfessionalController(i.get<ProfessionalRepository>()));
     i.add(() => NewProfessionalController(i.get<ProfessionalRepository>()));
     i.add(() => EditProfessionalController(i.get<ProfessionalRepository>()));
   }
