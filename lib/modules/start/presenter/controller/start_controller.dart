@@ -21,14 +21,14 @@ abstract class _StartControllerBase with Store implements Disposable {
 
   @observable
   ObservableList<bool> selected =
-      ObservableList.of([true, false, false, false]);
+      ObservableList.of([false, false, true, false]);
 
   @observable
   List<String> _telas = [
     '', //home
     '', //agenda
     '/clients/', //clientes
-    '/professionals', //profissionais
+    '/professionals/', //profissionais
   ];
 
   @observable
