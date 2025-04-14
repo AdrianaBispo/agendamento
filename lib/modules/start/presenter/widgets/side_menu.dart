@@ -19,32 +19,30 @@ class SideMenu extends StatelessWidget {
     return Observer(builder: (_) {
       return Column(
         children: <Widget>[
-          /*DrawerListTile(
-          pagina: HomePage(),
-          texto: 'Home',
-          icon: 'element',
-          selected: selected[0],
-        ),
-        DrawerListTile(
-          pag: '',
-          text: 'Agenda',
-          icon: 'calendar',
-          selected: selected[1],
-        ),*/
+          DrawerListTile(
+            text: 'Home',
+            icon: 'element',
+            selected: controller.selected[0],
+          onTap: () => controller.onTap(0),
+          ),
+          DrawerListTile(
+            text: 'Agenda',
+            icon: 'calendar',
+            selected: controller.selected[1],
+            onTap: () => controller.onTap(1),
+          ),
           DrawerListTile(
             text: 'Clientes',
             icon: 'profile-2user',
             selected: controller.selected[2],
             onTap: () {
               controller.onTap(2);
-
-              //lista[2]
             },
           ),
           DrawerListTile(
             text: 'Profissionais',
             icon: 'job',
-            selected: controller.selected[3],
+             selected:  controller.selected[3],
             onTap: () {
               controller.onTap(3);
             },

@@ -10,6 +10,7 @@
 <ul>
     <li><a href="#sobre">Sobre o Projeto</a></li>
     <li><a href="#funcionalidade">Funcionalidades</a></li>
+    <li><a href="#screenshots">ScreenShots</a></li>
     <li><a href="#linguagem">Linguagens e Ferramentas</a></li>
     <li><a href="#started">Getting Started</a></li>
     <li><a href='#autor'>Autor</a></li>
@@ -33,6 +34,22 @@ Este aplicativo de agendamento foi criado para facilitar o agendamento de servi�
 - [x] Editar cliente;
 - [x] deletar cliente;
 - [X] Agendamento de Serviços;
+
+<!-- ScreenShots -->
+
+<h2 id="screenshot">ScreenShots</h2>
+<p align="center"> 
+  <p>
+    Cliente
+  </p>
+  <img src="screenshots/clientes_home.png" width="250px">
+</p>
+<p align="center"> 
+  <p>
+    Profissional
+  </p>
+  <img src="screenshots/professional_home.png" width="250px">
+</p>
 
 <!-- final funcionalidades -->
 <h2 id='linguagem'>🛠 Linguagens e Ferramentas</h2>

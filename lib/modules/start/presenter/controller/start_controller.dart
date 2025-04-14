@@ -20,33 +20,31 @@ abstract class _StartControllerBase with Store implements Disposable {
   }
 
   @observable
-  List<bool> selected = [
-    false,
-    false,
-    true,
-    false,
-  ];
+  ObservableList<bool> selected =
+      ObservableList.of([false, false, true, false]);
 
   @observable
-  List<void> _telas = [
-    //Modular.to.navigate(''), //home
-    //Modular.to.navigate(''), //agenda
-    Modular.to.navigate('/clients/'),
-    Modular.to.navigate('/professionals/'), //profissionais
+  List<String> _telas = [
+    '', //home
+    '', //agenda
+    '/clients/', //clientes
+    '/professionals/', //profissionais
   ];
 
   @observable
   int _selectedIndex = 2;
 
-  // void initialState() {
-  //   _disposers = [];
-  //   selected = [
-  //     false,
-  //     false,
-  //     true,
-  //     false,
-  //   ];
-  // }
+  void initialState() {
+    _disposers = [];
+    selected = ObservableList.of(
+      [
+        false,
+        false,
+        true,
+        false,
+      ],
+    );
+  }
 
   @action
   void onTap(int index) {
@@ -57,6 +55,6 @@ abstract class _StartControllerBase with Store implements Disposable {
       false,
     ]);
     selected[index] = true;
-    _telas[index];
+    Modular.to.pushNamed(_telas[index]);
   }
 }
